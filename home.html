@@ -13,9 +13,6 @@
 <body>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">T-Maker</a>
-        </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="home.html">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
@@ -30,9 +27,68 @@
 </nav>
 
 <div class="container">
-    <h3>Right Aligned Navbar</h3>
-    <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
+    <div class="row TM-header">
+        <div class="col-sm-3">
+            <h1><a class="navbar-brand" href="#">T-Maker</a></h1>
+        </div>
+        <div class="col-sm-6 search-bar">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Search" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 cart">
+            <a href="#" class="btn btn-default">
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                <p style="float:right">0</p>
+            </a>
+
+        </div>
+    </div>
+    <hr>
+    <ul class="breadcrumb">
+        <li><a href="#">T-Maker</a></li>
+        <li>Home</li>
+    </ul>
+
+    <div class="TM-body">
+        <h2 class="title">How we work</h2>
+        <div class="row">
+            <div class="col-sm-8 autoplay">
+                <video width="100%" height="400px" controls>
+                    <source src="video/T-Maker-tutorial.mp4" type="video/mp4">
+                    <!--<source src="mov_bbb.ogg" type="video/ogg">-->
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
+            <div class="col-sm-4 desc">
+                <h3>Having your own designed T-shirt</h3>
+                <ul>
+                    <li><span>Free</span> design</li>
+                    <li><span>Easy</span> tools</li>
+                    <li><span>Convenience</span> production</li>
+                    <li><span>Fast</span> delivery</li>
+                    <li><span>High</span> quality</li>
+                </ul>
+                <button type="button" class="btn btn-primary" onclick="window.">DESIGN NOW</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+
+    <div class="container">
+        <h3>Right Aligned Navbar</h3>
+        <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
+    </div>
 
 <footer>
     <p>Copyright &copy; 2018, All Rights Reserved</p>

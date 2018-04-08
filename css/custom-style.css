@@ -1,13 +1,38 @@
+*{
+    font-family: 'Arial', sans-serif;
+}
+
 nav.navbar {
     -webkit-border-radius:0;
     -moz-border-radius:0;
     border-radius:0;
-    font-size: 18px;
+    font-size: 16px;
+    margin: 0;
+    position: fixed;
+    top:0;
+    width: 100%;
+    background: black;
+    z-index: 10000;
 }
 
-.navbar-header .navbar-brand {
-    font-size: 30px;
+@media (min-width: 768px) {
+
 }
+div.container a{
+    font-size: 30px;
+    color: #000000;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+div.container a:hover{
+    color:#000000;
+}
+
+div.container h1{
+    margin: 0;
+}
+
 
 footer {
     position: fixed;
@@ -17,4 +42,135 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
+}
+
+
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+.stylish-input-group .form-control{
+    border-right:0;
+    box-shadow:0 0 0;
+    border-color:#ccc;
+    width: 100%;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+div.row {
+    margin-top: 10px;
+}
+
+hr{
+    /*width: 80%;*/
+    height: 1px !important;
+    border: none !important;
+    color: #333 !important;
+    background-color: #333 !important;
+}
+
+.TM-header{
+    padding-top: 60px;
+    display: inline-block;
+}
+
+.TM-header h1 a{
+    padding-left: 20px;
+    font-size: 30px;
+}
+.TM-header .cart a{
+    padding-top: 0;
+    float: right;
+
+}
+
+.TM-header .cart p{
+    margin: 0;
+    padding-left:10px;
+    padding-top: 8px;
+    float: right;
+
+}
+
+.TM-header .search-bar {
+    padding-top: 10px;
+}
+
+.TM-header .glyphicon-shopping-cart{
+    font-size: 30px;
+    padding-top: 10px;
+}
+
+.TM-header .btn{
+    padding: 3px 12px;
+}
+
+.TM-header {
+    text-align: center;
+}
+
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: white;
+    text-align: left;
+}
+ul.breadcrumb li {
+    display: inline;
+    font-size: 14px;
+}
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+    font-size: 14px;
+}
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+
+.TM-body div.video{
+    display: block;
+    border: 1px solid black;
+}
+
+.TM-body div.desc {
+    background: #eee;
+    text-align: center;
+    height: 400px;
+}
+.TM-body div.desc li{
+    list-style: none;
+    text-align: left;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.TM-body div.desc span{
+    color: #1b6d85;
+    font-weight: 600;
+}
+.TM-body .desc button{
+    width: 80%;
+    position: absolute;
+    bottom: 20px;
+    right: 10%;
+    font-size: 24px;
+}
+
+.TM-body .desc h3{
+    padding: 10px 0;
+}
+
+.TM-body .title{
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 500;
 }
