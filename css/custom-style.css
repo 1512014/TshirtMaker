@@ -6,6 +6,31 @@
     background: #eee;
 }
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    nav.navbar {padding-left: 30px; padding-right: 30px}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    nav.navbar .container-fluid {padding-left: 50px; padding-right: 50px}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    nav.navbar .container-fluid {padding-left: 50px; padding-right: 50px}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    nav.navbar .container-fluid {padding-left: 60px; padding-right: 60px}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    nav.navbar .container-fluid {padding-left: 100px; padding-right: 100px}
+}
+
 div.gradient {
     height: 30px;
     z-index: 100;
@@ -24,7 +49,7 @@ div.gradient .right{
     width: 80%;
     float:right;
     height: inherit;
-    background: linear-gradient(to bottom right,#000000, #313131);
+    background: linear-gradient(to bottom right,#000000, #1b1b1b);
     z-index: 101;
 
 }
@@ -53,12 +78,12 @@ nav.navbar img{
 @media (min-width: 768px) {
 
 }
-div.container a{
-    font-size: 30px;
-    color: #000000;
-    font-weight: 600;
-    text-decoration: none;
-}
+/*div.container a{*/
+    /*font-size: 30px;*/
+    /*color: #000000;*/
+    /*font-weight: 600;*/
+    /*text-decoration: none;*/
+/*}*/
 
 div.container a:hover{
     color:#000000;
@@ -100,23 +125,33 @@ div.row {
 
 hr{
     /*width: 80%;*/
+    margin-top: 0 !important;
     height: 1px !important;
     border: none !important;
     color: #333 !important;
     background-color: #333 !important;
-    margin-top: 10px !important;
 }
 
 .TM-header{
+    background: #333333;
     padding-top: 80px;
+    padding-bottom: 20px;
     display: inline-block;
 
 }
 
 .TM-header h1 a{
-    padding-left: 20px;
+    padding-top: 15px;
+    padding-left: 40px;
     font-size: 40px;
+    color: white !important;
 }
+
+.TM-header  {
+
+}
+
+
 
 .TM-header .cart a{
     padding-top: 0;
@@ -225,118 +260,41 @@ ul.breadcrumb li a:hover {
     background: #ffffff;
 }
 
+#myCarousel {
+    width: 100%;
+}
 
-/*Add slider*/
-* {
+.vertical-menu {
+    width: 100%;
+    height: auto;
     margin: 0;
-    padding: 0;
 }
 
-body {
-    color: #666;
-    font-size: 13px;
-    background: #f4f4f4;
-    font-family: 'Arial', sans-serif;
-}
-
-#container{
-    margin: 15px auto;
-    text-align: center;
-    width: 900px;
-    position: relative;
-}
-
-a, a:visited {
-    color: #0196e3;
-    text-decoration: none;
-    outline: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-p{
-    padding-top: 10px;
-    text-align: center;
-}
-
-header{
-    background: #ffffff;
-    height: 30px;
-    padding-top: 10px;
-    border-bottom: 1px solid #ccc;
-}
-
-#slider {
-    -moz-box-shadow: 0 0 3px #aaaaaa;
-    -webkit-box-shadow: 0 0 3px #aaaaaa;
-    box-shadow: 0 0 3px #aaaaaa;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-
-    background: #FFFFFF;
-    width: 900px;
-    overflow: hidden;
-}
-
-#slides{
-    height:240px;
-    width: 900px;
-    overflow: hidden;
-    padding-top: 20px;
-}
-
-.slide{
-    float: left !important;
-}
-
-#menu{
-    height: 45px;
-}
-
-#menu ul{
-    margin: 0;
-    padding: 0;
-}
-
-#menu li{
-    width: 60px;
-    margin-left: -4px;
-    display: inline-block;
-    list-style:none;
-    height:45px;
-    overflow: hidden;
-}
-
-#menu li.active, #menu li.active:hover{
-    background: #aaaaaa;
-}
-
-#menu li.active {
-    cursor: default;
-}
-
-#menu .sep{
-    width: 2px;
-    background: #aaaaaa;
-    margin-right: -2px;
-}
-
-#menu li a{
+.vertical-menu a {
+    background-color: #eee;
+    color: black;
     display: block;
-    background: #aaaaaa;
-    height:35px;
+    padding: 12px;
+    font-size: 14px;
+    text-decoration: none;
+
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.TM-body h3.title{
+    margin: 0;
     padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    background: #6a6a6a;
+    color: white;
 }
 
-#menu a img {
-    border: none;
-}
-
-div.slide{
-    width: 900px;
-}
-
-/*End add slider*/
