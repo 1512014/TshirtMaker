@@ -314,6 +314,10 @@ ul.breadcrumb li a:hover {
     user-select: none;
 }
 
+.TM-categories {
+    padding-bottom: 50px;
+}
+
 /* Hide the browser's default checkbox */
 .TM-categories .container input {
     position: absolute;
@@ -383,4 +387,96 @@ ul.breadcrumb li a:hover {
 
 .TM-categories ul li label {
     background-color: white;
+}
+
+.TM-categories div.percent{
+
+    position: absolute;
+    top:0;
+    right:0;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    background: red;
+    box-shadow: none;
+    text-align: center;
+    line-height: 45px;
+    font-weight: 600;
+    color: white;
+}
+
+.TM-categories span.price{
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.TM-categories span.original-price{
+    text-decoration: line-through;
+    font-size: 11px;
+    color: #a2a2a2;
+    font-weight: 300;
+}
+
+.TM-categories p.book-title {
+    font-size: 14px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.TM-categories div.vote i {
+    color: #ffc120;
+    cursor: pointer;
+
+}
+
+.TM-categories div.vote{
+    display: inline-block;
+}
+
+.TM-categories span.comment{
+    color: #787878;
+}
+
+.TM-categories label.container{
+    font-size: 14px;
+}
+
+.center {
+    text-align: center;
+}
+
+.pagination {
+    padding-top:20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+.pagination a.active {
+    background-color: #454545;
+    color: white;
+    border: 1px solid #454545;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.book-list img {
+    cursor: pointer;
 }
