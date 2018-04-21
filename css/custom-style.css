@@ -102,6 +102,7 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
+    padding-top: 10px;
 }
 
 
@@ -196,6 +197,7 @@ ul.breadcrumb {
     list-style: none;
     background-color: white;
     text-align: left;
+    margin-top: 5px;
 }
 ul.breadcrumb li {
     display: inline;
@@ -421,8 +423,12 @@ ul.breadcrumb li a:hover {
     font-size: 14px;
     padding-top: 10px;
     cursor: pointer;
+    color: black;
 }
 
+.TM-categories a:hover{
+    text-decoration: none;
+}
 div.vote i {
     color: #ffc120;
     cursor: pointer;
