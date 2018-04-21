@@ -1,0 +1,116 @@
+.TM-book-detail {
+    background-color: white;
+    padding-bottom: 50px;
+}
+
+.TM-book-detail span.author, span.type{
+    color: #007ff0;
+}
+
+.TM-book-detail  span.type{
+    padding-left: 50px;
+}
+
+.TM-book-detail .add-to-cart {
+    height: 60px;
+}
+
+.TM-relate-book div.percent{
+
+    position: absolute;
+    top:0;
+    right:0;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    background: red;
+    box-shadow: none;
+    text-align: center;
+    line-height: 45px;
+    font-weight: 600;
+    color: white;
+}
+
+.TM-relate-book span.price{
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.TM-relate-book span.original-price{
+    text-decoration: line-through;
+    font-size: 11px;
+    color: #a2a2a2;
+    font-weight: 300;
+}
+
+.TM-relate-book p.book-title {
+    font-size: 14px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.TM-relate-book {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    background: white;
+}
+
+.TM-relate-book .title{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .heart{
+        text-align: right;
+    }
+}
+
+
+.price-container {
+    padding-top: 20px;
+}
+
+.price-container .price{
+    color:#ff3425;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.price-container .percent{
+    color:#ff3425 !important;
+}
+
+.TM-detail {
+    background: white;
+    margin-top: 20px;
+}
+
+.TM-detail .title{
+
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+.table-striped tr{
+    background: #d5d5d5 !important;
+    font-weight: 600!important;
+}
+
+.table-striped tr td.last{
+    background: white;
+    font-weight: normal!important;
+}
+
+.TM-book-description{
+    background: white;
+    margin-top: 20px;
+}
+
+.TM-book-description .title{
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}

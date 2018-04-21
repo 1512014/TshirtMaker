@@ -423,17 +423,16 @@ ul.breadcrumb li a:hover {
     cursor: pointer;
 }
 
-.TM-categories div.vote i {
+div.vote i {
     color: #ffc120;
     cursor: pointer;
 
 }
 
-.TM-categories div.vote{
+div.vote{
     display: inline-block;
 }
-
-.TM-categories span.comment{
+span.comment{
     color: #787878;
 }
 
