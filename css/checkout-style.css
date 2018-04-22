@@ -1,0 +1,83 @@
+.TM-checkout {
+
+}
+
+.TM-checkout .book-list {
+    background: white;
+    border-right: 10px solid #eee;
+}
+
+.TM-checkout .book-price {
+    background: white;
+    padding: 10px;
+    margin-top: 0;
+}
+
+.TM-checkout .title {
+    padding-left: 15px;
+    font-size:20px;
+
+}
+
+.TM-checkout div.price {
+    border: 2px solid #eee;
+}
+
+.TM-checkout p.total-price {
+    color: #fe3834;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+
+.TM-checkout button.checkout{
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #ff424e;
+}
+
+.TM-checkout button.checkout:hover {
+    background-color: #ff0f1e;
+}
+
+.TM-checkout .book-title{
+    font-size: 16px;
+}
+
+.TM-checkout .book-item{
+    border-bottom: 10px solid #eee;
+    padding-bottom: 10px;
+}
+
+.TM-checkout .item-price .final-price{
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+.TM-checkout .item-price .original-price{
+    text-decoration: line-through;
+    color: #a2a2a2;
+}
+
+.TM-checkout .book-item .percent{
+    position: absolute;
+    top:0;
+    right:0;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    background: red;
+    box-shadow: none;
+    text-align: center;
+    line-height: 45px;
+    font-weight: 600;
+    color: white;
+}
+
+.TM-checkout .book-item .book-title a{
+    text-decoration: none;
+    color: black;
+}

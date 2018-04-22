@@ -31,6 +31,12 @@
     color: white;
 }
 
+.TM-relate-book .book-item a{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
 .TM-relate-book span.price{
     font-size: 13px;
     font-weight: 600;
