@@ -54,4 +54,8 @@ $(document).ready(function () {
         autoScroll()
     }, duration*1000);
 
+
+    $("#submit-address-delivery").on('click', function(){
+        location.href = "checkout-step3.html";
+    });
 });

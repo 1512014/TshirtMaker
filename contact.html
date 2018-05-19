@@ -19,7 +19,7 @@
 </div>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <a href="#" class="navbar-left"><img src="img/TM-icon.png" height="60"></a>
+        <a href="home.html" class="navbar-left"><img src="img/TM-icon.png" height="60"></a>
         <ul class="nav navbar-nav">
             <li><a href="home.html">Trang Chủ</a></li>
             <li><a href="shop.html">Kho Sách</a></li>
@@ -42,50 +42,28 @@
     </ul>
 
     <div class="TM-body">
-        <h3>Liên Hệ</h3>
-        <div class="member">
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="img/avatars/avatar01.png" height="120">
-                </div>
+        <h3>Contact Us</h3>
 
-                <div class="col-sm-10">
-                    <p class="member-name">Huỳnh Hồng Ân</p>
-                    <p>MSSV: <span class="member-mssv">1512014</span></p>
-                    <p>Email: <span class="member-email">1512014@student.hcmus.edu.vn</span> </p>
-                    <p>Điện Thoại: <span class="member-phone-number">0123456789</span></p>
-                </div>
-            </div>
-        </div>
+        <div class="container-fluid">
+          <form action="/action_page.php">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
-        <div class="member">
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="img/avatars/avatar02.png" height="120">
-                </div>
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
 
-                <div class="col-sm-10">
-                    <p class="member-name">Võ Quang Hưng</p>
-                    <p>MSSV: <span class="member-mssv">1512229</span></p>
-                    <p>Email: <span class="member-email">1512229@student.hcmus.edu.vn</span> </p>
-                    <p>Điện Thoại: <span class="member-phone-number">0123456789</span></p>
-                </div>
-            </div>
-        </div>
+            <label for="country">Country</label>
+            <select id="country" name="country">
+              <option value="australia">Australia</option>
+              <option value="canada">Canada</option>
+              <option value="usa">USA</option>
+            </select>
 
-        <div class="member">
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="img/avatars/avatar03.png" height="120">
-                </div>
+            <label for="subject">Subject</label>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
 
-                <div class="col-sm-10">
-                    <p class="member-name">Huỳnh Thanh Duy</p>
-                    <p>MSSV: <span class="member-mssv">1412082</span></p>
-                    <p>Email: <span class="member-email">1412082@student.hcmus.edu.vn</span> </p>
-                    <p>Điện Thoại: <span class="member-phone-number">0123456789</span></p>
-                </div>
-            </div>
+            <input type="submit" value="Submit">
+          </form>
         </div>
     </div>
 </div>

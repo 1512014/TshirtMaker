@@ -450,6 +450,8 @@ span.comment{
     text-align: center;
 }
 
+
+
 .pagination {
     padding-top:20px;
     text-align: center;
@@ -484,4 +486,57 @@ span.comment{
 
 .book-list img {
     cursor: pointer;
+}
+
+/* Process bar */
+.TM-progressbar {
+    width: 80%;
+    padding-top: 100px;
+    display: inline-block;
+}
+.TM-progressbar .progressbar {
+  counter-reset: step;
+}
+.TM-progressbar .progressbar li {
+  list-style: none;
+  display: inline-block;
+  width: 30.33%;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+.TM-progressbar .progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 30px;
+  height: 30px;
+  line-height : 30px;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  background-color: #fff;
+}
+.TM-progressbar .progressbar li:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  top: 15px;
+  left: -50%;
+  z-index : -1;
+}
+.TM-progressbar .progressbar li:first-child:after {
+  content: none;
+}
+.TM-progressbar .progressbar li.active {
+  color: green;
+}
+.TM-progressbar .progressbar li.active:before {
+  border-color: green;
+}
+.TM-progressbar .progressbar li.active + li:after {
+  background-color: green;
 }
