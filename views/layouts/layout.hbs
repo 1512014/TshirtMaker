@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TM Book</title>
+    <link rel="icon" href="/img/TM-icon.png">
+    <link rel="stylesheet" href="/css/custom-style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    {{#if cssContact}}
+    <link rel="stylesheet" href="css/contact-style.css">
+    {{/if}}
+    {{#if cssAboutUs}}
+    <link rel="stylesheet" href="css/about-us.css">
+    {{/if}}
+    {{#if cssShop}}
+    <link rel="stylesheet" href="css/shop-style.css">
+    {{/if}}
+    {{#if cssViewCart}}
+    <link rel="stylesheet" href="css/view-cart-style.css">
+    {{/if}}
+    {{#if cssProductDetail}}
+    <link rel="stylesheet" href="css/product-detail.css">
+    {{/if}}
+    {{#if cssCheckOutStep2}}
+    <link rel="stylesheet" href="css/checkout-step2.css">
+    {{/if}}
+    {{#if cssCheckOutStep3}}
+    <link rel="stylesheet" href="css/checkout-step3.css">
+    {{/if}}
+    {{#if cssLogin}}
+    <link rel="stylesheet" href="css/login-style.css">
+    {{/if}}
+    {{#if cssRegister}}
+    <link rel="stylesheet" href="css/register-style.css">
+    {{/if}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+{{> header}}
+
+<div class="container" style="padding-bottom: 100px;">
+    {{#if pageHeader}}
+    <div class="row TM-header">
+        <div class="col-sm-4">
+            <h1><a class="navbar-brand" href="/"><strong>TM</strong> Book</a></h1>
+        </div>
+        <div class="col-sm-5 search-bar">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Search" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 cart">
+            <a href="/view-cart" class="btn btn-default">
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                <p style="float:right">0</p>
+            </a>
+
+        </div>
+    </div>
+    {{else}}
+    <div style="padding-top:80px">
+
+    </div>
+    {{/if}}
+
+    {{#unless hideBreadcrumb}}
+    <ul class="breadcrumb">
+        <li><a href="/">TM</a></li>
+        {{#each breadcrumbs}}
+        {{#if @last}}
+        <li>{{title}}</li>
+        {{else}}
+        <li><a href="{{link}}">{{title}}</a></li>
+        {{/if}}
+        {{/each}}
+    </ul>
+    {{/unless}}
+
+    <!-- Body after breadcrumb -->
+    {{{body}}}
+
+</div>
+{{> footer}}
+</body>
+</html>

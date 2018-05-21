@@ -1,0 +1,19 @@
+<div class="gradient">
+    <div class="left">&nbsp;</div>
+    <div class="right">&nbsp;</div>
+</div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <a href="/" class="navbar-left"><img src="img/TM-icon.png" height="60"></a>
+        <ul class="nav navbar-nav">
+            <li {{#if activeHome}} class="active" {{/if}}><a href="/">Home</a></li>
+            <li {{#if activeShop}} class="active" {{/if}}><a href="/shop">Shop</a></li>
+            <li {{#if activeContact}} class="active" {{/if}}><a href="/contact">Contact</a></li>
+            <li {{#if activeAboutUs}} class="active" {{/if}}><a href="/about-us">About Us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li {{#if activeRegister}} class="active" {{/if}}><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+            <li {{#if activeLogin}} class="active" {{/if}}><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+    </div>
+</nav>

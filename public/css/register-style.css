@@ -75,9 +75,12 @@ nav.navbar img{
 }
 
 .container {
-    margin-top: 85px;
     background: #eee;
     min-height: 680px;
+}
+
+.container .row{
+    margin-top: 30px;
 }
 
 footer {
@@ -90,26 +93,106 @@ footer {
     text-align: center;
 }
 
-.panel-default {    
-    opacity: 0.9;   
-    margin-top:30px;
-    font-size: 18px;
-}
-.form-group.last {  
-    margin-bottom:0px;
+.form-horizontal .header{
+    background: #555;
+    padding: 10px 25px;
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 3px 3px 0 0;
 }
 
-.form-group .form-control{
-    font-size: 1.1em;
+.form-horizontal .form-content{
+    padding: 25px;
+    background: #f9fafd;
 }
-.form-group.last button{ 
-    height: 40px;
-    font-size: 1.1em;
-}
-.panel-body{
-    height: 230px;
-}
-.panel-heading{
-    font-size: 20px;
+
+.form-horizontal .form-control{
+    padding: 10px 50px 10px 15px;
+    height: 50px;
+    font-size: 18px;
     color: #000;
+    border: 2px solid #acacac;
+    margin-bottom: 15px;
+}
+
+.form-horizontal .form-control:hover{
+    border-color: #253eca;
+}
+
+.form-horizontal .form-control:focus{
+    border-color: #111397;
+    box-shadow: none;
+}
+
+.form-horizontal .control-label{
+    width: 30px;
+    height: 40px;
+    font-size: 17px;
+    color: #acacac;
+    border-left: 1px solid #acacac;
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    text-align: center;
+}
+
+.form-horizontal .captcha{
+    padding-right: 0;
+}
+
+.form-horizontal .captcha label{
+    background: #e0e0e0;
+    display: block;
+    height: 50px;
+    font-size: 16px;
+    color: #acacac;
+    line-height: 45px;
+    text-align: center;
+    border-radius: 3px 0 0 3px;
+}
+
+.form-horizontal .captcha-text{
+    padding-left: 0;
+}
+
+.form-horizontal .captcha-text input{
+    border-radius: 0 3px 3px 0;
+}
+
+.form-horizontal .footer{
+    background: #eee;
+    border-top: 1px solid #777;
+    padding: 10px 25px;
+}
+
+.form-horizontal .footer .btn{
+    background: rgb(41, 58, 214);
+    font-size: 18px;
+    color: #fff;
+    float: right;
+    margin: 10px 0;
+    clear: both;
+    padding: 10px 25px;
+    transition: all 0.5s ease 0s;
+}
+
+.form-horizontal .name{
+    padding: 10px 15px;
+}
+
+.policy{
+    font-size: 18px;
+}
+.policy a{
+    margin-left: 21px;
+}
+@media only screen and (max-width:767px){
+    .form-horizontal .control-label i{
+    line-height: 40px;
+    }
+
+    .form-horizontal .captcha label{
+    font-size: 13px;
+    }
 }
