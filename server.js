@@ -132,6 +132,7 @@ app.get('/login', (req, res) => {
 		pageHeader: false,
 		activeLogin: true,
 		cssLogin: true,
+		hideBreadcrumb: true,
 		breadcrumbs:[
 			{title: "Login", link: "/login"}
 		]
@@ -143,6 +144,7 @@ app.get('/register', (req, res) => {
 		pageHeader: false,
 		activeRegister: true,
 		cssRegister: true,
+		// hideBreadcrumb: true,
 		breadcrumbs:[
 			{title: "Register", link: "/register"}
 		]
