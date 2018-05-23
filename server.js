@@ -76,6 +76,17 @@ app.get('/about-us', (req, res) => {
     });
 });
 
+app.get('/personal-products', (req, res) => {
+    res.render('personal-products.hbs', {
+		pageHeader: false,
+		cssPersonalProducts: true,
+		activeAboutUs: true,
+		breadcrumbs: [
+			{title: "My Products", link: "/personal-products"}
+		]
+    });
+});
+
 app.get('/shop', (req, res) => {
     res.render('shop.hbs', {
 		pageHeader: true,
