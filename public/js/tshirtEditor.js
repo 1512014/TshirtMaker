@@ -202,7 +202,7 @@ var line4;
 	        canvas.renderAll();
 	      }
 	    });
-		$('#text-bgcolor').miniColors({
+		$('#text-bgcolor').minicolors({
 			change: function(hex, rgb) {
 			  var activeObject = canvas.getActiveObject();
 		      if (activeObject && activeObject.type === 'text') {
@@ -217,7 +217,7 @@ var line4;
 				//
 			}
 		});
-		$('#text-fontcolor').miniColors({
+		$('#text-fontcolor').minicolors({
 			change: function(hex, rgb) {
 			  var activeObject = canvas.getActiveObject();
 		      if (activeObject && activeObject.type === 'text') {
@@ -233,7 +233,7 @@ var line4;
 			}
 		});
 
-		$('#text-strokecolor').miniColors({
+		$('#text-strokecolor').minicolors({
 			change: function(hex, rgb) {
 			  var activeObject = canvas.getActiveObject();
 		      if (activeObject && activeObject.type === 'text') {
@@ -276,7 +276,23 @@ var line4;
 		   function() {
 			   	if ($(this).attr("data-original-title") == "Show Back View") {
 			   		$(this).attr('data-original-title', 'Show Front View');
-			        $("#tshirtFacing").attr("src","img/crew_back.png");
+                    switch (parseInt($('#tshirtTypes').val())) {
+                        case 1:
+                            $("#tshirtFacing").attr("src","img/crew_back.png");
+                            break;
+                        case 2:
+                            $("#tshirtFacing").attr("src","img/mens_longsleeve_back.png");
+                            break;
+                        case 3:
+                            $("#tshirtFacing").attr("src","img/mens_hoodie_back.png");
+                            break;
+                        case 4:
+                            $("#tshirtFacing").attr("src","img/mens_tank_back.png");
+                            break;
+                        default:
+                            break;
+
+                    }
 			        a = JSON.stringify(canvas);
 			        canvas.clear();
 			        try
@@ -289,7 +305,23 @@ var line4;
 
 			    } else {
 			    	$(this).attr('data-original-title', 'Show Back View');
-			    	$("#tshirtFacing").attr("src","img/crew_front.png");
+                    switch (parseInt($('#tshirtTypes').val())) {
+                        case 1:
+                            $("#tshirtFacing").attr("src","img/crew_front.png");
+                            break;
+                        case 2:
+                            $("#tshirtFacing").attr("src","img/mens_longsleeve_front.png");
+                            break;
+                        case 3:
+                            $("#tshirtFacing").attr("src","img/mens_hoodie_front.png");
+                            break;
+                        case 4:
+                            $("#tshirtFacing").attr("src","img/mens_tank_front.png");
+                            break;
+                        default:
+                            break;
+
+                    }
 			    	b = JSON.stringify(canvas);
 			    	canvas.clear();
 			    	try
@@ -325,8 +357,8 @@ var line4;
 	    	//display text editor
 	    	$("#texteditor").css('display', 'block');
 	    	$("#text-string").val(selectedObject.getText());
-	    	$('#text-fontcolor').miniColors('value',selectedObject.fill);
-	    	$('#text-strokecolor').miniColors('value',selectedObject.strokeStyle);
+	    	$('#text-fontcolor').minicolors('value',selectedObject.fill);
+	    	$('#text-strokecolor').minicolors('value',selectedObject.strokeStyle);
 	    	$("#imageeditor").css('display', 'block');
 	    }
 	    else if (selectedObject && selectedObject.type === 'image'){

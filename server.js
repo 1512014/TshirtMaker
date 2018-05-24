@@ -13,9 +13,17 @@ var hbs = expressHbs.create({
 	layoutsDir		: __dirname + '/views/layouts/',
 	partialsDir		: __dirname + '/views/partials/',
 	helpers			: {
-		paginate: paginateHelper.createPagination
+		paginate: paginateHelper.createPagination,
+		section: function(name, options){
+	        if(!this._sections) this._sections = {};
+	        this._sections[name] = options.fn(this);
+	        return null;
+	    }
 	}
 });
+helpers: {
+
+}
 hbs.handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
 app.engine('hbs', hbs.engine);
 app.set('port', (process.env.PORT || 3000));
@@ -158,6 +166,16 @@ app.get('/register', (req, res) => {
 		// hideBreadcrumb: true,
 		breadcrumbs:[
 			{title: "Register", link: "/register"}
+		]
+    });
+});
+
+app.get('/design', (req, res) => {
+    res.render('design.hbs', {
+		pageHeader: true,
+		activeDesign: true,
+		breadcrumbs: [
+			{title: "Design", link: "/design"}
 		]
     });
 });
