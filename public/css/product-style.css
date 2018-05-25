@@ -1,0 +1,23 @@
+.TM-categories .filter-row{
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    font-size: 14px;
+}
+
+.TM-categories .filter-row a{
+    color: #787878;
+
+}
+.color-preview {
+    display: inline-block !important;
+  border: 1px solid #CCC;
+  margin: 2px;
+  zoom: 1;
+  vertical-align: top;
+  cursor: pointer;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+}

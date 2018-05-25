@@ -95,14 +95,15 @@ div.container h1{
 
 
 footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: #333;
     color: white;
     text-align: center;
-    padding-top: 10px;
+    margin: 0;
+    padding: 10px;
 }
 
 
@@ -176,7 +177,7 @@ hr{
 }
 
 .TM-header .search-bar {
-    padding-top: 10px;
+    padding-top: 0;
 }
 
 .TM-header .glyphicon-shopping-cart{
@@ -424,6 +425,11 @@ ul.breadcrumb li a:hover {
     padding-top: 10px;
     cursor: pointer;
     color: black;
+
+}
+
+h4.book-title{
+    font-weight: 600;
 }
 
 .TM-categories a:hover{
@@ -540,3 +546,53 @@ span.comment{
 .TM-progressbar .progressbar li.active + li:after {
   background-color: green;
 }
+
+.TM-body div.carousel-caption{
+    color: black;
+    background: rgba(255, 255, 255, 0.8);
+    width: 50%;
+    border-radius: 20px;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+.TM-body .custom-button{
+  font-size: 20px;
+  padding:20px;
+}
+
+.TM-body div.carousel-caption h2{
+    margin: 0 !important;
+}
+
+.TM-body div.carousel-caption {
+    padding-bottom: 0 !important;
+}
+
+/*Responsive for TM-header*/
+@media only screen and (max-width: 992px) {
+    .navbar-nav li {
+        font-size: 14px;
+    }
+
+    #TM-logo {
+        display: none;
+    }
+
+    .navbar-inverse .container-fluid {
+        padding-left: 20px!important;
+        padding-right: 20px!important;
+    }
+
+    .TM-body .custom-button{
+        font-size: 16px;
+        padding:5px;
+    }
+
+    .TM-body div.carousel-caption h2{
+        font-size: 25px;
+    }
+}
+/*End responsive for TM-header*/

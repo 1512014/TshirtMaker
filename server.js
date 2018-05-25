@@ -54,8 +54,9 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     res.render('home.hbs', {
-		pageHeader: true,
+		pageHeader: false,
 		activeHome: true,
+		hideBreadcrumb: true,
 		breadcrumbs: [
 			{title: "Home", link: "/"}
 		]
@@ -95,13 +96,24 @@ app.get('/personal-products', (req, res) => {
     });
 });
 
-app.get('/shop', (req, res) => {
-    res.render('shop.hbs', {
+app.get('/templates', (req, res) => {
+    res.render('templates.hbs', {
 		pageHeader: true,
-		cssShop: true,
-		activeShop: true,
+		cssTemplate: true,
+		activeTemplate: true,
 		breadcrumbs: [
-			{title: "Shop", link: "/shop"}
+			{title: "Template", link: "/templates"}
+		]
+    });
+});
+
+app.get('/products', (req, res) => {
+    res.render('products.hbs', {
+		pageHeader: true,
+		cssProduct: true,
+		activeProduct: true,
+		breadcrumbs: [
+			{title: "Products", link: "/products"}
 		]
     });
 });

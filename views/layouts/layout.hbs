@@ -12,13 +12,15 @@
     {{#if cssAboutUs}}
     <link rel="stylesheet" href="css/about-us.css">
     {{/if}}
-    {{#if cssShop}}
-    <link rel="stylesheet" href="css/shop-style.css">
+    {{#if cssTemplate}}
+    <link rel="stylesheet" href="css/template-style.css">
     {{/if}}
     {{#if cssViewCart}}
     <link rel="stylesheet" href="css/view-cart-style.css">
     {{/if}}
-
+    {{#if cssProduct}}
+    <link rel="stylesheet" href="css/product-style.css">
+    {{/if}}
     {{#if cssProductDetail}}
     <link rel="stylesheet" href="css/product-detail.css">
     {{/if}}
@@ -58,8 +60,8 @@
         </div>
         <div class="col-sm-5 search-bar">
             <div id="imaginary_container">
-                <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control"  placeholder="Search" >
+                <div class="input-group stylish-input-group" style="height: 50px;">
+                    <input type="text" class="form-control"  placeholder="Search" style="height: 50px">
                     <span class="input-group-addon">
                         <button type="submit">
                             <span class="glyphicon glyphicon-search"></span>
@@ -77,7 +79,7 @@
         </div>
     </div>
     {{else}}
-    <div style="padding-top:80px">
+    <div style="padding-top:65px">
 
     </div>
     {{/if}}
