@@ -41,6 +41,7 @@ CREATE TABLE `Orders` (
 	`user_id` INT(11) NOT NULL,
 	`product_ids` INT(11) NOT NULL,
 	`product_qty` INT(11) NOT NULL,
+	`status` INT(11) NOT NULL,
 	`subtotal` FLOAT(11) NOT NULL,
 	`tax` FLOAT(11) NOT NULL DEFAULT '0',
 	`shipping` FLOAT(11) NOT NULL DEFAULT '0',

@@ -269,6 +269,9 @@ ul.breadcrumb li a:hover {
     width: 100%;
 }
 
+#myCarousel img{
+}
+
 .vertical-menu {
     width: 100%;
     height: auto;
@@ -571,6 +574,20 @@ span.comment{
     padding-bottom: 0 !important;
 }
 
+.TM-body div.carousel-caption{
+    height: 210px;
+}
+
+#myCarousel{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    height: 450px;
+}
+
+#myCarousel img{
+    height: 450px;
+}
+
 /*Responsive for TM-header*/
 @media only screen and (max-width: 992px) {
     .navbar-nav li {
@@ -580,6 +597,12 @@ span.comment{
     #TM-logo {
         display: none;
     }
+
+    .breadcrumb {
+        display: none;
+    }
+
+
 
     .navbar-inverse .container-fluid {
         padding-left: 20px!important;
@@ -591,8 +614,24 @@ span.comment{
         padding:5px;
     }
 
+    .TM-body div.carousel-caption{
+        height: 130px;
+    }
+
+    #myCarousel{
+        height: 300px;
+    }
+
+    #myCarousel img{
+        height: 300px;
+    }
+
     .TM-body div.carousel-caption h2{
         font-size: 25px;
+    }
+
+    .TM-body div.carousel-caption h4{
+        font-size: 16px;
     }
 }
 /*End responsive for TM-header*/

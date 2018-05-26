@@ -39,6 +39,9 @@
     {{#if cssPersonalProducts}}
     <link rel="stylesheet" href="node_modules/admin-lte/dist/css/adminlte.css">
     {{/if}}
+    {{#if cssMember}}
+    <link rel="stylesheet" href="css/member-style.css">
+    {{/if}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/script.js"></script>
@@ -55,10 +58,10 @@
 <div class="container" style="padding-bottom: 100px;">
     {{#if pageHeader}}
     <div class="row TM-header">
-        <div class="col-sm-4">
-            <h1><a class="navbar-brand" href="/"><strong>TM</strong> Book</a></h1>
+        <div class="col-sm-3">
+            <h1><a class="navbar-brand" href="/"><strong>TMaker</strong></a></h1>
         </div>
-        <div class="col-sm-5 search-bar">
+        <div class="col-sm-7 search-bar">
             <div id="imaginary_container">
                 <div class="input-group stylish-input-group" style="height: 50px;">
                     <input type="text" class="form-control"  placeholder="Search" style="height: 50px">
@@ -70,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-3 cart">
+        <div class="col-sm-2 cart">
             <a href="/view-cart" class="btn btn-default">
                 <span class="glyphicon glyphicon-shopping-cart"></span>
                 <p style="float:right">0</p>

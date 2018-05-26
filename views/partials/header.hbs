@@ -13,9 +13,18 @@
             <li {{#if activeContact}} class="active" {{/if}}><a href="/contact">Contact</a></li>
             <li {{#if activeAboutUs}} class="active" {{/if}}><a href="/about-us">About Us</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li {{#if activeRegister}} class="active" {{/if}}><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-            <li {{#if activeLogin}} class="active" {{/if}}><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
+        {{#if isMember}}
+            <ul class="nav navbar-nav navbar-right">
+                <li {{#if activeMember}} class="active" {{/if}}><a href="/member"><span class="glyphicon glyphicon-user"></span> Member Andrew</a></li>
+            </ul>
+        {{else}}
+            <ul class="nav navbar-nav navbar-right">
+                <li {{#if activeRegister}} class="active" {{/if}}><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                <li {{#if activeLogin}} class="active" {{/if}}><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        {{/if}}
+
+
+
     </div>
 </nav>

@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
     res.render('home.hbs', {
 		pageHeader: false,
 		activeHome: true,
-		hideBreadcrumb: true,
+    	isMember: true,
 		breadcrumbs: [
 			{title: "Home", link: "/"}
 		]
@@ -311,6 +311,65 @@ app.get('/admin/setting', (req, res) => {
 	})
 });
 
+app.get('/member', (req, res) => {
+    res.render('member/dashboard.hbs', {
+    pageHeader: false,
+		layout: 'admin-layout',
+		adminContentHeader: 'Dashboard',
+		isMember: true,
+    breadcrumbs: [
+        {title: "Dashboard", link: "/member"}
+    ]
+	});
+});
+
+app.get('/member/orders', (req, res) => {
+    res.render('member/orders.hbs', {
+    pageHeader: false,
+		layout: 'admin-layout',
+		adminContentHeader: 'Booking Orders',
+		isMember: true,
+    breadcrumbs: [
+        {title: "Orders", link: "/member/orders"}
+    ]
+	});
+});
+
+app.get('/member/templates', (req, res) => {
+    res.render('member/templates.hbs', {
+    pageHeader: false,
+		layout: 'admin-layout',
+		adminContentHeader: 'Designed Templates',
+		isMember: true,
+    breadcrumbs: [
+        {title: "Templates", link: "/member/templates"}
+    ]
+	});
+});
+
+app.get('/member/setting', (req, res) => {
+    res.render('member/setting.hbs', {
+    pageHeader: false,
+		layout: 'admin-layout',
+		adminContentHeader: 'Setting',
+		isMember: true,
+    breadcrumbs: [
+        {title: "Setting", link: "/member/setting"}
+    ]
+	});
+});
+
+app.get('/member/change-password', (req, res) => {
+    res.render('member/change-password.hbs', {
+    pageHeader: false,
+		layout: 'admin-layout',
+		adminContentHeader: 'Change Password',
+		isMember: true,
+    breadcrumbs: [
+        {title: "Change Password", link: "/member/change-password"}
+    ]
+	});
+});
 
 app.listen(app.get('port'), function () {
     console.log('Server is listening at port ' + app.get('port'));
