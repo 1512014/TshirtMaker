@@ -32,6 +32,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
+
+app.get('/sync', function(req, res){
+	models.sequelize.sync().then(function(){
+		res.send('database sync completed!');
+	});
+});
+
+var products = require('./routes/products');
+app.use('/products', products);
 // hbs.registerPartials(__dirname + '/views/partials');
 // app.set('view engine', 'hbs');
 
