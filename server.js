@@ -4,6 +4,8 @@ const models = require('./models');
 var bodyParser = require('body-parser');
 var app = express();
 var expressHbs = require('express-handlebars');
+var Handlebars     = require('handlebars');
+var HandlebarsIntl = require('handlebars-intl');
 var paginateHelper = require('express-handlebars-paginate');
 
 var hbs = expressHbs.create({
@@ -24,6 +26,7 @@ helpers: {
 
 }
 hbs.handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
+HandlebarsIntl.registerWith(Handlebars);
 app.engine('hbs', hbs.engine);
 app.set('port', (process.env.PORT || 3000));
 app.set('view engine', 'hbs');

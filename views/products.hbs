@@ -145,7 +145,7 @@
                     {{#each products}}
                     <div class="col-sm-3">
                         <a href="/products/{{id}}">
-                            <img src="{{imagePath}}" width="100%">
+                            <img src="{{imagePath1}}" width="100%">
                             <div class="percent">{{discount}}</div>
                             <p class="book-title">{{name}}</p>
                         </a>
@@ -160,58 +160,13 @@
                         </div>
                     </div>
                     {{/each}}
-                    <!-- <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template2.jpg" width="100%">
-                            <div class="percent">15%</div>
-                            <p class="book-title">Anvil Jersey T-shirt</p>
-                        </a>
-                        <p><span class="price">$9.98</span> <span class="original-price">$11.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(65)</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template3.jpg" width="100%">
-                            <div class="percent">20%</div>
-                            <p class="book-title">Gildan Ultra Cotton Long Sleeve T-shirt</p>
-                        </a>
-                        <p><span class="price">$11.99</span> <span class="original-price">$15.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(65)</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template4.jpg" width="100%">
-                            <div class="percent">15%</div>
-                            <p class="book-title">Hanes Cool Dri Performance Shirt</p>
-                        </a>
-                        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(32)</span>
-                        </div>
-                    </div> -->
                 </div>
             </div>
 
             <div class="center">
+                {{{paginateHelper pagination leftText="Prev" rightText="Next" paginationClass="pagination"}}}
+            </div>
+            <!-- <div class="center">
                 <div class="pagination">
                     <a href="#">&laquo;</a>
                     <a href="#">1</a>
@@ -222,7 +177,7 @@
                     <a href="#">6</a>
                     <a href="#">&raquo;</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

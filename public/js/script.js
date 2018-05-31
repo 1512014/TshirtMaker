@@ -58,4 +58,9 @@ $(document).ready(function () {
     $("#submit-address-delivery").on('click', function(){
         location.href = "checkout-step3.html";
     });
+
+    $('.image-preview img').on('click', function() {
+        currentPath = $(this).attr('src');
+        $('.large-image img').attr('src', currentPath);
+    })
 });

@@ -1,13 +1,24 @@
 <div class="container-fluid  TM-book-detail">
     <div class="row">
-        <div class="col-sm-1 image-preview">
-            <img src="{{product.imagePath}}" height="100">
+        <div class="col-sm-2 image-preview">
+            {{#if product.imagePath1}}
+            <img src="{{product.imagePath1}}" height="100">
+            {{/if}}
+            {{#if product.imagePath2}}
+            <img src="{{product.imagePath2}}" height="100">
+            {{/if}}
+            {{#if product.imagePath3}}
+            <img src="{{product.imagePath3}}" height="100">
+            {{/if}}
+            {{#if product.imagePath4}}
+            <img src="{{product.imagePath4}}" height="100">
+            {{/if}}
             <!-- <img src="/img/templates/template8.jpg" height="100"> -->
         </div>
         <div class="col-sm-6 large-image">
-            <img src="{{product.imagePath}}" width="100%">
+            <img src="{{product.imagePath1}}" width="100%">
         </div>
-        <div class="col-sm-5 description" style="padding-left: 0; padding-right: 20px">
+        <div class="col-sm-4 description" style="padding-left: 0; padding-right: 20px">
             <h4>{{product.name}}</h4>
             <div class="vote" style="padding-bottom: 10px">
                 <i class="glyphicon glyphicon-star"></i>
@@ -18,21 +29,21 @@
                 <span class="comment">(65)</span> <span class="comment"><a href="#">Add Comment</a></span>
             </div>
             <p>Categories: <span class="author">Sports, Trending</span></p>
-            <p style="border-bottom: 1px solid #ececec; padding-bottom: 20px">Available Sizes: <span class="author">S, XXL</span></p>
+            <p style="border-bottom: 1px solid #ececec; padding-bottom: 20px">Available Sizes: <span class="author">{{product.minSizeLatin}}, {{product.maxSizeLatin}}</span></p>
 
             <div class="product-desc">
                 {{product.description}}
             </div>
             <div class="price-container" style="border-bottom:  1px solid #ececec;">
-                <p><span class="price">${{product.price}}</span> <span style="color: #9b9b9b; font-size: 14px">Included tax</span></p>
-                <p style="color: #9b9b9b">Save: <span class="percent">{{product.discount}}%</span> <span class="discount">($2.75)</span></p>
-                <p style="color: #9b9b9b">Original Price: <span class="price-original">${{product.price}}</span></p>
+                <p><span class="price">{{formatNumber product.discountPrice style="currency" currency="USD"}}</span> <span style="color: #9b9b9b; font-size: 14px">Included tax</span></p>
+                <p style="color: #9b9b9b">Save: <span class="percent">{{product.discount}}%</span> <span class="discount">({{formatNumber product.discountAmount style="currency" currency="USD"}})</span></p>
+                <p style="color: #9b9b9b">Original Price: <span class="price-original">{{formatNumber product.price style="currency" currency="USD"}}</span></p>
             </div>
 
             <div class="row add-to-cart" style="">
                 <div class="col-sm-12" style="height: 60px; line-height: 60px; width: 250px">
                     <a href="/design" type="button" class="btn btn-danger" style="text-align: center; font-size: 24px">
-                            Start Design
+                        Start Design
                     </a>
                 </div>
             </div>
@@ -56,7 +67,27 @@
         </div>
 
     </div>
+    {{#each relatedProducts}}
+    {{/each}}
+    {{#each relatedProducts}}
     <div class="col-sm-3 book-item">
+        <a href="/products/{{id}}">
+            <img src="{{imagePath1}}" width="100%">
+            <div class="percent">{{discount}}%</div>
+            <p class="book-title">{{name}}</p>
+        </a>
+        <p><span class="price">{{formatNumber discountPrice style="currency" currency="USD"}}</span> <span class="original-price">$20.00</span></p>
+        <div class="vote">
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="	glyphicon glyphicon-star-empty"></i>
+            <span class="comment">(65)</span>
+        </div>
+    </div>
+    {{/each}}
+    <!-- <div class="col-sm-3 book-item">
         <a href="book-detail.html">
             <img src="/img/templates/template4.jpg" width="100%">
             <div class="percent">20%</div>
@@ -122,7 +153,7 @@
             <i class="	glyphicon glyphicon-star-empty"></i>
             <span class="comment">(65)</span>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <div class="container-fluid TM-detail">
@@ -141,23 +172,23 @@
                 <col style="width: 25%;"><col>
             </colgroup>
             <tbody>
-            <tr>
+            <!-- <tr>
                 <td rel="publisher_vn">Brand</td>
                 <td class="last">
                     <a href="#">Adidas</a>
 
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td rel="dimensions">Min Size</td>
                 <td class="last">
-                    S
+                    {{product.minSizeLatin}}
                 </td>
             </tr>
             <tr>
                 <td rel="author">Max Size</td>
                 <td class="last">
-                    XXL
+                    {{product.maxSizeLatin}}
                 </td>
             </tr>
             <tr>
@@ -175,13 +206,13 @@
             <tr>
                 <td rel="publication_date">Produce Date</td>
                 <td class="last">
-                    07-2017
+                    {{product.udpatedAt}}
                 </td>
             </tr>
             <tr>
                 <td rel="sku">Product ID</td>
                 <td class="last">
-                    2506010458896
+                    #{{product.id}}
                 </td>
             </tr>
             </tbody>
