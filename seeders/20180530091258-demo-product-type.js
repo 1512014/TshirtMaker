@@ -6,6 +6,14 @@ module.exports = {
         {
             name: "Trending",
             CategoryId: 1
+        },
+        {
+            name: "Sport",
+            CategoryId: 1
+        },
+        {
+            name: "Uniform",
+            CategoryId: 1
         }
     ];
     return queryInterface.bulkInsert('Product_types', productTypes, {});

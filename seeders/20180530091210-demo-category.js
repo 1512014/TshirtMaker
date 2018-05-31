@@ -14,10 +14,13 @@ module.exports = {
     */
     var categories = [
         {
-            name: "Sports"
+            name: "Long Sleeve"
         },
         {
-            name: "Uniform"
+            name: "Short Sleeve"
+        },
+        {
+            name: "Tank Top"
         }
     ];
     return queryInterface.bulkInsert('Categories', categories, {});

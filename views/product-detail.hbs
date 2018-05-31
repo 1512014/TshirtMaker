@@ -28,7 +28,7 @@
                 <i class="	glyphicon glyphicon-star-empty"></i>
                 <span class="comment">(65)</span> <span class="comment"><a href="#">Add Comment</a></span>
             </div>
-            <p>Categories: <span class="author">Sports, Trending</span></p>
+            <p>Types: <span class="author">Sports, Trending</span></p>
             <p style="border-bottom: 1px solid #ececec; padding-bottom: 20px">Available Sizes: <span class="author">{{product.minSizeLatin}}, {{product.maxSizeLatin}}</span></p>
 
             <div class="product-desc">
@@ -192,15 +192,9 @@
                 </td>
             </tr>
             <tr>
-                <td rel="dich_gia">Type</td>
+                <td rel="dich_gia">Types</td>
                 <td class="last">
-                    Woman Tank Top
-                </td>
-            </tr>
-            <tr>
-                <td rel="book_cover">Categories</td>
-                <td class="last">
-                    Sports, Trending, School
+                    {{product.listTypes}}
                 </td>
             </tr>
             <tr>

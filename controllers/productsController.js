@@ -28,6 +28,15 @@ controller.getById = function(id, callback){
     });
 };
 
+controller.getProductTypes = function (typeIds, callback) {
+    models.Product_type
+    .findAll({
+        where: { id: typeIds }
+    })
+    .then(function(objects){
+        callback(objects);
+    })
+}
 
 controller.getRelatedProduct = function(callback){
     models.Product
