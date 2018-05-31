@@ -1,14 +1,14 @@
 <div class="container-fluid  TM-book-detail">
     <div class="row">
         <div class="col-sm-1 image-preview">
-            <img src="img/templates/template7.jpg" height="100">
-            <img src="img/templates/template8.jpg" height="100">
+            <img src="{{product.imagePath}}" height="100">
+            <!-- <img src="/img/templates/template8.jpg" height="100"> -->
         </div>
         <div class="col-sm-6 large-image">
-            <img src="img/templates/template7.jpg" width="100%">
+            <img src="{{product.imagePath}}" width="100%">
         </div>
         <div class="col-sm-5 description" style="padding-left: 0; padding-right: 20px">
-            <h4>Next Level Ladies Tri‑Blend Racerback Tank</h4>
+            <h4>{{product.name}}</h4>
             <div class="vote" style="padding-bottom: 10px">
                 <i class="glyphicon glyphicon-star"></i>
                 <i class="glyphicon glyphicon-star"></i>
@@ -21,12 +21,12 @@
             <p style="border-bottom: 1px solid #ececec; padding-bottom: 20px">Available Sizes: <span class="author">S, XXL</span></p>
 
             <div class="product-desc">
-                This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.
+                {{product.description}}
             </div>
             <div class="price-container" style="border-bottom:  1px solid #ececec;">
-                <p><span class="price">$9.25</span> <span style="color: #9b9b9b; font-size: 14px">Included tax</span></p>
-                <p style="color: #9b9b9b">Save: <span class="percent">25%</span> <span class="discount">($2.75)</span></p>
-                <p style="color: #9b9b9b">Original Price: <span class="price-original">$12.00</span></p>
+                <p><span class="price">${{product.price}}</span> <span style="color: #9b9b9b; font-size: 14px">Included tax</span></p>
+                <p style="color: #9b9b9b">Save: <span class="percent">{{product.discount}}%</span> <span class="discount">($2.75)</span></p>
+                <p style="color: #9b9b9b">Original Price: <span class="price-original">${{product.price}}</span></p>
             </div>
 
             <div class="row add-to-cart" style="">
@@ -58,7 +58,7 @@
     </div>
     <div class="col-sm-3 book-item">
         <a href="book-detail.html">
-            <img src="img/templates/template4.jpg" width="100%">
+            <img src="/img/templates/template4.jpg" width="100%">
             <div class="percent">20%</div>
             <p class="book-title">Hanes Cool Dri Performance Shirt</p>
         </a>
@@ -75,7 +75,7 @@
 
     <div class="col-sm-3 book-item">
         <a href="book-detail.html">
-            <img src="img/templates/template4.jpg" width="100%">
+            <img src="/img/templates/template4.jpg" width="100%">
             <div class="percent">20%</div>
             <p class="book-title">Hanes Cool Dri Performance Shirt</p>
         </a>
@@ -92,7 +92,7 @@
 
     <div class="col-sm-3 book-item">
         <a href="book-detail.html">
-            <img src="img/templates/template4.jpg" width="100%">
+            <img src="/img/templates/template4.jpg" width="100%">
             <div class="percent">20%</div>
             <p class="book-title">Hanes Cool Dri Performance Shirt</p>
         </a>
@@ -109,7 +109,7 @@
 
     <div class="col-sm-3 book-item">
         <a href="book-detail.html">
-            <img src="img/templates/template4.jpg" width="100%">
+            <img src="/img/templates/template4.jpg" width="100%">
             <div class="percent">20%</div>
             <p class="book-title">Hanes Cool Dri Performance Shirt</p>
         </a>

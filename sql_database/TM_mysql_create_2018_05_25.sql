@@ -84,4 +84,3 @@ ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk0` FOREIGN KEY (`user_id`) REFEREN
 ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk1` FOREIGN KEY (`product_ids`) REFERENCES `Products`(`id`);
 
 ALTER TABLE `Product_types` ADD CONSTRAINT `Product_types_fk0` FOREIGN KEY (`category_id`) REFERENCES `Categories`(`id`);
-
