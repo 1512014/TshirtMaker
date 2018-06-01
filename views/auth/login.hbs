@@ -1,17 +1,23 @@
 <div class="row">
+    <div class="hidden" name="message">{{message}}</div>
+    <script>
+        if(document.getElementsByName("message")[0].innerText.length>0)
+            alert(document.getElementsByName("message")[0].innerText)
+    </script>
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading"> <span class="glyphicon glyphicon-lock"></span> LOGIN</div>
             <div class="panel-body">
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" action="/signin" method="post">
                     <div class="form-group">
-                        <label for="inputUsername3" class="col-sm-3 control-label"> Username</label>
-                        <div class="col-sm-9"> <input class="form-control" id="inputUsername3" placeholder="Enter username" required="" type="text"> </div>
+                        <label for="inputUsername3" class="col-sm-3 control-label"> Email</label>
+                        <div class="col-sm-9"> <input class="form-control" id="inputUsername3" name="email" placeholder="Enter username" required="" type="text"> </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-3 control-label"> Password</label>
-                        <div class="col-sm-9"> <input class="form-control" id="inputPassword3" placeholder="Enter password" required="" type="password"> </div>
+                        <div class="col-sm-9"> <input class="form-control" id="inputPassword3" name="password" placeholder="Enter password" required="" type="password"> </div>
                     </div>
+                    
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
                             <div class="checkbox">

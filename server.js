@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 // const hbs = require('hbs');
 const models = require('./models');
@@ -48,7 +50,7 @@ var authRoute = require('./routes/auth.js')(app,passport);
  
  
 //load passport strategies
- 
+
 require('./config/passport.js')(passport, models.User);
 
 app.get('/sync', function(req, res){
@@ -78,12 +80,16 @@ app.use('/products', products);
 // var comments = require('./routes/comments');
 // app.use('/comments', comments);
 
-
 app.get('/', (req, res) => {
+	var is_member=false;
+	var name="";
+	if(req.user) name=req.user.last_name;
+	if(req.isAuthenticated()) is_member=true;
     res.render('home.hbs', {
 		pageHeader: false,
 		activeHome: true,
-    	isMember: false,
+		isMember: is_member,
+		name:name,
 		breadcrumbs: [
 			{title: "Home", link: "/"}
 		]
@@ -167,6 +173,7 @@ app.get('/login', (req, res) => {
 		activeLogin: true,
 		cssLogin: true,
 		hideBreadcrumb: true,
+		message: req.flash('loginMessage'),
 		breadcrumbs:[
 			{title: "Login", link: "/login"}
 		]
@@ -178,7 +185,7 @@ app.get('/register', (req, res) => {
 		pageHeader: false,
 		activeRegister: true,
 		cssRegister: true,
-		// hideBreadcrumb: true,
+		message: req.flash('registerMessage'),
 		breadcrumbs:[
 			{title: "Register", link: "/register"}
 		]

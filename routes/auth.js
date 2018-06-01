@@ -16,6 +16,16 @@ module.exports = function(app, passport) {
         }
  
     ));
+
+    app.post('/signin', passport.authenticate('local-signin', {
+        successRedirect: '/',
+ 
+        failureRedirect: '/login',
+        failureFlash : true // allow flash messages
+    }
+    
+    ));
+    app.get('/logout', authController.logout);
     function isLoggedIn(req, res, next) {
  
         if (req.isAuthenticated())
@@ -25,6 +35,7 @@ module.exports = function(app, passport) {
         res.redirect('/signin');
      
     }
+    
  
  
  
