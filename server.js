@@ -2,6 +2,10 @@ const express = require('express');
 // const hbs = require('hbs');
 const models = require('./models');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var flash    = require('connect-flash');
+var session      = require('express-session');
+
 var app = express();
 var expressHbs = require('express-handlebars');
 var Handlebars     = require('handlebars');
@@ -37,6 +41,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+//Routes
+ 
+var authRoute = require('./routes/auth.js')(app,passport);
+ 
+ 
+//load passport strategies
+ 
+require('./config/passport.js')(passport, models.User);
 
 app.get('/sync', function(req, res){
 	models.sequelize.sync().then(function(){
@@ -70,7 +86,7 @@ app.get('/', (req, res) => {
     res.render('home.hbs', {
 		pageHeader: false,
 		activeHome: true,
-    	isMember: true,
+    	isMember: false,
 		breadcrumbs: [
 			{title: "Home", link: "/"}
 		]
