@@ -27,9 +27,8 @@ module.exports = function(passport, user) {
              
                 {
              
-                    return done(null, false, {
-                        message: 'That email is already taken'
-                    });
+                    return done(null, false, req.flash('registerMessage','That email is already taken'
+                    ));
              
                 } else
              
@@ -40,7 +39,8 @@ module.exports = function(passport, user) {
                     var data =
              
                         {
-                            full_name: req.body.first_name+req.body.last_name ,
+                            first_name: req.body.first_name,
+                            last_name:req.body.last_name ,
                             email: email,
              
                             password: userPassword,
@@ -54,7 +54,6 @@ module.exports = function(passport, user) {
                             address: "3/2 hcm"
              
                         };
-                        console.log("da den");
              
                     User.create(data).then(function(newUser, created) {
              
@@ -75,6 +74,66 @@ module.exports = function(passport, user) {
                 }
              
             });
+        }
+     
+    ));
+    passport.use('local-signin', new LocalStrategy(
+ 
+        {
+     
+            // by default, local strategy uses username and password, we will override with email
+     
+            usernameField: 'email',
+     
+            passwordField: 'password',
+     
+            passReqToCallback: true // allows us to pass back the entire request to the callback
+     
+        },
+     
+     
+        function(req, email, password, done) {
+     
+            var User = user;
+     
+            var isValidPassword = function(userpass, password) {
+     
+                return bCrypt.compareSync(password, userpass);
+     
+            }
+     
+            User.findOne({
+                where: {
+                    email: email
+                }
+            }).then(function(user) {
+     
+                if (!user) {
+     
+                    return done(null, false, req.flash('loginMessage', 'Email does not exist.'));
+     
+                }
+     
+                if (!isValidPassword(user.password, password)) {
+     
+                    return done(null, false, req.flash('loginMessage','Incorrect password.'
+                    ));
+     
+                }
+     
+                return done(null, user);
+     
+     
+            }).catch(function(err) {
+     
+                console.log("Error:", err);
+     
+                return done(null, false, req.flash('loginMessage','Something went wrong with your Signin'
+                ));
+     
+            });
+     
+     
         }
      
     ));
