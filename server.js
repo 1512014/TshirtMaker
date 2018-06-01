@@ -7,10 +7,11 @@ var flash    = require('connect-flash');
 var session      = require('express-session');
 
 var app = express();
-
-
 var expressHbs = require('express-handlebars');
+var Handlebars     = require('handlebars');
+var HandlebarsIntl = require('handlebars-intl');
 var paginateHelper = require('express-handlebars-paginate');
+
 var hbs = expressHbs.create({
 	extname			: 'hbs',
 	defaultLayout	: 'layout',
@@ -29,6 +30,7 @@ helpers: {
 
 }
 hbs.handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
+HandlebarsIntl.registerWith(Handlebars);
 app.engine('hbs', hbs.engine);
 app.set('port', (process.env.PORT || 3000));
 app.set('view engine', 'hbs');
@@ -132,17 +134,6 @@ app.get('/templates', (req, res) => {
     });
 });
 
-app.get('/products', (req, res) => {
-    res.render('products.hbs', {
-		pageHeader: true,
-		cssProduct: true,
-		activeProduct: true,
-		breadcrumbs: [
-			{title: "Products", link: "/products"}
-		]
-    });
-});
-
 app.get('/view-cart', (req, res) => {
     res.render('view-cart.hbs', {
 		pageHeader: true,
@@ -153,19 +144,6 @@ app.get('/view-cart', (req, res) => {
 		]
     });
 });
-
-app.get('/product-detail', (req, res) => {
-    res.render('product-detail.hbs', {
-		pageHeader: true,
-		cssProductDetail: true,
-		breadcrumbs: [
-			{title: "Men", link: "#"},
-			{title: "Long Shirt", link: "#"},
-			{title: "White T-shirt", link: "#"}
-		] //This should change to product name later
-    });
-});
-
 app.get('/checkout-step2', (req, res) => {
     res.render('checkout-step2.hbs', {
 		pageHeader: false,
