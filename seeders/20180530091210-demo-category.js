@@ -12,6 +12,18 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
+    var categories = [
+        {
+            name: "Long Sleeve"
+        },
+        {
+            name: "Short Sleeve"
+        },
+        {
+            name: "Tank Top"
+        }
+    ];
+    return queryInterface.bulkInsert('Categories', categories, {});
   },
 
   down: (queryInterface, Sequelize) => {
@@ -22,5 +34,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */
+    return queryInterface.bulkDelete('Categories', null, {});
   }
 };
