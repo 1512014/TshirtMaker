@@ -7,6 +7,7 @@ var expressHbs = require('express-handlebars');
 var Handlebars     = require('handlebars');
 var HandlebarsIntl = require('handlebars-intl');
 var paginateHelper = require('express-handlebars-paginate');
+var mongoose = require('mongoose');
 
 var hbs = expressHbs.create({
 	extname			: 'hbs',
@@ -22,6 +23,8 @@ var hbs = expressHbs.create({
 	    }
 	}
 });
+
+mongoose.connect('localhost:27017/shopping');
 helpers: {
 
 }
