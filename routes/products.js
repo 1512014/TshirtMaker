@@ -41,31 +41,12 @@ router.get('/:id', function (req, res) {
 
     productsController.getById(id, function(object){
         product = object;
-        breadcrumbs = [];
-        //Calculate discount price
-        product.discountPrice = product.price * (100 - product.discount) / 100;
-        product.discountAmount = product.price * product.discount / 100;
-
-        //Change size from number to latin (EX: 1 -> XS, 2 -> S, 3 -> M, ...)
-        product.minSizeLatin = productsController.getSize(product.minSize);
-        product.maxSizeLatin = productsController.getSize(product.maxSize);
-
-        //Get all types of a product
-        typeIds = JSON.parse(product.types_id);
-        productsController.getProductTypes(typeIds, function(objects){
-            product.types = objects;
-            product.listTypes = product.types.map(function(elem){
-                breadcrumbs.push({title: elem.name, link: "#"});
-                return elem.name;
-            }).join(", ");
-        });
-
 
         res.render('product-detail', {
 
             pageHeader: true,
     		cssProductDetail: true,
-    		breadcrumbs: breadcrumbs,
+    		breadcrumbs: product.breadcrumbs,
             product: product,
             relatedProducts: relatedProducts
         });

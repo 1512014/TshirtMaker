@@ -4,16 +4,13 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     var productTypes = [
         {
-            name: "Trending",
-            CategoryId: 1
+            name: "Trending"
         },
         {
-            name: "Sport",
-            CategoryId: 1
+            name: "Sport"
         },
         {
             name: "Uniform",
-            CategoryId: 1
         }
     ];
     return queryInterface.bulkInsert('Product_types', productTypes, {});

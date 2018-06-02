@@ -1,8 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Order = sequelize.define('Order', {
-    products_id: { type: DataTypes.STRING, allowNull: false },
-    products_qty: { type: DataTypes.STRING, allowNull: false},
+    product_id: { type: DataTypes.INTEGER, allowNull: false },
+    product_qty: { type: DataTypes.INTEGER, allowNull: false},
+    product_size: { type: DataTypes.INTEGER, allowNull: false},
     status: { type: DataTypes.INTEGER, allowNull: false },
     subtotal: { type: DataTypes.FLOAT(11, 2), allowNull: false },
     tax: { type: DataTypes.FLOAT(2, 1), allowNull: false },

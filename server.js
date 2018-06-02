@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 // const hbs = require('hbs');
 const models = require('./models');
@@ -13,7 +11,6 @@ var expressHbs = require('express-handlebars');
 var Handlebars     = require('handlebars');
 var HandlebarsIntl = require('handlebars-intl');
 var paginateHelper = require('express-handlebars-paginate');
-var mongoose = require('mongoose');
 
 var hbs = expressHbs.create({
 	extname			: 'hbs',
@@ -29,11 +26,6 @@ var hbs = expressHbs.create({
 	    }
 	}
 });
-
-mongoose.connect('localhost:27017/shopping');
-helpers: {
-
-}
 hbs.handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
 HandlebarsIntl.registerWith(Handlebars);
 app.engine('hbs', hbs.engine);
@@ -48,10 +40,10 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 //Routes
- 
+
 var authRoute = require('./routes/auth.js')(app,passport);
- 
- 
+
+
 //load passport strategies
 
 require('./config/passport.js')(passport, models.User);
@@ -66,6 +58,8 @@ var products = require('./routes/products');
 app.use('/products', products);
 var paypal = require('./routes/paypal');
 app.use('/paypal', paypal);
+var cart = require('./routes/view-cart');
+app.use('/view-cart', cart);
 // hbs.registerPartials(__dirname + '/views/partials');
 // app.set('view engine', 'hbs');
 
@@ -141,17 +135,6 @@ app.get('/templates', (req, res) => {
 		activeTemplate: true,
 		breadcrumbs: [
 			{title: "Template", link: "/templates"}
-		]
-    });
-});
-
-app.get('/view-cart', (req, res) => {
-    res.render('view-cart.hbs', {
-		pageHeader: true,
-		activeHome: true,
-		cssViewCart: true,
-		breadcrumbs: [
-			{title: "View Cart", link: "/view-cart"}
 		]
     });
 });

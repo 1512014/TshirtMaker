@@ -24,6 +24,25 @@ controller.getById = function(id, callback){
         ]
     })
     .then(function(object){
+        //Calculate discount price
+        object.discountPrice = object.price * (100 - object.discount) / 100;
+        object.discountAmount = object.price * object.discount / 100;
+
+        //Change size from number to latin (EX: 1 -> XS, 2 -> S, 3 -> M, ...)
+        object.minSizeLatin = controller.getSize(object.minSize);
+        object.maxSizeLatin = controller.getSize(object.maxSize);
+
+        //Get all types of a product & breadcrumbs
+        typeIds = JSON.parse(object.types_id);
+        object.breadcrumbs = [];
+        controller.getProductTypes(typeIds, function(types){
+            object.types = types;
+            object.listTypes = types.map(function(elem){
+                object.breadcrumbs.push({title: elem.name, link: "#"});
+                return elem.name;
+            }).join(", ");
+        });
+
         callback(object);
     });
 };
@@ -74,6 +93,16 @@ controller.getSize = (sizeNumber) => {
         default:
     }
 };
+
+controller.getProductByProductIds = function (productIds, callback){
+    models.Product_type
+    .findAll({
+        where: { id: productIds }
+    })
+    .then(function(objects){
+        callback(objects);
+    })
+}
 // Update model
 
 

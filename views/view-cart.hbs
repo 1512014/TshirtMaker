@@ -2,6 +2,58 @@
     <div class="row">
         <h4 class="title">Shopping Cart <span>(2 Products)</span></h4>
         <div class="col-sm-9 book-list">
+
+            {{#each products}}
+            <div class="row book-item">
+                <div class="col-sm-2">
+                    <img src="{{product.imagePath1}}" width="100%">
+                    <div class="percent">{{product.discount}}%</div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <h4 class="book-title">
+                                <a href="/products/{{product.id}}">
+                                {{product.name}}
+                                </a>
+                            </h4>
+                            <p class="author">Size:
+                                <span class="author"> {{product_size}}</span>
+                            </p>
+                            <p class="author">Type:
+                                <span class="author"> {{product.listTypes}}</span>
+                            </p>
+                            <span><a href="#">Delete</a></span>
+                            <span style="padding-left: 30px">
+                                <a href="#">Edit</a>
+                            </span>
+                        </div>
+                        <div class="col-sm-5 item-price">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <p class="final-price">{{formatNumber product.discountPrice style="currency" currency="USD"}}</p>
+                                    <p class="original-price">{{formatNumber product.price style="currency" currency="USD"}}</p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="input-group bootstrap-touchspin">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+                                        </span>
+                                        <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
+                                        <input type="tel" class="form-control quantity-r2 quantity js-quantity-product" min="0" data-js-qty="" value="{{product_qty}}" style="display: block; text-align: center">
+                                        <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
             <!--Item 1-->
             <div class="row book-item">
                 <div class="col-sm-2">
@@ -16,8 +68,8 @@
                                 Gildan Ultra Cotton T-shirt
                                 </a>
                             </h4>
-                            <p class="author">Categories:
-                                <span class="author"> Sports, Trending</span>
+                            <p class="author">Size:
+                                <span class="author"> L</span>
                             </p>
                             <span><a href="#">Delete</a></span>
                             <span style="padding-left: 30px">
