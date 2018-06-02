@@ -1,6 +1,7 @@
 var controller = {};
 
 var models = require('../models');
+var ordersController = require('../controllers/ordersController');
 
 controller.getAll = function(callback){
     models.Product
@@ -45,6 +46,23 @@ controller.getById = function(id, callback){
 
         callback(object);
     });
+};
+
+controller.getProductFromOrder = function(order, propductId, qty, size, extraIds, callback){
+    product = [];
+    productExtra = [];
+    ordersController.getExtras(extraIds, function(result){
+        productExtra = result;
+        controller.getById(propductId, function(object){
+            order.totalPrice = order.subtotal + order.shipping + productExtra.totalPrice;
+            product = {order: order, product: object, product_qty: qty, product_size: size, product_extra: productExtra};
+            callback(product);
+        });
+    });
+    // setTimeout(()=>{
+
+    // }, 500);
+
 };
 
 controller.getProductTypes = function (typeIds, callback) {

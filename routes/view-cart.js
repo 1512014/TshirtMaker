@@ -12,6 +12,8 @@ router.get('/', function(req, res){
     limit = 100;
     orders = [];
     products = [];
+    totalPrice = {subtotal: 0, total: 0};
+
     ordersController.getAllByUserId(userId, status, function(objects){
       numRows = objects.length;
       if(!page){
@@ -21,19 +23,29 @@ router.get('/', function(req, res){
 
     //Each order contains ONE product
       for (var i = 0; i < orders.length; i++){
+
+          order = orders[i];
+          //Get extras
+          extraIds = JSON.parse(orders[i].extras_id);
           productId = orders[i].product_id;
           productQty = orders[i].product_qty;
           productSize = productsController.getSize(orders[i].product_size);
-          setTimeout(()=>{
-              productsController.getById(productId, function(object){
-                  products.push({product: object, product_qty: productQty, product_size: productSize});
-              });
-          }, 1000);
+          productsController.getProductFromOrder(order, productId, productQty, productSize, extraIds, function(product){
+              products.push(product);
+          });
+
+          //Get totalPrice
+          tempSubtotal = orders[i].subtotal * productQty +  orders[i].shipping
+          totalPrice.subtotal += tempSubtotal; //TODO: add extra price
+          totalPrice.total += tempSubtotal + tempSubtotal * orders[i].tax / 100;
+
       }
+
 
       setTimeout(()=>{
           res.render('view-cart.hbs', {
             products: products,
+            totalPrice: totalPrice,
       		pageHeader: true,
       		cssViewCart: true,
       		breadcrumbs: [
@@ -41,7 +53,7 @@ router.get('/', function(req, res){
       		],
             pagination: { page: page, limit: limit ,totalRows: numRows }
           });
-      }, 2000);
+      }, 1000);
     });
 });
 

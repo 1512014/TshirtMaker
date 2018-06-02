@@ -51,6 +51,10 @@
     padding-bottom: 10px;
 }
 
+.TM-checkout .item-price {
+    text-align: center;
+}
+
 .TM-checkout .item-price .final-price{
     font-size: 16px;
     font-weight: 600;
@@ -80,4 +84,23 @@
 .TM-checkout .book-item .book-title a{
     text-decoration: none;
     color: black;
+}
+
+.author {
+    padding-left: 15px;
+}
+
+.extra-price {
+    float: right;
+}
+
+span.original-price{
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #a2a2a2;
+    font-weight: 300;
+}
+
+span.price {
+    font-weight: 600;
 }

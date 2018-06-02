@@ -18,6 +18,22 @@ controller.getAllByUserId = function(userId, status, callback){
     })
 };
 
+controller.getExtras = function(extraIds, callback){
+    models.Extra
+    .findAll({
+        where: {id: extraIds}
+    })
+    .then(function(extras){
+        result = [];
+        result.totalPrice = 0;
+        result.extras = extras;
+        for (var i = 0; i < extras.length; i++){
+            result.totalPrice += extras[i].price;
+        }
+        callback(result);
+    })
+};
+
 // controller.getById = function(id, callback){
 //     models.Product
 //     .findOne({

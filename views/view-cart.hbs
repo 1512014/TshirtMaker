@@ -5,11 +5,11 @@
 
             {{#each products}}
             <div class="row book-item">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <img src="{{product.imagePath1}}" width="100%">
                     <div class="percent">{{product.discount}}%</div>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <div class="row">
                         <div class="col-sm-7">
                             <h4 class="book-title">
@@ -17,12 +17,46 @@
                                 {{product.name}}
                                 </a>
                             </h4>
-                            <p class="author">Size:
-                                <span class="author"> {{product_size}}</span>
-                            </p>
                             <p class="author">Type:
                                 <span class="author"> {{product.listTypes}}</span>
                             </p>
+                            <p class="author">Size:
+                                <span class="author"> {{product_size}}</span>
+                            </p>
+                            <p class="author">Product Price:
+                                <span class="price">
+                                    {{formatNumber product.discountPrice style="currency" currency="USD"}}
+                                </span>
+                                <span class="original-price">
+                                    ({{formatNumber product.price style="currency" currency="USD"}})
+                                </span>
+
+                            </p>
+                            <p class="author">Shipping Price:
+                                <span class="price">
+                                    {{formatNumber order.shipping style="currency" currency="USD"}}
+                                </span>
+                            </p>
+                            <div class="panel-group" style="width: 80%;">
+                                <div class="panel panel-default">
+                                  <div data-toggle="collapse" data-target="#extras-{{order.id}}" class="panel-heading" style="cursor: pointer">
+                                    <h4 class="panel-title" style="font-size: 14px">
+                                        Extras <span style="float: right">{{formatNumber product_extra.totalPrice style="currency" currency="USD"}}</span>
+                                    </h4>
+                                 </div>
+                                 <div id="extras-{{order.id}}" class="panel-collapse collapse">
+                                    <ul class="list-group">
+                                        {{#each product_extra.extras}}
+                                        <li class="list-group-item" style="padding-left: 30px">{{name}}
+                                            <span class="extra-price">
+                                                {{formatNumber price style="currency" currency="USD"}}
+                                            </span>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                  </div>
+                                </div>
+                            </div>
                             <span><a href="#">Delete</a></span>
                             <span style="padding-left: 30px">
                                 <a href="#">Edit</a>
@@ -30,124 +64,27 @@
                         </div>
                         <div class="col-sm-5 item-price">
                             <div class="row">
-                                <div class="col-sm-5">
-                                    <p class="final-price">{{formatNumber product.discountPrice style="currency" currency="USD"}}</p>
-                                    <p class="original-price">{{formatNumber product.price style="currency" currency="USD"}}</p>
+                                <h4>Product Total</h4>
+                                <p class="final-price">{{formatNumber order.totalPrice style="currency" currency="USD"}}</p>
+                                <div class="input-group bootstrap-touchspin" style="width:80%; padding-left: 20%">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
+                                    </span>
+                                    <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
+                                    <input type="tel" class="form-control quantity-r2 quantity js-quantity-product" min="0" data-js-qty="" value="{{product_qty}}" style="display: block; text-align: center">
+                                    <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
+                                    </span>
                                 </div>
-                                <div class="col-sm-7">
-                                    <div class="input-group bootstrap-touchspin">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
-                                        </span>
-                                        <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                                        <input type="tel" class="form-control quantity-r2 quantity js-quantity-product" min="0" data-js-qty="" value="{{product_qty}}" style="display: block; text-align: center">
-                                        <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
-                                        </span>
-                                    </div>
-                                </div>
-
                             </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
             {{/each}}
-            <!--Item 1-->
-            <div class="row book-item">
-                <div class="col-sm-2">
-                    <img src="img/templates/template1.jpg" width="100%">
-                    <div class="percent">20%</div>
-                </div>
-                <div class="col-sm-10">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <h4 class="book-title">
-                                <a href="/product-detail">
-                                Gildan Ultra Cotton T-shirt
-                                </a>
-                            </h4>
-                            <p class="author">Size:
-                                <span class="author"> L</span>
-                            </p>
-                            <span><a href="#">Delete</a></span>
-                            <span style="padding-left: 30px">
-                                <a href="#">Edit</a>
-                            </span>
-                        </div>
-                        <div class="col-sm-5 item-price">
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <p class="final-price">$9.25</p>
-                                    <p class="original-price">$12.00</p>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="input-group bootstrap-touchspin">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
-                                        </span>
-                                        <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                                        <input type="tel" class="form-control quantity-r2 quantity js-quantity-product" min="0" data-js-qty="" value="1" style="display: block; text-align: center">
-                                        <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
-                                        </span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Item 2-->
-            <div class="row book-item">
-                <div class="col-sm-2">
-                    <img src="img/templates/template2.jpg" width="100%">
-                    <div class="percent">20%</div>
-                </div>
-                <div class="col-sm-10">
-                    <div class="row ">
-                        <div class="col-sm-7">
-                            <h4 class="book-title">
-                                <a href="/product-detail">
-                                    Anvil Jersey T-shirt
-                                </a>
-                            </h4>
-                            <p class="author">Categories:
-                                <span class="author"> Sports, Trending</span>
-                            </p>
-                            <span><a href="#">Delete</a></span>
-                            <span style="padding-left: 30px">
-                                <a href="#">Edit</a>
-                            </span>
-                        </div>
-                        <div class="col-sm-5 item-price">
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <p class="final-price">$9.98</p>
-                                    <p class="original-price">$11.00</p>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="input-group bootstrap-touchspin">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
-                                        </span>
-                                        <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                                        <input type="tel" class="form-control quantity-r2 quantity js-quantity-product" min="0" data-js-qty="" value="1" style="display: block; text-align: center">
-                                        <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
-                                        </span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="col-sm-3">
             <div class="row book-price" style="border-bottom: 5px solid #eee">
@@ -155,7 +92,7 @@
                     <p style="color: #333">Subtotal:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-                    <p>$19.23</p>
+                    <p>{{formatNumber totalPrice.subtotal style="currency" currency="USD"}}</p>
                 </div>
             </div>
             <div class="row book-price">
@@ -163,7 +100,7 @@
                     <p style="padding-top: 10px; color: #333">Total:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-                    <p class="total-price">$19.23</p>
+                    <p class="total-price">{{formatNumber totalPrice.total style="currency" currency="USD"}}</p>
                     <p style="font-size: 13px">(Included Tax)</p>
 
                 </div>
