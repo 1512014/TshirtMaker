@@ -64,6 +64,8 @@ app.get('/sync', function(req, res){
 
 var products = require('./routes/products');
 app.use('/products', products);
+var paypal = require('./routes/paypal');
+app.use('/paypal', paypal);
 // hbs.registerPartials(__dirname + '/views/partials');
 // app.set('view engine', 'hbs');
 
