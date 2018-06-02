@@ -66,6 +66,9 @@ var products = require('./routes/products');
 app.use('/products', products);
 var paypal = require('./routes/paypal');
 app.use('/paypal', paypal);
+
+var vnpay = require('./routes/vnpay');
+app.use('/vnpay', vnpay);
 // hbs.registerPartials(__dirname + '/views/partials');
 // app.set('view engine', 'hbs');
 
