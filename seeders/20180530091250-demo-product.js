@@ -14,9 +14,7 @@ module.exports = {
           price: 20.00,
           discount: 20,
           description: "This is a nice T-shirt",
-          review: 4.5,
-          createdAt: Sequelize.literal('NOW()'),
-          updatedAt: Sequelize.literal('NOW()')
+          review: 4.5
 
       },
       {
@@ -30,9 +28,7 @@ module.exports = {
           price: 20.00,
           discount: 20,
           description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-          review: 4.5,
-          createdAt: Sequelize.literal('NOW()'),
-          updatedAt: Sequelize.literal('NOW()')
+          review: 4.5
       },
       {
           name: "Gildan Ultra Cotton T-shirt",
@@ -44,9 +40,7 @@ module.exports = {
           price: 20.00,
           discount: 20,
           description: "This is a nice T-shirt",
-          review: 4.5,
-          createdAt: Sequelize.literal('NOW()'),
-          updatedAt: Sequelize.literal('NOW()')
+          review: 4.5
       },
       {
           name: "Next Level Ladies Tri‑Blend Racerback Tank",
@@ -59,9 +53,7 @@ module.exports = {
           price: 20.00,
           discount: 20,
           description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-          review: 4.5,
-          createdAt: Sequelize.literal('NOW()'),
-          updatedAt: Sequelize.literal('NOW()')
+          review: 4.5
       },
       {
           name: "Gildan Ultra Cotton T-shirt",
@@ -73,9 +65,7 @@ module.exports = {
           price: 20.00,
           discount: 20,
           description: "This is a nice T-shirt",
-          review: 4.5,
-          createdAt: Sequelize.literal('NOW()'),
-          updatedAt: Sequelize.literal('NOW()')
+          review: 4.5
       },
       {
           name: "Next Level Ladies Tri‑Blend Racerback Tank",
@@ -88,9 +78,7 @@ module.exports = {
           price: 20.00,
           discount: 20,
           description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-          review: 4.5,
-          createdAt: Sequelize.literal('NOW()'),
-          updatedAt: Sequelize.literal('NOW()')
+          review: 4.5
       },
       {
           name: "Gildan Ultra Cotton T-shirt",
@@ -102,9 +90,7 @@ module.exports = {
           price: 20.00,
           discount: 20,
           description: "This is a nice T-shirt",
-          review: 4.5,
-          createdAt: Sequelize.literal('NOW()'),
-          updatedAt: Sequelize.literal('NOW()')
+          review: 4.5
       },
       {
           name: "Next Level Ladies Tri‑Blend Racerback Tank",
@@ -117,9 +103,7 @@ module.exports = {
           price: 20.00,
           discount: 20,
           description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-          review: 4.5,
-          createdAt: Sequelize.literal('NOW()'),
-          updatedAt: Sequelize.literal('NOW()')
+          review: 4.5
       },
       {
         name: "Gildan Ultra Cotton T-shirt",
@@ -131,9 +115,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This is a nice T-shirt",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
 
     },
     {
@@ -147,9 +129,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Gildan Ultra Cotton T-shirt",
@@ -161,9 +141,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This is a nice T-shirt",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Next Level Ladies Tri‑Blend Racerback Tank",
@@ -176,9 +154,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Gildan Ultra Cotton T-shirt",
@@ -190,9 +166,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This is a nice T-shirt",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Next Level Ladies Tri‑Blend Racerback Tank",
@@ -205,9 +179,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Gildan Ultra Cotton T-shirt",
@@ -219,9 +191,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This is a nice T-shirt",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Next Level Ladies Tri‑Blend Racerback Tank",
@@ -234,9 +204,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Gildan Ultra Cotton T-shirt",
@@ -248,9 +216,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This is a nice T-shirt",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
 
     },
     {
@@ -264,9 +230,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Gildan Ultra Cotton T-shirt",
@@ -278,9 +242,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This is a nice T-shirt",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Next Level Ladies Tri‑Blend Racerback Tank",
@@ -293,9 +255,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Gildan Ultra Cotton T-shirt",
@@ -307,9 +267,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This is a nice T-shirt",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Next Level Ladies Tri‑Blend Racerback Tank",
@@ -322,9 +280,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Gildan Ultra Cotton T-shirt",
@@ -336,9 +292,7 @@ module.exports = {
         price: 20.00,
         discount: 20,
         description: "This is a nice T-shirt",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     },
     {
         name: "Next Level Ladies Tri‑Blend Racerback Tank",
@@ -351,9 +305,7 @@ module.exports = {
         price: 19.99,
         discount: 20,
         description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-        review: 4.5,
-        createdAt: Sequelize.literal('NOW()'),
-        updatedAt: Sequelize.literal('NOW()')
+        review: 4.5
     }
     ];
 
