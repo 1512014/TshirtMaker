@@ -4,10 +4,10 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     var productTypes = [
         {
-            name: "Trending"
+            name: "Trending",
         },
         {
-            name: "Sport"
+            name: "Sport",
         },
         {
             name: "Uniform",
