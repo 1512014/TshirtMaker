@@ -23,6 +23,18 @@ router.get('/', function(req, res){
           page = 1;
       }
       orders = objects.slice((page-1)*limit, page*limit);
+      if(orders.length==0){
+          var product=[{}];
+        res.render('view-cart.hbs', {
+            products: {},
+            pageHeader: true,
+            cssViewCart: true,
+            breadcrumbs: [
+                {title: "View Cart", link: "/view-cart"}
+            ],
+            pagination: { page: page, limit: limit ,totalRows: numRows }
+          });
+      }
       for (var i = 0; i < orders.length; i++){
           extraIds = JSON.parse(orders[i].extras_id);
           productsController.getProductFromOrder(orders[i], products, totalPrice, extraIds, function(object){
