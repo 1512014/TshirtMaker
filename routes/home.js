@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     // test = [1, 2, 3];
     // test = JSON.stringify(test);
     // test = JSON.parse(test);
-      productsController.getAll(productLimit, function(objects){
+      productsController.getAll(function(objects){
           // numRows = objects.length;
           numRows = productLimit;
           if(!page){
