@@ -96,7 +96,7 @@ controller.getRelatedProduct = function(callback){
     .findAll({
         limit: 4,
         order: [
-            ['updatedAt', 'DESC']
+            ['id', 'DESC']
         ]
     })
     .then(function(objects){
