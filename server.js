@@ -54,6 +54,8 @@ app.get('/sync', function(req, res){
 	});
 });
 
+var home = require('./routes/home');
+app.use('/', home);
 var products = require('./routes/products');
 app.use('/products', products);
 var orders = require('./routes/orders');
@@ -85,21 +87,7 @@ app.use('/vnpay', vnpay);
 // var comments = require('./routes/comments');
 // app.use('/comments', comments);
 
-app.get('/', (req, res) => {
-	var is_member=false;
-	var name="";
-	if(req.user) name=req.user.last_name;
-	if(req.isAuthenticated()) is_member=true;
-    res.render('home.hbs', {
-		pageHeader: false,
-		activeHome: true,
-		isMember: is_member,
-		name:name,
-		breadcrumbs: [
-			{title: "Home", link: "/"}
-		]
-    });
-});
+
 app.post('/payment', (req, res) => {
 	var method=req.body.payment_method;
 	if(method=='paypal') res.redirect('/paypal');
