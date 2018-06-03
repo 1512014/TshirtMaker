@@ -100,7 +100,12 @@ app.get('/', (req, res) => {
 		]
     });
 });
-
+app.post('/payment', (req, res) => {
+	var method=req.body.payment_method;
+	if(method=='paypal') res.redirect('/paypal');
+	else if (method=='vnpay') res.redirect('/vnpay');
+	else res.redirect('/');
+});
 app.get('/contact', (req, res) => {
     res.render('contact.hbs', {
 		pageHeader: false,
@@ -153,6 +158,7 @@ app.get('/checkout-step2', (req, res) => {
 });
 app.get('/checkout-step3', (req, res) => {
     res.render('checkout-step3.hbs', {
+		payment_method:req.param('payment_method'),
 		pageHeader: false,
 		cssCheckOutStep3: true,
 		cssProductDetail: true,
