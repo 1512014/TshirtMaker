@@ -34,6 +34,10 @@ controller.getExtras = function(extraIds, callback){
     })
 };
 
+controller.getQtyAndSize = function(order, callback){
+    callback({productQty: order.qty, productSize: order.size})
+}
+
 // controller.getById = function(id, callback){
 //     models.Product
 //     .findOne({

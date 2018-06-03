@@ -32,36 +32,45 @@ controller.getById = function(id, callback){
         //Change size from number to latin (EX: 1 -> XS, 2 -> S, 3 -> M, ...)
         object.minSizeLatin = controller.getSize(object.minSize);
         object.maxSizeLatin = controller.getSize(object.maxSize);
-
+        object.breadcrumbs = [];
         //Get all types of a product & breadcrumbs
         typeIds = JSON.parse(object.types_id);
-        object.breadcrumbs = [];
         controller.getProductTypes(typeIds, function(types){
             object.types = types;
             object.listTypes = types.map(function(elem){
                 object.breadcrumbs.push({title: elem.name, link: "#"});
                 return elem.name;
             }).join(", ");
+            callback(object);
         });
 
-        callback(object);
+
     });
 };
 
-controller.getProductFromOrder = function(order, propductId, qty, size, extraIds, callback){
-    product = [];
-    productExtra = [];
-    ordersController.getExtras(extraIds, function(result){
-        productExtra = result;
-        controller.getById(propductId, function(object){
-            order.totalPrice = order.subtotal + order.shipping + productExtra.totalPrice;
-            product = {order: order, product: object, product_qty: qty, product_size: size, product_extra: productExtra};
-            callback(product);
+controller.getProductFromOrder = function(order, products, totalPrice, extrasId, callback){
+
+    productId = order.product_id;
+    var productData = {
+          order: order,
+          product: [],
+          productQty: order.product_qty,
+          productExtra: [],
+          productSize: controller.getSize(order.product_size)
+    };
+    controller.getById(productId, function(product){
+        ordersController.getExtras(extrasId, function(result){
+            //Get totalPrice
+            tempSubtotal = order.subtotal * order.product_qty +  order.shipping;
+            totalPrice.subtotal += tempSubtotal; //TODO: add extra price
+            totalPrice.total += tempSubtotal + tempSubtotal * productData.order.tax / 100;
+            productData.product = product;
+            productData.productExtra = result;
+
+             products.push(productData);
+            callback({products: products, totalPrice: totalPrice});
         });
     });
-    // setTimeout(()=>{
-
-    // }, 500);
 
 };
 

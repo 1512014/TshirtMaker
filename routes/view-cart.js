@@ -10,9 +10,12 @@ router.get('/', function(req, res){
     userId = 1; //TODO: change later
     if (!status) status = 1; //Pending status
     limit = 100;
-    orders = [];
     products = [];
     totalPrice = {subtotal: 0, total: 0};
+    // orders = [];
+    // products = [];
+    // productExtra = [];
+    // totalPrice = {subtotal: 0, total: 0};
 
     ordersController.getAllByUserId(userId, status, function(objects){
       numRows = objects.length;
@@ -20,41 +23,26 @@ router.get('/', function(req, res){
           page = 1;
       }
       orders = objects.slice((page-1)*limit, page*limit);
-
-    //Each order contains ONE product
       for (var i = 0; i < orders.length; i++){
-
-          order = orders[i];
-          //Get extras
           extraIds = JSON.parse(orders[i].extras_id);
-          productId = orders[i].product_id;
-          productQty = orders[i].product_qty;
-          productSize = productsController.getSize(orders[i].product_size);
-          productsController.getProductFromOrder(order, productId, productQty, productSize, extraIds, function(product){
-              products.push(product);
+          productsController.getProductFromOrder(orders[i], products, totalPrice, extraIds, function(object){
+              if (object.products.length == orders.length) {
+                  res.render('view-cart.hbs', {
+                    products: object.products,
+                    totalPrice: object.totalPrice,
+                    nOrders: orders.length,
+                    pageHeader: true,
+                    cssViewCart: true,
+                    breadcrumbs: [
+                        {title: "View Cart", link: "/view-cart"}
+                    ],
+                    pagination: { page: page, limit: limit ,totalRows: numRows }
+                  });
+              }
           });
-
-          //Get totalPrice
-          tempSubtotal = orders[i].subtotal * productQty +  orders[i].shipping
-          totalPrice.subtotal += tempSubtotal; //TODO: add extra price
-          totalPrice.total += tempSubtotal + tempSubtotal * orders[i].tax / 100;
-
       }
 
-
-      setTimeout(()=>{
-          res.render('view-cart.hbs', {
-            products: products,
-            totalPrice: totalPrice,
-      		pageHeader: true,
-      		cssViewCart: true,
-      		breadcrumbs: [
-      			{title: "View Cart", link: "/view-cart"}
-      		],
-            pagination: { page: page, limit: limit ,totalRows: numRows }
-          });
-      }, 1000);
-    });
+  });
 });
 
 // router.get('/:id', function (req, res) {

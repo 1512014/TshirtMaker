@@ -46,7 +46,7 @@ router.get('/:id', function (req, res) {
 
             pageHeader: true,
     		cssProductDetail: true,
-    		breadcrumbs: product.breadcrumbs,
+    		breadcrumbs: object.breadcrumbs,
             product: product,
             relatedProducts: relatedProducts
         });

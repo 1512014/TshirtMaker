@@ -1,6 +1,6 @@
 <div class="container-fluid TM-checkout">
     <div class="row">
-        <h4 class="title">Shopping Cart <span>(2 Products)</span></h4>
+        <h4 class="title">Shopping Cart <span>({{nOrders}} Orders)</span></h4>
         <div class="col-sm-9 book-list">
 
             {{#each products}}
@@ -21,14 +21,15 @@
                                 <span class="author"> {{product.listTypes}}</span>
                             </p>
                             <p class="author">Size:
-                                <span class="author"> {{product_size}}</span>
+                                <span class="author"> {{productSize}}</span>
                             </p>
                             <p class="author">Product Price:
                                 <span class="price">
                                     {{formatNumber product.discountPrice style="currency" currency="USD"}}
+
                                 </span>
                                 <span class="original-price">
-                                    ({{formatNumber product.price style="currency" currency="USD"}})
+                                    ({{formatNumber product.price style="currency" currency="USD" }})
                                 </span>
 
                             </p>
@@ -41,12 +42,12 @@
                                 <div class="panel panel-default">
                                   <div data-toggle="collapse" data-target="#extras-{{order.id}}" class="panel-heading" style="cursor: pointer">
                                     <h4 class="panel-title" style="font-size: 14px">
-                                        Extras <span style="float: right">{{formatNumber product_extra.totalPrice style="currency" currency="USD"}}</span>
+                                        Extras <span style="float: right">{{formatNumber productExtra.totalPrice style="currency" currency="USD"}}</span>
                                     </h4>
                                  </div>
                                  <div id="extras-{{order.id}}" class="panel-collapse collapse">
                                     <ul class="list-group">
-                                        {{#each product_extra.extras}}
+                                        {{#each productExtra.extras}}
                                         <li class="list-group-item" style="padding-left: 30px">{{name}}
                                             <span class="extra-price">
                                                 {{formatNumber price style="currency" currency="USD"}}
@@ -65,13 +66,13 @@
                         <div class="col-sm-5 item-price">
                             <div class="row">
                                 <h4>Product Total</h4>
-                                <p class="final-price">{{formatNumber order.totalPrice style="currency" currency="USD"}}</p>
+                                <p class="final-price">{{formatNumber order.subtotal style="currency" currency="USD"}}</p>
                                 <div class="input-group bootstrap-touchspin" style="width:80%; padding-left: 20%">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
                                     </span>
                                     <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                                    <input type="tel" class="form-control quantity-r2 quantity js-quantity-product" min="0" data-js-qty="" value="{{product_qty}}" style="display: block; text-align: center">
+                                    <input type="tel" class="form-control quantity-r2 quantity js-quantity-product" min="0" data-js-qty="" value="{{productQty}}" style="display: block; text-align: center">
                                     <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
                                     <span class="input-group-btn">
                                         <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
