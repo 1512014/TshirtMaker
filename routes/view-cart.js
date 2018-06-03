@@ -57,48 +57,4 @@ router.get('/', function(req, res){
   });
 });
 
-// router.get('/:id', function (req, res) {
-//     id = req.params.id;
-//
-//     relatedProducts = [];
-//     ordersController.getRelatedProduct(function (objects) {
-//         relatedProducts = objects;
-//         for (var key in relatedProducts){
-//             relatedProducts[key].discountPrice = relatedProducts[key].price * (100 - relatedProducts[key].discount) / 100;
-//         }
-//     });
-//
-//     ordersController.getById(id, function(object){
-//         product = object;
-//         breadcrumbs = [];
-//         //Calculate discount price
-//         product.discountPrice = product.price * (100 - product.discount) / 100;
-//         product.discountAmount = product.price * product.discount / 100;
-//
-//         //Change size from number to latin (EX: 1 -> XS, 2 -> S, 3 -> M, ...)
-//         product.minSizeLatin = ordersController.getSize(product.minSize);
-//         product.maxSizeLatin = ordersController.getSize(product.maxSize);
-//
-//         //Get all types of a product
-//         typeIds = JSON.parse(product.types_id);
-//         ordersController.getProductTypes(typeIds, function(objects){
-//             product.types = objects;
-//             product.listTypes = product.types.map(function(elem){
-//                 breadcrumbs.push({title: elem.name, link: "#"});
-//                 return elem.name;
-//             }).join(", ");
-//         });
-//
-//
-//         res.render('product-detail', {
-//
-//             pageHeader: true,
-//     		cssProductDetail: true,
-//     		breadcrumbs: breadcrumbs,
-//             product: product,
-//             relatedProducts: relatedProducts
-//         });
-//     });
-// // });
-
 module.exports = router;

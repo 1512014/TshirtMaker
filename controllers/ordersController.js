@@ -10,7 +10,7 @@ controller.getAllByUserId = function(userId, status, callback){
             status: status
         },
         order: [
-            ['updatedAt', 'DESC']
+            ['id', 'DESC']
         ]
     })
     .then(function(objects){
@@ -18,7 +18,7 @@ controller.getAllByUserId = function(userId, status, callback){
     })
 };
 
-controller.getExtras = function(extraIds, callback){
+controller.getExtrasByIds = function(extraIds, callback){
     models.Extra
     .findAll({
         where: {id: extraIds}
@@ -38,68 +38,37 @@ controller.getQtyAndSize = function(order, callback){
     callback({productQty: order.qty, productSize: order.size})
 }
 
-// controller.getById = function(id, callback){
-//     models.Product
-//     .findOne({
-//         where: {id: id},
-//         // include: [models.Product_type],
-//         order: [
-//             // [models.Comment, 'updatedAt', 'DESC']
-//         ]
+// controller.addNew = function(comment, articleId, callback){
+//     models.Comment
+//     .create({
+//         comment: comment,
+//         ArticleId: articleId
 //     })
-//     .then(function(object){
-//         callback(object);
-//     });
-// };
-//
-// controller.getProductTypes = function (typeIds, callback) {
-//     models.Product_type
-//     .findAll({
-//         where: { id: typeIds }
-//     })
-//     .then(function(objects){
-//         callback(objects);
-//     })
-// }
-//
-// controller.getRelatedProduct = function(callback){
-//     models.Product
-//     .findAll({
-//         limit: 4,
-//         order: [
-//             ['updatedAt', 'DESC']
-//         ]
-//     })
-//     .then(function(objects){
-//         callback(objects);
+//     .then(function(comments){
+//         callback(comments);
 //     })
 // };
-//
-// controller.getSize = (sizeNumber) => {
-//     switch (sizeNumber) {
-//         case 1:
-//             return "XS";
-//             break;
-//         case 2:
-//             return "S";
-//             break;
-//         case 3:
-//             return "M";
-//             break;
-//         case 4:
-//             return "L";
-//             break;
-//         case 5:
-//             return "XL";
-//             break;
-//         case 6:
-//             return "XXL";
-//             break;
-//         default:
-//     }
-// };
-// Update model
 
+controller.delete = function(id, callback){
+    models.Order
+    .destroy({
+        where: {id:id}
+    })
+    .then(function(order){
+        callback(order);
+    })
+};
+
+controller.update = function(id, object, callback){
+    models.Order
+    .update(
+        object,
+        { where: {id: id} }
+    )
+    .then(function(order){
+        callback(order);
+    })
+};
 
 // controller.update = function(id, comment, callback){
 //     models.Comment
@@ -113,5 +82,5 @@ controller.getQtyAndSize = function(order, callback){
 //         callback(comment);
 //     })
 // };
-//
+
 module.exports = controller;
