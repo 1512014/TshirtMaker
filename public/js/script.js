@@ -65,7 +65,7 @@ $(document).ready(function () {
         $('.large-image img').attr('src', currentPath);
     })
 
-    $('a.delete-order').on('click', function(){
+    $('button.delete-order').on('click', function(){
         var orderId = $(this).data('id');
         url = '/orders/' + orderId;
         var result = confirm("Are your sure want to delete?");

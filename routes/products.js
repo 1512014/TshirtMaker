@@ -15,6 +15,15 @@ router.get('/', function(req, res){
               page = 1;
           }
           objects = objects.slice((page-1)*limit, page*limit);
+          for (var i = 0; i<objects.length; i++){
+              if (i % 4 == 3){
+                  objects[i].isBreakLine = true;
+              } else {
+                  objects[i].isBreakLine = false;
+              }
+              objects[i].discountPrice = objects[i].price * (100 - objects[i].discount) / 100;
+              objects[i].discountAmount = objects[i].price * objects[i].discount / 100;
+          }
           res.render('products.hbs', {
             products: objects,
       		pageHeader: true,
