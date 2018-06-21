@@ -9,8 +9,7 @@ module.exports = {
               productSize: 2, //size S
               status: 1,
               subtotal: 40,
-			  userId: 1,
-              tax: 5
+			  userId: 1
 
           },
           {
@@ -19,8 +18,7 @@ module.exports = {
               productSize: 2, //size S
               status: 1,
               subtotal: 30,
-			  userId: 1,
-              tax: 5
+			  userId: 1
           },
           {
               productId: 4,
@@ -28,8 +26,7 @@ module.exports = {
               productSize: 2, //size S
               status: 1,
               subtotal: 45,
-			  userId: 1,
-              tax: 5
+			  userId: 1
           },
           {
               productId: 5,
@@ -37,8 +34,7 @@ module.exports = {
               productSize: 6, //size S
               status: 1,
               subtotal: 100,
-			  userId: 3,
-              tax: 5
+			  userId: 3
           },
           {
               productId: 3,
@@ -46,8 +42,7 @@ module.exports = {
               productSize: 2, //size S
               status: 1,
               subtotal: 20,
-			  userId: 3,
-              tax: 5
+			  userId: 3
           }
       ];
       return queryInterface.bulkInsert('Orders', orders, {});

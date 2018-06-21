@@ -44,6 +44,7 @@ controller.delete = function(id, callback){
 };
 
 controller.update = function(id, object, callback){
+	console.log('OBJECT: ' + object);
     models.Order
     .update(
         object,

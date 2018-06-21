@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     productSize: { type: DataTypes.INTEGER, allowNull: false},
     status: { type: DataTypes.INTEGER, allowNull: false },
     subtotal: { type: DataTypes.FLOAT(11, 2), allowNull: false },
-    tax: { type: DataTypes.FLOAT(2, 1), allowNull: false },
     shipping: { type: DataTypes.FLOAT(11, 2), defaultValue: 0}
   }, {});
   Order.associate = function(models) {

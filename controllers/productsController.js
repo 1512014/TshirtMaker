@@ -2,6 +2,7 @@ var controller = {};
 
 var models = require('../models');
 var ordersController = require('../controllers/ordersController');
+var settingsController = require('../controllers/settingsController');
 
 controller.getAll = function(callback){
     models.Product
@@ -16,6 +17,7 @@ controller.getAll = function(callback){
 };
 
 controller.getById = function(id, callback){
+	console.log(id);
     models.Product
     .findOne({
         where: {id: id},
@@ -34,13 +36,10 @@ controller.getById = function(id, callback){
         object.maxSizeLatin = controller.getSize(object.maxSize);
         object.breadcrumbs = [];
         //Get all types of a product & breadcrumbs
-        typeIds = JSON.parse(object.types_id);
-        controller.getProductTypes(typeIds, function(types){
-            object.types = types;
-            object.listTypes = types.map(function(elem){
-                object.breadcrumbs.push({title: elem.name, link: "#"});
-                return elem.name;
-            }).join(", ");
+        typeId = object.typeId;
+        controller.getProductType(typeId, function(type){
+            object.type = type;
+            object.breadcrumbs.push({title: object.type.name, link: "#"});
             callback(object);
         });
 
@@ -50,34 +49,42 @@ controller.getById = function(id, callback){
 
 controller.getProductFromOrder = function(order, products, totalPrice, callback){
 
-    productId = order.product_id;
+    productId = order.productId;
     var productData = {
           order: order,
           product: [],
-          productQty: order.product_qty,
-          productSize: controller.getSize(order.product_size)
+          productQty: order.productQty,
+          productSize: controller.getSize(order.productSize)
     };
 
     controller.getById(productId, function(product){
-        //Get totalPrice
-        tempSubtotal = order.subtotal * order.product_qty +  order.shipping + result.totalPrice;
-        totalPrice.subtotal += tempSubtotal;
-        totalPrice.total += tempSubtotal + tempSubtotal * productData.order.tax / 100;
-        product.totalPrice = tempSubtotal;
-        productData.product = product;
-        products.push(productData);
-        callback({products: products, totalPrice: totalPrice});
+
+		//getTax
+		var taxKey = 'tax';
+		settingsController.getSetting(taxKey, function (setting) {
+			var tax = setting.value;
+			tempSubtotal = order.subtotal * order.productQty +  order.shipping;
+			//Get totalPrice
+	        product.totalPrice = tempSubtotal
+			totalPrice.subtotal += tempSubtotal;
+	        totalPrice.total += tempSubtotal + tempSubtotal*tax/100;
+			totalPrice.tax = tax;
+
+	        productData.product = product;
+	        products.push(productData);
+	        callback({products: products, totalPrice: totalPrice});
+		})
     });
 
 };
 
-controller.getProductTypes = function (typeIds, callback) {
+controller.getProductType = function (typeId, callback) {
     models.Product_type
-    .findAll({
-        where: { id: typeIds }
+    .findOne({
+        where: { id: typeId }
     })
-    .then(function(objects){
-        callback(objects);
+    .then(function(object){
+        callback(object);
     })
 }
 

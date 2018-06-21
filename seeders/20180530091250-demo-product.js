@@ -5,6 +5,45 @@ module.exports = {
 
     var products = [
         {
+			id: 1,
+          name: "Gildan Ultra Cotton T-shirt",
+          typeId: 1,
+          qty: 2,
+          minSize: 1,
+          maxSize: 6,
+          imagePath1: "/img/templates/template1.jpg",
+          price: 20,
+          discount: 20,
+          description: "This is a nice T-shirt. Your group will love this fashionable tank.",
+          review: 4.5
+        },
+		{
+          name: "Gildan Ultra Cotton T-shirt",
+          typeId: 1,
+          qty: 2,
+          minSize: 1,
+          maxSize: 6,
+          imagePath1: "/img/templates/template1.jpg",
+          price: 20,
+          discount: 20,
+          description: "This is a nice T-shirt. Your group will love this fashionable tank.",
+          review: 4.5
+
+        },
+		{
+          name: "Gildan Ultra Cotton T-shirt",
+          typeId: 1,
+          qty: 2,
+          minSize: 1,
+          maxSize: 6,
+          imagePath1: "/img/templates/template1.jpg",
+          price: 20,
+          discount: 20,
+          description: "This is a nice T-shirt. Your group will love this fashionable tank.",
+          review: 4.5
+
+        },
+		{
           name: "Gildan Ultra Cotton T-shirt",
           typeId: 1,
           qty: 2,

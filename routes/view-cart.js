@@ -23,7 +23,7 @@ router.get('/', function(req, res){
       }
       orders = objects.slice((page-1)*limit, page*limit);
       if(orders.length==0){
-          var product=[{}];
+          var product = [];
         res.render('view-cart.hbs', {
             products: {},
             pageHeader: true,
