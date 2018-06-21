@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "admin-lte": "^3.0.0-alpha.2",
+    "bcrypt": "^2.0.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",

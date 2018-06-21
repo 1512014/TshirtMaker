@@ -19,7 +19,7 @@ module.exports = function(passport, user) {
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
 
             };
-            models.User.findOne({
+            User.findOne({
                 where: {
                     email: email
                 }
@@ -57,7 +57,7 @@ module.exports = function(passport, user) {
 
                         };
 
-                    User.create(data).then(function(newUser, created) {
+                    models.User.create(data).then(function(newUser, created) {
 
                         if (!newUser) {
 
@@ -95,8 +95,6 @@ module.exports = function(passport, user) {
 
 
         function(req, email, password, done) {
-
-            var User = user;
 
             var isValidPassword = function(userpass, password) {
 

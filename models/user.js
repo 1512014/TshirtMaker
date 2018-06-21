@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require("bcrypt");
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('Users', {
     firstName: { type: DataTypes.STRING, allowNull: false },
@@ -14,15 +15,15 @@ module.exports = (sequelize, DataTypes) => {
   	address: { type: DataTypes.STRING(512), allowNull: false },
   	isActive: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
   }, {
-  // freezeTableName: true,
-  // instanceMethods: {
-	//   generateHash: function (password) {
-  //         return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
-  //     },
-  //     validPassword: function (password) {
-  //         return bcrypt.compareSync(password, this.password)
-	//   }
- 	// }
+  freezeTableName: true,
+  instanceMethods: {
+	  generateHash: function (password) {
+          return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
+      },
+      validPassword: function (password) {
+          return bcrypt.compareSync(password, this.password)
+	  }
+ 	}
   });
   User.associate = function(models) {
     // associations can be defined here
