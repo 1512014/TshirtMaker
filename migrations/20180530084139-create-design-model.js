@@ -8,9 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
-        type: Sequelize.STRING
-      },
+      texts: { type: Sequelize.STRING, allowNull: true},
+      imagesPath: { type: Sequelize.STRING, allowNull: true},
+      color: { type: Sequelize.STRING(11), defaultValue: 0},
+      size: { type: Sequelize.STRING(11), defaultValue: 0},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

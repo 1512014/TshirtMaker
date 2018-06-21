@@ -2,7 +2,6 @@ var controller = {};
 
 var models = require('../models');
 var ordersController = require('../controllers/ordersController');
-var extrasController = require('../controllers/extrasController');
 
 controller.getAll = function(callback){
     models.Product
@@ -49,34 +48,25 @@ controller.getById = function(id, callback){
     });
 };
 
-controller.getProductFromOrder = function(order, products, totalPrice, extrasId, callback){
+controller.getProductFromOrder = function(order, products, totalPrice, callback){
 
     productId = order.product_id;
     var productData = {
           order: order,
-          extras: [],
           product: [],
           productQty: order.product_qty,
-          productExtra: [],
           productSize: controller.getSize(order.product_size)
     };
 
     controller.getById(productId, function(product){
-        ordersController.getExtrasByIds(extrasId, function(result){
-            //Get totalPrice
-            tempSubtotal = order.subtotal * order.product_qty +  order.shipping + result.totalPrice;
-            totalPrice.subtotal += tempSubtotal; //TODO: add extra price
-            totalPrice.total += tempSubtotal + tempSubtotal * productData.order.tax / 100;
-
-            product.totalPrice = tempSubtotal;
-            productData.product = product;
-            productData.productExtra = result;
-            extrasController.getAll(function(objects){
-                productData.extras = objects;
-                products.push(productData);
-                callback({products: products, totalPrice: totalPrice});
-            });
-        });
+        //Get totalPrice
+        tempSubtotal = order.subtotal * order.product_qty +  order.shipping + result.totalPrice;
+        totalPrice.subtotal += tempSubtotal;
+        totalPrice.total += tempSubtotal + tempSubtotal * productData.order.tax / 100;
+        product.totalPrice = tempSubtotal;
+        productData.product = product;
+        products.push(productData);
+        callback({products: products, totalPrice: totalPrice});
     });
 
 };

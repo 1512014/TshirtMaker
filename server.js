@@ -60,8 +60,6 @@ var products = require('./routes/products');
 app.use('/products', products);
 var orders = require('./routes/orders');
 app.use('/orders', orders);
-var extras = require('./routes/extras');
-app.use('/extras', extras);
 var paypal = require('./routes/paypal');
 app.use('/paypal', paypal);
 var cart = require('./routes/view-cart');

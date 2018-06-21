@@ -2,8 +2,9 @@
 module.exports = (sequelize, DataTypes) => {
   var Product = sequelize.define('Product', {
     name: { type: DataTypes.STRING, allowNull: false},
-    //model_id
-    types_id: { type: DataTypes.STRING, allowNull: true},
+    //modelId
+    typeId: { type: DataTypes.INTEGER, allowNull: false},
+    gender: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1}, //1: Male, 2: Female
     qty: { type: DataTypes.BIGINT(11), allowNull: false, defaultValue: 1 },
     minSize: { type: DataTypes.INTEGER},
     maxSize: { type: DataTypes.INTEGER},
@@ -22,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   Product.associate = function(models) {
     // associations can be defined here
     Product.hasOne(models.Design_model);
+    // Product.belongsTo(models.Product_type);
   };
 
   return Product;
