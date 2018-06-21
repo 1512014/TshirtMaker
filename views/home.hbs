@@ -143,14 +143,11 @@
                             <p class="book-title">{{name}}</p>
                         </a>
                         <p><span class="price">{{formatNumber discountPrice style="currency" currency="USD"}}</span> <span class="original-price">{{formatNumber price style="currency" currency="USD"}}</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(65)</span>
-                        </div>
+						<div class="size">Size:
+							<span class="size">{{minSizeLatin}}</span>
+							-
+							<span class="size">{{maxSizeLatin}}</span>
+						</div>
                     </div>
                     {{#if isBreakLine}}
                     </div>

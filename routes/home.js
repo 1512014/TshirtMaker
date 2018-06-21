@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
     // test = JSON.parse(test);
       productsController.getAll(function(objects){
           // numRows = objects.length;
+		  productLimit = (objects.length < productLimit)? objects.length:productLimit;
           numRows = productLimit;
           if(!page){
               page = 1;
@@ -30,6 +31,8 @@ router.get('/', (req, res) => {
               }
               objects[i].discountPrice = objects[i].price * (100 - objects[i].discount) / 100;
               objects[i].discountAmount = objects[i].price * objects[i].discount / 100;
+			  objects[i].minSizeLatin = productsController.getSize(objects[i].minSize);
+			  objects[i].maxSizeLatin = productsController.getSize(objects[i].maxSize);
           }
 		  res.render('home.hbs', {
 		    products: objects,

@@ -82,43 +82,6 @@
             </div>
 
             <div class="filter-row">
-                <h4>Review</h4>
-                <div class="vote">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <span class="comment">(At least 1 star)</span>
-                </div>
-                <div class="vote">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <span class="comment">(At least 2 stars)</span>
-                </div>
-                <div class="vote">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <span class="comment">(At least 3 stars)</span>
-                </div>
-                <div class="vote">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <span class="comment">(At least 4 stars)</span>
-                </div>
-
-            </div>
-
-            <div class="filter-row">
                 <h4>Price</h4>
                 <ul>
                     <li><a href="#">Budget <span>(46)</span></a></li>
@@ -153,13 +116,10 @@
                                 <p class="book-title">{{name}}</p>
                             </a>
                             <p><span class="price">{{formatNumber discountPrice style="currency" currency="USD"}}</span> <span class="original-price">{{formatNumber price style="currency" currency="USD"}}</span></p>
-                            <div class="vote">
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="	glyphicon glyphicon-star-empty"></i>
-                                <span class="comment">(65)</span>
+                            <div class="size">Size:
+                                <span class="size">{{minSizeLatin}}</span>
+								-
+								<span class="size">{{maxSizeLatin}}</span>
                             </div>
                         </div>
                         {{#if isBreakLine}}

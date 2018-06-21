@@ -34,12 +34,14 @@ controller.getById = function(id, callback){
         //Change size from number to latin (EX: 1 -> XS, 2 -> S, 3 -> M, ...)
         object.minSizeLatin = controller.getSize(object.minSize);
         object.maxSizeLatin = controller.getSize(object.maxSize);
-        object.breadcrumbs = [];
         //Get all types of a product & breadcrumbs
         typeId = object.typeId;
         controller.getProductType(typeId, function(type){
             object.type = type;
-            object.breadcrumbs.push({title: object.type.name, link: "#"});
+            object.breadcrumbs = [
+				{title: object.type.name, link: "#"},
+				{title: object.name, link: "#"}
+			];
             callback(object);
         });
 
@@ -97,12 +99,19 @@ controller.getRelatedProduct = function(callback){
         ]
     })
     .then(function(objects){
+		for (var i = 0; i < objects.length; i++){
+			objects[i].minSizeLatin = controller.getSize(objects[i].minSize);
+	        objects[i].maxSizeLatin = controller.getSize(objects[i].maxSize);
+		}
         callback(objects);
     })
 };
 
 controller.getSize = (sizeNumber) => {
     switch (sizeNumber) {
+		case 0:
+			return "XXS";
+			break;
         case 1:
             return "XS";
             break;
@@ -121,6 +130,9 @@ controller.getSize = (sizeNumber) => {
         case 6:
             return "XXL";
             break;
+		case 7:
+			return "3XL";
+			break;
         default:
     }
 };

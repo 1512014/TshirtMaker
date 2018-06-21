@@ -23,6 +23,9 @@ router.get('/', function(req, res){
               }
               objects[i].discountPrice = objects[i].price * (100 - objects[i].discount) / 100;
               objects[i].discountAmount = objects[i].price * objects[i].discount / 100;
+
+			  objects[i].minSizeLatin = productsController.getSize(objects[i].minSize);
+			  objects[i].maxSizeLatin = productsController.getSize(objects[i].maxSize);
           }
           res.render('products.hbs', {
             products: objects,
