@@ -1,7 +1,7 @@
 'use strict';
 const bcrypt = require("bcrypt");
 module.exports = (sequelize, DataTypes) => {
-  var User = sequelize.define('Users', {
+  var User = sequelize.define('User', {
     firstName: { type: DataTypes.STRING, allowNull: false },
   	lastName: { type: DataTypes.STRING, allowNull: false },
   	email: { type: DataTypes.STRING, allowNull: false, unique: true },
@@ -13,9 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   	country: { type: DataTypes.STRING(50), allowNull: false },
   	city: { type: DataTypes.STRING(50), allowNull: false },
   	address: { type: DataTypes.STRING(512), allowNull: false },
-  	isActive: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  	isActive: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
   }, {
-  freezeTableName: true,
   instanceMethods: {
 	  generateHash: function (password) {
           return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
