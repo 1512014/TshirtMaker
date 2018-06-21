@@ -7,6 +7,10 @@
     min-height: 100vh;
 }
 
+.li-container {
+    min-height: 0!important;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     nav.navbar {padding-left: 30px; padding-right: 30px}
