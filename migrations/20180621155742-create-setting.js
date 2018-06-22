@@ -9,15 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
 	  key: { type: Sequelize.STRING, allowNull: false },
-  	  value: { type: Sequelize.FLOAT(2, 1), allowNull: false },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+  	  value: { type: Sequelize.FLOAT(2, 1), allowNull: false }
     });
   },
   down: (queryInterface, Sequelize) => {

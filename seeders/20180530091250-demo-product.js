@@ -14,8 +14,7 @@ module.exports = {
           imagePath1: "/img/templates/template1.jpg",
           price: 20,
           discount: 20,
-          description: "This is a nice T-shirt. Your group will love this fashionable tank.",
-          review: 4.5
+          description: "This is a nice T-shirt. Your group will love this fashionable tank."
         },
 		{
           name: "Gildan Ultra Cotton T-shirt",
@@ -26,8 +25,7 @@ module.exports = {
           imagePath1: "/img/templates/template1.jpg",
           price: 20,
           discount: 20,
-          description: "This is a nice T-shirt. Your group will love this fashionable tank.",
-          review: 4.5
+          description: "This is a nice T-shirt. Your group will love this fashionable tank."
 
         },
 		{
@@ -39,8 +37,7 @@ module.exports = {
           imagePath1: "/img/templates/template1.jpg",
           price: 20,
           discount: 20,
-          description: "This is a nice T-shirt. Your group will love this fashionable tank.",
-          review: 4.5
+          description: "This is a nice T-shirt. Your group will love this fashionable tank."
 
         },
 		{
@@ -52,8 +49,7 @@ module.exports = {
           imagePath1: "/img/templates/template1.jpg",
           price: 20,
           discount: 20,
-          description: "This is a nice T-shirt. Your group will love this fashionable tank.",
-          review: 4.5
+          description: "This is a nice T-shirt. Your group will love this fashionable tank."
 
         },
         {
@@ -65,8 +61,7 @@ module.exports = {
           imagePath1: "/img/templates/template2.jpg",
           price: 15,
           discount: 20,
-          description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank.",
-          review: 4.5
+          description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank."
         }
     ];
 

@@ -8,15 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: { type: Sequelize.STRING, allowNull: false },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      name: { type: Sequelize.STRING, allowNull: false }
     });
   },
   down: (queryInterface, Sequelize) => {
