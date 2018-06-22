@@ -23,10 +23,40 @@ var hbs = expressHbs.create({
 	        if(!this._sections) this._sections = {};
 	        this._sections[name] = options.fn(this);
 	        return null;
-	    }
+	    },
 	}
 });
 hbs.handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
+Handlebars.registerHelper('isMember', function(role){
+	
+});
+Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+
+    switch (operator) {
+        case '==':
+            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+        case '===':
+            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+        case '!=':
+            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+        case '!==':
+            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+        case '>':
+            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+        case '&&':
+            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+        case '||':
+            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
+});
 HandlebarsIntl.registerWith(Handlebars);
 app.engine('hbs', hbs.engine);
 app.set('port', (process.env.PORT || 3000));
@@ -56,16 +86,38 @@ app.get('/sync', function(req, res){
 
 var home = require('./routes/home');
 app.use('/', home);
+
 var products = require('./routes/products');
 app.use('/products', products);
+
 var orders = require('./routes/orders');
 app.use('/orders', orders);
+
 var paypal = require('./routes/paypal');
 app.use('/paypal', paypal);
+
 var cart = require('./routes/view-cart');
 app.use('/view-cart', cart);
+
 var vnpay = require('./routes/vnpay');
 app.use('/vnpay', vnpay);
+
+var design = require('./routes/design');
+app.use('/design', design);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // hbs.registerPartials(__dirname + '/views/partials');
 // app.set('view engine', 'hbs');
 
@@ -174,16 +226,6 @@ app.get('/register', (req, res) => {
 		message: req.flash('registerMessage'),
 		breadcrumbs:[
 			{title: "Register", link: "/register"}
-		]
-    });
-});
-
-app.get('/design', (req, res) => {
-    res.render('design.hbs', {
-		pageHeader: true,
-		activeDesign: true,
-		breadcrumbs: [
-			{title: "Design", link: "/design"}
 		]
     });
 });

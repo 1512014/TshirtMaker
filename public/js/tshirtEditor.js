@@ -1,5 +1,6 @@
 var canvas;
-var tshirts = new Array(); //prototype: [{style:'x',color:'white',front:'a',back:'b',price:{tshirt:'12.95',frontPrint:'4.99',backPrint:'4.99',total:'22.47'}}]
+var tshirts = new Array();
+//prototype: [{style:'x',color:'white',front:'a',back:'b',price:{tshirt:'12.95',frontPrint:'4.99',backPrint:'4.99',total:'22.47'}}]
 var a;
 var b;
 var line1;
@@ -274,20 +275,26 @@ var line4;
 
 	   $('#flip').click(
 		   function() {
+			   gender = $('input#gender').val();
+			   if (gender == 'male'){
+				   gender = 'men'
+			   } else {
+				   gender = 'women'
+			   }
 			   	if ($(this).attr("data-original-title") == "Show Back View") {
 			   		$(this).attr('data-original-title', 'Show Front View');
                     switch (parseInt($('#tshirtTypes').val())) {
                         case 1:
-                            $("#tshirtFacing").attr("src","img/crew_back.png");
+                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/short_sleeve_back.png");
                             break;
                         case 2:
-                            $("#tshirtFacing").attr("src","img/mens_longsleeve_back.png");
+                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/long_sleeve_back.png");
                             break;
                         case 3:
-                            $("#tshirtFacing").attr("src","img/mens_hoodie_back.png");
+                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/hoodies_back.png");
                             break;
                         case 4:
-                            $("#tshirtFacing").attr("src","img/mens_tank_back.png");
+                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/tank_tops_back.png");
                             break;
                         default:
                             break;
@@ -307,16 +314,16 @@ var line4;
 			    	$(this).attr('data-original-title', 'Show Back View');
                     switch (parseInt($('#tshirtTypes').val())) {
                         case 1:
-                            $("#tshirtFacing").attr("src","img/crew_front.png");
+                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/short_sleeve_front.png");
                             break;
                         case 2:
-                            $("#tshirtFacing").attr("src","img/mens_longsleeve_front.png");
+                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/long_sleeve_front.png");
                             break;
                         case 3:
-                            $("#tshirtFacing").attr("src","img/mens_hoodie_front.png");
+                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/hoodies_front.png");
                             break;
                         case 4:
-                            $("#tshirtFacing").attr("src","img/mens_tank_front.png");
+                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/tank_tops_front.png");
                             break;
                         default:
                             break;
@@ -389,17 +396,23 @@ var line4;
 
      $(document).ready(function () {
          $("#tshirtTypes").change(function(e){
+			 gender = $('input#gender').val();
+			 if (gender == 'male'){
+				 gender = 'men'
+			 } else {
+				 gender = 'women'
+			 }
              if ($(this).val() == "1"){
-                 $('#tshirtFacing').attr('src', "img/crew_front.png");
+                 $('#tshirtFacing').attr('src', "img/templates/"+gender+"/short_sleeve_front.png");
              }
              else if ($(this).val() == "2"){
-                 $('#tshirtFacing').attr('src', "img/mens_longsleeve_front.png");
+                 $('#tshirtFacing').attr('src', "img/templates/"+gender+"/long_sleeve_front.png");
              }
              else if ($(this).val() == "3"){
-                 $('#tshirtFacing').attr('src', "img/mens_hoodie_front.png");
+                 $('#tshirtFacing').attr('src', "img/templates/"+gender+"/hoodies_front.png");
              }
              else if ($(this).val() == "4"){
-                 $('#tshirtFacing').attr('src', "img/mens_tank_front.png");
+                 $('#tshirtFacing').attr('src', "img/templates/"+gender+"/tank_tops_front.png");
              }
          });
      });
