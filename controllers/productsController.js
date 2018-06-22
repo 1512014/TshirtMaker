@@ -90,6 +90,14 @@ controller.getProductType = function (typeId, callback) {
     })
 }
 
+controller.getAllProductTypes = function (callback){
+    models.Product_type
+    .findAll({})
+    .then(function(objects){
+        callback(objects);
+    })
+}
+
 controller.getRelatedProduct = function(callback){
     models.Product
     .findAll({
@@ -137,7 +145,8 @@ controller.getSize = (sizeNumber) => {
     }
 };
 
-controller.getProductByProductIds = function (productIds, callback){
+
+controller.getProductType = function (productIds, callback){
     models.Product_type
     .findAll({
         where: { id: productIds }
@@ -146,6 +155,7 @@ controller.getProductByProductIds = function (productIds, callback){
         callback(objects);
     })
 }
+
 // Update model
 
 

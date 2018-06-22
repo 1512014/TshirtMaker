@@ -1,3 +1,12 @@
+<!-- Add script-->
+{{#section 'script'}}
+<script type="text/javascript" src="/js/home-script.js"></script>
+{{/section}}
+
+<!-- Add stype -->
+{{#section 'style'}}
+
+{{/section}}
 <div class="TM-body">
 
     <div class="row">
@@ -59,84 +68,41 @@
 
 
     <div class="row TM-categories" style="background: white; margin: 20px">
-        <h3 style="padding-left: 20px;">Most Popular</h3>
-        <div class="col-sm-3 categories">
+		<div class="row header">
+	        <div class="col-sm-8">
+	            <h3 style="padding-left: 20px; margin-top: 10px; margin-bottom: 30px;">Most Popular</h3>
+	        </div>
+	        <div class="col-sm-4" style="text-align: right; line-height: 40px;">
+	            <a href="/products" style="text-decoration: none; font-size: 16px;">
+	                <p style=" padding-right: 20px;">View More
+	                    <span><i class="glyphicon glyphicon-triangle-right"></i> </span>
+	                </p>
+	            </a>
+	        </div>
+
+	    </div>
+
+        <!-- <div class="col-sm-3 categories">
             <ul>
-                <li>
-                    <label class="container li-container">Trending
+				{{#each productTypes}}
+                <li class="type">
+                    <label class="container li-container">{{name}}
                         <input type="checkbox" checked="checked">
+						<input type="hidden" class="productTypeId" value="{{id}}" />
                         <span class="checkmark"></span>
                     </label>
                 </li>
-                <li>
-                    <label class="container li-container">Sports
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container li-container">Parties & Events
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container li-container">Top Best-sellers
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container li-container">Business
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container li-container">College
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container li-container">Charities & Fundraisers
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container li-container">Religious
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container li-container">Holidays & Seasons
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container li-container">Test
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container li-container">Test
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
+                {{/each}}
             </ul>
-        </div>
-        <div class="col-sm-9 book-list">
+        </div> -->
+        <div class="col-sm-12 book-list">
             <div class="container-fluid">
                 {{#each products}}
                     {{#if isBreakLine}}
                     <div class="row" style="margin-bottom: 30px;">
                     {{/if}}
-                    <div class="col-sm-3">
+					<!-- Start product -->
+                    <div class="col-sm-3 product-item type-{{typeId}}">
                         <a href="/products/{{id}}">
                             <img src="{{imagePath1}}" width="100%">
                             <div class="percent">{{discount}}%</div>
@@ -149,6 +115,7 @@
 							<span class="size">{{maxSizeLatin}}</span>
 						</div>
                     </div>
+					<!-- End product -->
                     {{#if isBreakLine}}
                     </div>
                     {{/if}}
