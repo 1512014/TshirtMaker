@@ -9,7 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: { type: Sequelize.STRING, allowNull: false },
-	  code: { type: Sequelize.INTEGER, allowNull: false }
+	  gender: { type: Sequelize.STRING, allowNull: false, defaultValue: 'male' },
+	  templateFront: { type: Sequelize.STRING, allowNull: false},
+  	  templateBack: { type: Sequelize.STRING, allowNull: false}
     });
   },
   down: (queryInterface, Sequelize) => {

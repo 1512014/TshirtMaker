@@ -6,22 +6,51 @@ module.exports = {
         {
             id: "1",
             name: "Short Sleeve",
-			code: 1
+			gender: "male",
+			templateFront: "/img/templates/male/long_sleeve_front.png",
+			templateBack: "/img/templates/male/long_sleeve_back.png"
         },
-        {
-            id: "2",
+		{
+            name: "Short Sleeve",
+			gender: "female",
+			templateFront: "/img/templates/female/short_sleeve_front.png",
+			templateBack: "/img/templates/female/short_sleeve_back.png"
+        },
+		{
             name: "Long Sleeve",
-			code: 2
+			gender: "male",
+			templateFront: "/img/templates/male/long_sleeve_front.png",
+			templateBack: "/img/templates/male/long_sleeve_back.png"
         },
-        {
-            id: "3",
+		{
+            name: "Long Sleeve",
+			gender: "female",
+			templateFront: "/img/templates/female/long_sleeve_front.png",
+			templateBack: "/img/templates/female/long_sleeve_back.png"
+        },
+		{
             name: "Tank Tops & Sleeveless",
-			code: 3
+			gender: "male",
+			templateFront: "/img/templates/male/tank_tops_front.png",
+			templateBack: "/img/templates/male/tank_tops_back.png"
         },
-        {
-            id: "4",
+		{
+            name: "Tank Tops & Sleeveless",
+			gender: "female",
+			templateFront: "/img/templates/female/tank_tops_front.png",
+			templateBack: "/img/templates/female/tank_tops_back.png"
+        },
+		{
             name: "Hoodies",
-			code: 4
+			gender: "male",
+			templateFront: "/img/templates/male/hoodies_front.png",
+			templateBack: "/img/templates/male/hoodies_back.png"
+        },
+		{
+            name: "Hoodies",
+			gender: "female",
+			templateFront: "/img/templates/female/hoodies_front.png",
+			templateBack: "/img/templates/female/hoodies_back.png"
         }
     ];
     return queryInterface.bulkInsert('Product_types', productTypes, {});

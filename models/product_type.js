@@ -2,7 +2,9 @@
 module.exports = (sequelize, DataTypes) => {
   var Product_type = sequelize.define('Product_type', {
     name: { type: DataTypes.STRING, allowNull: false },
-	code: { type: DataTypes.INTEGER, allowNull: false }
+	gender: { type: DataTypes.STRING, allowNull: false, defaultValue: 'male' },
+	templateFront: { type: DataTypes.STRING, allowNull: false},
+	templateBack: { type: DataTypes.STRING, allowNull: false}
   }, {
 	   timestamps: false
   });
