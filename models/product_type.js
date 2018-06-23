@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     name: { type: DataTypes.STRING, allowNull: false },
 	gender: { type: DataTypes.STRING, allowNull: false, defaultValue: 'male' },
 	templateFront: { type: DataTypes.STRING, allowNull: false},
-	templateBack: { type: DataTypes.STRING, allowNull: false}
+	templateBack: { type: DataTypes.STRING, allowNull: false},
+	basicPrice: { type: DataTypes.FLOAT(11, 2), allowNull: false }
   }, {
 	   timestamps: false
   });

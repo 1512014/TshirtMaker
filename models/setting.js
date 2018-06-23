@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   var Setting = sequelize.define('Setting', {
     key: { type: DataTypes.STRING, allowNull: false },
-	value: { type: DataTypes.FLOAT(2, 1), allowNull: false }
+	value: { type: DataTypes.FLOAT(11, 2), allowNull: false }
   }, {
 	  timestamps: false
   });

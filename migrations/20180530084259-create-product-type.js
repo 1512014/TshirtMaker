@@ -11,7 +11,8 @@ module.exports = {
       name: { type: Sequelize.STRING, allowNull: false },
 	  gender: { type: Sequelize.STRING, allowNull: false, defaultValue: 'male' },
 	  templateFront: { type: Sequelize.STRING, allowNull: false},
-  	  templateBack: { type: Sequelize.STRING, allowNull: false}
+  	  templateBack: { type: Sequelize.STRING, allowNull: false},
+	  basicPrice: { type: Sequelize.FLOAT(11, 2), allowNull: false }
     });
   },
   down: (queryInterface, Sequelize) => {
