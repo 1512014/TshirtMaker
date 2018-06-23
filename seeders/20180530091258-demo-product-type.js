@@ -7,8 +7,8 @@ module.exports = {
             id: "1",
             name: "Short Sleeve",
 			gender: "male",
-			templateFront: "/img/templates/male/long_sleeve_front.png",
-			templateBack: "/img/templates/male/long_sleeve_back.png"
+			templateFront: "/img/templates/male/short_sleeve_front.png",
+			templateBack: "/img/templates/male/short_sleeve_back.png"
         },
 		{
             name: "Short Sleeve",

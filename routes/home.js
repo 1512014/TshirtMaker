@@ -48,27 +48,33 @@ router.get('/', (req, res) => {
 });
 
 router.get('/design', (req, res) => {
-	gender = req.query.gender;
+	var gender = req.query.gender;
 	if (!gender){
 		gender = 'male';
 	}
 	var product = [];
-	product.sizes = [];
-	for (var i = 0; i <= 7; i++){
-		product.sizes.push({
-			sizeNumber: i,
-			sizeLatin: productsController.getSize(i)
+	var sizes = [];
+	productsController.getProductTypesByGender('male', function(maleTypes){
+		productsController.getProductTypesByGender('female', function(femaleTypes){
+			for (var i = 0; i <= 7; i++){
+				sizes.push({
+					sizeNumber: i,
+					sizeLatin: productsController.getSize(i)
+				});
+			}
+			res.render('design.hbs', {
+				maleTypes: maleTypes,
+				femaleTypes: femaleTypes,
+				gender: gender,
+				sizes: sizes,
+				pageHeader: true,
+				activeDesign: true,
+				breadcrumbs: [
+					{title: "Design", link: "/design"}
+				]
+			});
 		});
-	}
-    res.render('design.hbs', {
-		gender: gender,
-		product: product,
-		pageHeader: true,
-		activeDesign: true,
-		breadcrumbs: [
-			{title: "Design", link: "/design"}
-		]
-    });
+	});
 });
 
 router.get('/contact', (req, res) => {

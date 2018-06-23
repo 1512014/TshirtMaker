@@ -71,7 +71,6 @@ var line4;
             canvas.add(textSample);
             canvas.item(canvas.item.length-1).hasRotatingPoint = true;
             $("#texteditor").css('display', 'block');
-            $("#imageeditor").css('display', 'block');
 	  	};
 	  	$("#text-string").keyup(function(){
 	  		var activeObject = canvas.getActiveObject();
@@ -275,31 +274,11 @@ var line4;
 
 	   $('#flip').click(
 		   function() {
-			   gender = $('input#gender').val();
-			   if (gender == 'male'){
-				   gender = 'men'
-			   } else {
-				   gender = 'women'
-			   }
+			   typeId = parseInt($('#tshirtTypes').val());
 			   	if ($(this).attr("data-original-title") == "Show Back View") {
 			   		$(this).attr('data-original-title', 'Show Front View');
-                    switch (parseInt($('#tshirtTypes').val())) {
-                        case 1:
-                            $("#tshirtFacing").attr("src","/img/templates/"+gender+"/short_sleeve_back.png");
-                            break;
-                        case 2:
-                            $("#tshirtFacing").attr("src","/img/templates/"+gender+"/long_sleeve_back.png");
-                            break;
-                        case 3:
-							$("#tshirtFacing").attr("src","/img/templates/"+gender+"/tank_tops_back.png");
-							break;
-                        case 4:
-							$("#tshirtFacing").attr("src","/img/templates/"+gender+"/hoodies_back.png");
-                            break;
-                        default:
-                            break;
-
-                    }
+					templateBack = $('#templateImages').find('#template-back-' + typeId).val();
+	   			 	$('#tshirtFacing').attr('src', templateBack);
 			        a = JSON.stringify(canvas);
 			        canvas.clear();
 			        try
@@ -312,23 +291,8 @@ var line4;
 
 			    } else {
 			    	$(this).attr('data-original-title', 'Show Back View');
-                    switch (parseInt($('#tshirtTypes').val())) {
-                        case 1:
-                            $("#tshirtFacing").attr("src","/img/templates/"+gender+"/short_sleeve_front.png");
-                            break;
-                        case 2:
-                            $("#tshirtFacing").attr("src","/img/templates/"+gender+"/long_sleeve_front.png");
-                            break;
-                        case 3:
-							$("#tshirtFacing").attr("src","/img/templates/"+gender+"/tank_tops_front.png");
-							break;
-                        case 4:
-							$("#tshirtFacing").attr("src","/img/templates/"+gender+"/hoodies_front.png");
-							break;
-                        default:
-                            break;
-
-                    }
+					templateFront = $('#templateImages').find('#template-front-' + typeId).val();
+	   			 	$('#tshirtFacing').attr('src', templateFront);
 			    	b = JSON.stringify(canvas);
 			    	canvas.clear();
 			    	try
@@ -377,7 +341,6 @@ var line4;
 	 function onSelectedCleared(e){
 		 $("#texteditor").css('display', 'none');
 		 $("#text-string").val("");
-		 $("#imageeditor").css('display', 'none');
 	 }
 	 function setFont(font){
 		  var activeObject = canvas.getActiveObject();
@@ -397,25 +360,11 @@ var line4;
      $(document).ready(function () {
          $("#tshirtTypes").change(function(e){
 			 gender = $('input#gender').val();
-			 if (gender == 'male'){
-				 gender = 'men'
-			 } else {
-				 gender = 'women'
-			 }
-             if ($(this).val() == "1"){
-                 $('#tshirtFacing').attr('src', "/img/templates/"+gender+"/short_sleeve_front.png");
-             }
-             else if ($(this).val() == "2"){
-                 $('#tshirtFacing').attr('src', "/img/templates/"+gender+"/long_sleeve_front.png");
-             }
-			 else if ($(this).val() == "3"){
-                 $('#tshirtFacing').attr('src', "/img/templates/"+gender+"/tank_tops_front.png");
-             }
-             else if ($(this).val() == "4"){
-                 $('#tshirtFacing').attr('src', "/img/templates/"+gender+"/hoodies_front.png");
-             }
+			 typeId = $(this).val();
+             templateFront = $('#templateImages').find('#template-front-' + typeId).val();
+			 $('#tshirtFacing').attr('src', templateFront);
          });
-		 $("#tshirtTypes").trigger("change");
+		 // $("#tshirtTypes").trigger("change");
 
 		 $("#add-to-cart").on('click', function(){
 			 location.href = "/finished";

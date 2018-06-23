@@ -1,5 +1,6 @@
 var canvas;
-var tshirts = new Array(); //prototype: [{style:'x',color:'white',front:'a',back:'b',price:{tshirt:'12.95',frontPrint:'4.99',backPrint:'4.99',total:'22.47'}}]
+var tshirts = new Array();
+//prototype: [{style:'x',color:'white',front:'a',back:'b',price:{tshirt:'12.95',frontPrint:'4.99',backPrint:'4.99',total:'22.47'}}]
 var a;
 var b;
 var line1;
@@ -70,7 +71,6 @@ var line4;
             canvas.add(textSample);
             canvas.item(canvas.item.length-1).hasRotatingPoint = true;
             $("#texteditor").css('display', 'block');
-            $("#imageeditor").css('display', 'block');
 	  	};
 	  	$("#text-string").keyup(function(){
 	  		var activeObject = canvas.getActiveObject();
@@ -79,54 +79,28 @@ var line4;
 		    	  canvas.renderAll();
 		      }
 	  	});
-
-	  	$("#phoneTypes").change(function(e){
-	  		// debugger;
-	  		if($(this).val() == "1"){
-	  			$("#phoneDiv").css('height','590');
-	  			$("#phone")[0].src = "img/phones/iphone5A.png";
-	  			//$("#borderMask")[0].src = "img/phones/iphone5Mask.png";
-				line1 = new fabric.Line([0,0,225,0], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-				line2 = new fabric.Line([224,0,225,450], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-				line3 = new fabric.Line([0,0,0,450], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-				line4 = new fabric.Line([0,450,225,449], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-	  		}
-	  		else if ($(this).val() == "2"){
-	  			$("#phoneDiv").css('height','540');
-	  			$("#phone")[0].src = "img/phones/iPhone4A.png";
-	  			//$("#borderMask")[0].src = "img/phones/iphone4Mask.png";
-	  			line1 = new fabric.Line([0,20,220,20], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-				line2 = new fabric.Line([220,20,220,420], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-				line3 = new fabric.Line([0,20,0,420], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-				line4 = new fabric.Line([0,420,220,420], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-	  		}
-	  		else if ($(this).val() == "3"){
-	  			$("#phoneDiv").css('height','535');
-	  			$("#phone")[0].src = "img/phones/GalaxyS3A.png";
-	  			//$("#borderMask")[0].src = "img/phones/GalaxyS3Mask.png";
-	  			line1 = new fabric.Line([0,30,225,30], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-				line2 = new fabric.Line([224,30,225,400], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-				line3 = new fabric.Line([0,30,0,400], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-				line4 = new fabric.Line([0,400,225,400], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-	  		}
-	  	});
-
-	  	line1 = new fabric.Line([0,0,225,0], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-		line2 = new fabric.Line([224,0,225,450], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-		line3 = new fabric.Line([0,0,0,450], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-		line4 = new fabric.Line([0,450,225,449], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
-
 	  	$(".img-polaroid").click(function(e){
 	  		var el = e.target;
-	  		var design = $(this).attr("src");
-	  		$('#phoneDiv').css({
-				'backgroundImage': 'url(' + design +')',
-				'backgroundRepeat': 'no-repeat',
-				'backgroundPosition': 'top center',
-				'background-size': '100% 100%'
+	  		/*temp code*/
+	  		var offset = 50;
+	        var left = fabric.util.getRandomInt(0 + offset, 200 - offset);
+	        var top = fabric.util.getRandomInt(0 + offset, 400 - offset);
+	        var angle = fabric.util.getRandomInt(-20, 40);
+	        var width = fabric.util.getRandomInt(30, 50);
+	        var opacity = (function(min, max){ return Math.random() * (max - min) + min; })(0.5, 1);
 
-			});
-		 //  document.getElementById("phoneDiv").style.backgroundImage="url("+ design +")";
+	  		fabric.Image.fromURL(el.src, function(image) {
+		          image.set({
+		            left: left,
+		            top: top,
+		            angle: 0,
+		            padding: 10,
+		            cornersize: 10,
+	      	  		hasRotatingPoint:true
+		          });
+		          //image.scale(getRandomNum(0.1, 0.25)).setCoords();
+		          canvas.add(image);
+		        });
 	  	});
 	  document.getElementById('remove-selected').onclick = function() {
 		    var activeObject = canvas.getActiveObject(),
@@ -171,6 +145,7 @@ var line4;
 		      });
 		    }
 	  };
+
 	  $("#text-bold").click(function() {
 		  var activeObject = canvas.getActiveObject();
 		  if (activeObject && activeObject.type === 'text') {
@@ -227,7 +202,7 @@ var line4;
 	        canvas.renderAll();
 	      }
 	    });
-		$('#text-bgcolor').miniColors({
+		$('#text-bgcolor').minicolors({
 			change: function(hex, rgb) {
 			  var activeObject = canvas.getActiveObject();
 		      if (activeObject && activeObject.type === 'text') {
@@ -242,7 +217,7 @@ var line4;
 				//
 			}
 		});
-		$('#text-fontcolor').miniColors({
+		$('#text-fontcolor').minicolors({
 			change: function(hex, rgb) {
 			  var activeObject = canvas.getActiveObject();
 		      if (activeObject && activeObject.type === 'text') {
@@ -258,7 +233,7 @@ var line4;
 			}
 		});
 
-		$('#text-strokecolor').miniColors({
+		$('#text-strokecolor').minicolors({
 			change: function(hex, rgb) {
 			  var activeObject = canvas.getActiveObject();
 		      if (activeObject && activeObject.type === 'text') {
@@ -294,10 +269,49 @@ var line4;
 
 	   $('.color-preview').click(function(){
 		   var color = $(this).css("background-color");
-		   document.getElementById("phoneDiv").style.backgroundColor = color;
+		   document.getElementById("shirtDiv").style.backgroundColor = color;
 	   });
 
+	   $('#flip').click(
+		   function() {
+			   templateFront = $('#template-front').val();
+			   templateBack = $('#template-back').val();
+			   	if ($(this).attr("data-original-title") == "Show Back View") {
+			   		$(this).attr('data-original-title', 'Show Front View');
+	   			 	$('#tshirtFacing').attr('src', templateBack);
+			        a = JSON.stringify(canvas);
+			        canvas.clear();
+			        try
+			        {
+			           var json = JSON.parse(b);
+			           canvas.loadFromJSON(b);
+			        }
+			        catch(e)
+			        {}
+
+			    } else {
+			    	$(this).attr('data-original-title', 'Show Back View');
+	   			 	$('#tshirtFacing').attr('src', templateFront);
+			    	b = JSON.stringify(canvas);
+			    	canvas.clear();
+			    	try
+			        {
+			           var json = JSON.parse(a);
+			           canvas.loadFromJSON(a);
+			        }
+			        catch(e)
+			        {}
+			    }
+			   	canvas.renderAll();
+			   	setTimeout(function() {
+			   		canvas.calcOffset();
+			    },200);
+        });
 	   $(".clearfix button,a").tooltip();
+	   line1 = new fabric.Line([0,0,200,0], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
+	   line2 = new fabric.Line([199,0,200,399], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
+	   line3 = new fabric.Line([0,0,0,400], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
+	   line4 = new fabric.Line([0,400,200,399], {"stroke":"#000000", "strokeWidth":1,hasBorders:false,hasControls:false,hasRotatingPoint:false,selectable:false});
 	 });//doc ready
 
 
@@ -313,8 +327,8 @@ var line4;
 	    	//display text editor
 	    	$("#texteditor").css('display', 'block');
 	    	$("#text-string").val(selectedObject.getText());
-	    	$('#text-fontcolor').miniColors('value',selectedObject.fill);
-	    	$('#text-strokecolor').miniColors('value',selectedObject.strokeStyle);
+	    	$('#text-fontcolor').minicolors('value',selectedObject.fill);
+	    	$('#text-strokecolor').minicolors('value',selectedObject.strokeStyle);
 	    	$("#imageeditor").css('display', 'block');
 	    }
 	    else if (selectedObject && selectedObject.type === 'image'){
@@ -326,7 +340,6 @@ var line4;
 	 function onSelectedCleared(e){
 		 $("#texteditor").css('display', 'none');
 		 $("#text-string").val("");
-		 $("#imageeditor").css('display', 'none');
 	 }
 	 function setFont(font){
 		  var activeObject = canvas.getActiveObject();
@@ -342,3 +355,9 @@ var line4;
 			  activeObject.applyFilters(canvas.renderAll.bind(canvas));
 		  }
 	 }
+
+     $(document).ready(function () {
+		 $("#add-to-cart").on('click', function(){
+			 location.href = "/finished";
+		 });
+     });

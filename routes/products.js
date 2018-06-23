@@ -67,15 +67,10 @@ router.get('/:id', function (req, res) {
 
 router.get('/:id/design', function(req, res){
 	id = req.params.id;
-	gender = req.query.gender;
-	if (!gender){
-		gender = 'male';
-	}
 
 	productsController.getById(id, function(object){
         product = object;
-        res.render('design.hbs', {
-			gender: gender,
+        res.render('design-product.hbs', {
 			product: product,
             pageHeader: true,
 			activeDesign: true,

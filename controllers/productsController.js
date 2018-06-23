@@ -44,7 +44,7 @@ controller.getById = function(id, callback){
         //Get all types of a product & breadcrumbs
         typeId = object.typeId;
         controller.getProductType(typeId, function(type){
-            object.type = type[0];
+            object.type = type;
             object.breadcrumbs = [
 				{title: object.type.name, link: "#"},
 				{title: object.name, link: "#"}
@@ -105,6 +105,16 @@ controller.getAllProductTypes = function (callback){
     })
 }
 
+controller.getProductTypesByGender = function (gender, callback){
+    models.Product_type
+    .findAll({
+        where: { gender: gender }
+    })
+	.then(function(objects){
+        callback(objects);
+    })
+}
+
 controller.getRelatedProduct = function(callback){
     models.Product
     .findAll({
@@ -152,15 +162,7 @@ controller.getSize = (sizeNumber) => {
     }
 };
 
-controller.getProductType = function (productIds, callback){
-    models.Product_type
-    .findAll({
-        where: { id: productIds }
-    })
-    .then(function(objects){
-        callback(objects);
-    })
-}
+
 
 // Update model
 
