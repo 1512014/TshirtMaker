@@ -1,9 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Design_model = sequelize.define('Design_model', {
-    texts: { type: DataTypes.STRING, allowNull: true},
-    imagesPath: { type: DataTypes.STRING, allowNull: true},
-    color: { type: DataTypes.STRING(11), defaultValue: 0},
+    imageFront: { type: DataTypes.STRING, allowNull: true},
+	imageBack: { type: DataTypes.STRING, allowNull: true},
     size: { type: DataTypes.STRING(11), defaultValue: 0}
   }, {});
   Design_model.associate = function(models) {

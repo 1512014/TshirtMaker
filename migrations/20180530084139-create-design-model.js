@@ -9,8 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       texts: { type: Sequelize.STRING, allowNull: true},
-      imagesPath: { type: Sequelize.STRING, allowNull: true},
-      color: { type: Sequelize.STRING(11), defaultValue: 0},
+      imageFront: { type: Sequelize.STRING, allowNull: true},
+	  imageBack: { type: Sequelize.STRING, allowNull: true},
       size: { type: Sequelize.STRING(11), defaultValue: 0},
       createdAt: {
         allowNull: false,
