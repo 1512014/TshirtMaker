@@ -63,6 +63,12 @@
                         <option value="{{id}}">{{name}}</option>
 						{{/each}}
                     </select>
+					<div id="templateImages">
+						{{#each femaleTypes}}
+							<input type="hidden" id="template-front-{{id}}" value="{{templateFront}}" />
+							<input type="hidden" id="template-back-{{id}}" value="{{templateBack}}" />
+						{{/each}}
+					</div>
 					{{/ifCond}}
 					<label for="tshirtTypes" style="margin-top: 20px;">Size: </label>
 					<select class="form-control" id="tshirtSizes">

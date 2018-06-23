@@ -41,14 +41,6 @@
              <div class="tab-pane active" id="tab1">
                 <div class="well">
 			      	<!-- <h3>Tee Styles</h3> -->
-					{{#ifCond product.type '==' 0}}
-                    <select class="form-control" id="tshirtTypes">
-                        <option value="1" {{#ifCond product.type.code '==' 1}} selected="selected" {{/ifCond}}>Short Sleeve</option>
-                        <option value="2" {{#ifCond product.type.code '==' 2}} selected="selected" {{/ifCond}}>Long Sleeve</option>
-                        <option value="3" {{#ifCond product.type.code '==' 3}} selected="selected" {{/ifCond}}>Tank tops</option>
-                        <option value="4" {{#ifCond product.type.code '==' 4}} selected="selected" {{/ifCond}}>Hoodies</option>
-                    </select>
-					{{/ifCond}}
 					<label for="tshirtTypes" style="margin-top: 20px;">Size: </label>
 					<select class="form-control" id="tshirtSizes">
 						{{#each product.sizes}}
