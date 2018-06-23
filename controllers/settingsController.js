@@ -14,4 +14,17 @@ controller.getSetting = function(settingKey, callback){
     })
 };
 
+controller.getAll = function(callback){
+	models.Setting
+    .findAll({})
+    .then(function(objects){
+		setting = [];
+		for (var i = 0; i < objects.length; i++){
+			key = objects[i].key
+			setting[key] = objects[i].value;
+		}
+        callback(setting);
+    })
+}
+
 module.exports = controller;

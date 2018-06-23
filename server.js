@@ -142,26 +142,6 @@ app.post('/payment', (req, res) => {
 	else res.redirect('/');
 });
 
-app.get('/personal-products', (req, res) => {
-    res.render('personal-products.hbs', {
-		pageHeader: false,
-		cssPersonalProducts: true,
-		activeAboutUs: true,
-		breadcrumbs: [
-			{title: "My Products", link: "/personal-products"}
-		]
-    });
-});
-
-app.get('/finished', (req, res) => {
-    res.render('finish-design.hbs', {
-		pageHeader: true,
-		breadcrumbs: [
-			{title: "Design", link: "/design"}
-		]
-    });
-});
-
 app.get('/templates', (req, res) => {
     res.render('templates.hbs', {
 		pageHeader: true,

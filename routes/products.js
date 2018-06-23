@@ -3,6 +3,7 @@ var router = express.Router();
 var models = require('../models');
 
 var productsController = require('../controllers/productsController');
+var settingsController = require('../controllers/settingsController');
 router.get('/', function(req, res){
     page = parseInt(req.query.page);
     limit = 16;
@@ -81,5 +82,28 @@ router.get('/:id/design', function(req, res){
         });
     });
 })
+
+router.get('/:id/finished', (req, res) => {
+	id = req.params.id;
+	productsController.getById(id, function(object){
+        product = object;
+		settingsController.getAll(function(setting){
+			totalPrice = product.price + setting.frontDesignPrice + setting.backDesignPrice;
+			res.render('finish-design.hbs', {
+				product: product,
+				setting: setting,
+				totalPrice: totalPrice,
+				pageHeader: true,
+				breadcrumbs: [
+					{title: "Design", link: "/design"},
+					{title: "Confirm", link: "#"}
+				]
+		    });
+		})
+	});
+});
+
+
+
 
 module.exports = router;
