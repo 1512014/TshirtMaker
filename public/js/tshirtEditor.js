@@ -285,16 +285,16 @@ var line4;
 			   		$(this).attr('data-original-title', 'Show Front View');
                     switch (parseInt($('#tshirtTypes').val())) {
                         case 1:
-                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/short_sleeve_back.png");
+                            $("#tshirtFacing").attr("src","/img/templates/"+gender+"/short_sleeve_back.png");
                             break;
                         case 2:
-                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/long_sleeve_back.png");
+                            $("#tshirtFacing").attr("src","/img/templates/"+gender+"/long_sleeve_back.png");
                             break;
                         case 3:
-                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/hoodies_back.png");
-                            break;
+							$("#tshirtFacing").attr("src","/img/templates/"+gender+"/tank_tops_back.png");
+							break;
                         case 4:
-                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/tank_tops_back.png");
+							$("#tshirtFacing").attr("src","/img/templates/"+gender+"/hoodies_back.png");
                             break;
                         default:
                             break;
@@ -314,17 +314,17 @@ var line4;
 			    	$(this).attr('data-original-title', 'Show Back View');
                     switch (parseInt($('#tshirtTypes').val())) {
                         case 1:
-                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/short_sleeve_front.png");
+                            $("#tshirtFacing").attr("src","/img/templates/"+gender+"/short_sleeve_front.png");
                             break;
                         case 2:
-                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/long_sleeve_front.png");
+                            $("#tshirtFacing").attr("src","/img/templates/"+gender+"/long_sleeve_front.png");
                             break;
                         case 3:
-                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/hoodies_front.png");
-                            break;
+							$("#tshirtFacing").attr("src","/img/templates/"+gender+"/tank_tops_front.png");
+							break;
                         case 4:
-                            $("#tshirtFacing").attr("src","img/templates/"+gender+"/tank_tops_front.png");
-                            break;
+							$("#tshirtFacing").attr("src","/img/templates/"+gender+"/hoodies_front.png");
+							break;
                         default:
                             break;
 
@@ -403,16 +403,17 @@ var line4;
 				 gender = 'women'
 			 }
              if ($(this).val() == "1"){
-                 $('#tshirtFacing').attr('src', "img/templates/"+gender+"/short_sleeve_front.png");
+                 $('#tshirtFacing').attr('src', "/img/templates/"+gender+"/short_sleeve_front.png");
              }
              else if ($(this).val() == "2"){
-                 $('#tshirtFacing').attr('src', "img/templates/"+gender+"/long_sleeve_front.png");
+                 $('#tshirtFacing').attr('src', "/img/templates/"+gender+"/long_sleeve_front.png");
              }
-             else if ($(this).val() == "3"){
-                 $('#tshirtFacing').attr('src', "img/templates/"+gender+"/hoodies_front.png");
+			 else if ($(this).val() == "3"){
+                 $('#tshirtFacing').attr('src', "/img/templates/"+gender+"/tank_tops_front.png");
              }
              else if ($(this).val() == "4"){
-                 $('#tshirtFacing').attr('src', "img/templates/"+gender+"/tank_tops_front.png");
+                 $('#tshirtFacing').attr('src', "/img/templates/"+gender+"/hoodies_front.png");
              }
          });
+		 $("#tshirtTypes").trigger("change");
      });

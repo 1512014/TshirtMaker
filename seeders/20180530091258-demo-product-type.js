@@ -5,19 +5,23 @@ module.exports = {
     var productTypes = [
         {
             id: "1",
-            name: "Short Sleeve"
+            name: "Short Sleeve",
+			code: 1
         },
         {
             id: "2",
-            name: "Long Sleeve"
+            name: "Long Sleeve",
+			code: 2
         },
         {
             id: "3",
-            name: "Tank Tops & Sleeveless"
+            name: "Tank Tops & Sleeveless",
+			code: 3
         },
         {
             id: "4",
-            name: "Hoodies"
+            name: "Hoodies",
+			code: 4
         }
     ];
     return queryInterface.bulkInsert('Product_types', productTypes, {});

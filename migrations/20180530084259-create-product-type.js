@@ -8,7 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: { type: Sequelize.STRING, allowNull: false }
+      name: { type: Sequelize.STRING, allowNull: false },
+	  code: { type: Sequelize.INTEGER, allowNull: false }
     });
   },
   down: (queryInterface, Sequelize) => {

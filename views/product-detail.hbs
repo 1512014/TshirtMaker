@@ -34,7 +34,7 @@
 
             <div class="row add-to-cart" style="">
                 <div class="col-sm-12" style="height: 60px; line-height: 60px; width: 250px">
-                    <a href="/design" type="button" class="btn btn-danger" style="text-align: center; font-size: 24px">
+                    <a href="/products/{{product.id}}/design?type={{product.type.code}}" type="button" class="btn btn-danger" style="text-align: center; font-size: 24px">
                         Start Design
                     </a>
                 </div>
@@ -74,73 +74,6 @@
 		</div>
     </div>
     {{/each}}
-    <!-- <div class="col-sm-3 book-item">
-        <a href="book-detail.html">
-            <img src="/img/templates/template4.jpg" width="100%">
-            <div class="percent">20%</div>
-            <p class="book-title">Hanes Cool Dri Performance Shirt</p>
-        </a>
-        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-        <div class="vote">
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="	glyphicon glyphicon-star-empty"></i>
-            <span class="comment">(65)</span>
-        </div>
-    </div>
-
-    <div class="col-sm-3 book-item">
-        <a href="book-detail.html">
-            <img src="/img/templates/template4.jpg" width="100%">
-            <div class="percent">20%</div>
-            <p class="book-title">Hanes Cool Dri Performance Shirt</p>
-        </a>
-        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-        <div class="vote">
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="	glyphicon glyphicon-star-empty"></i>
-            <span class="comment">(65)</span>
-        </div>
-    </div>
-
-    <div class="col-sm-3 book-item">
-        <a href="book-detail.html">
-            <img src="/img/templates/template4.jpg" width="100%">
-            <div class="percent">20%</div>
-            <p class="book-title">Hanes Cool Dri Performance Shirt</p>
-        </a>
-        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-        <div class="vote">
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="	glyphicon glyphicon-star-empty"></i>
-            <span class="comment">(65)</span>
-        </div>
-    </div>
-
-    <div class="col-sm-3 book-item">
-        <a href="book-detail.html">
-            <img src="/img/templates/template4.jpg" width="100%">
-            <div class="percent">20%</div>
-            <p class="book-title">Hanes Cool Dri Performance Shirt</p>
-        </a>
-        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-        <div class="vote">
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="	glyphicon glyphicon-star-empty"></i>
-            <span class="comment">(65)</span>
-        </div>
-    </div> -->
 </div>
 
 <div class="container-fluid TM-detail">
@@ -159,13 +92,6 @@
                 <col style="width: 25%;"><col>
             </colgroup>
             <tbody>
-            <!-- <tr>
-                <td rel="publisher_vn">Brand</td>
-                <td class="last">
-                    <a href="#">Adidas</a>
-
-                </td>
-            </tr> -->
             <tr>
                 <td rel="dimensions">Min Size</td>
                 <td class="last">

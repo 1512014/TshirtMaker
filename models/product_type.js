@@ -1,7 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Product_type = sequelize.define('Product_type', {
-    name: { type: DataTypes.STRING, allowNull: false }
+    name: { type: DataTypes.STRING, allowNull: false },
+	code: { type: DataTypes.INTEGER, allowNull: false }
   }, {
 	   timestamps: false
   });

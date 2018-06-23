@@ -1,19 +1,19 @@
 <!-- Add script to design page -->
 {{#section 'script'}}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.miniColors.min.js"></script>
-<script type="text/javascript" src="js/fabric.js"></script>
-<script type="text/javascript" src="js/tshirtEditor.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/jquery.miniColors.min.js"></script>
+<script type="text/javascript" src="/js/fabric.js"></script>
+<script type="text/javascript" src="/js/tshirtEditor.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
 {{/section}}
 
 <!-- Add stype to design page -->
 {{#section 'style'}}
-<link type="text/css" rel="stylesheet" href="css/jquery.miniColors.css" />
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-<link href="css/design-style.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/css/jquery.miniColors.css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="/css/design-style.css" rel="stylesheet">
 
 {{/section}}
 
@@ -36,21 +36,31 @@
                 <div class="well">
 			      	<!-- <h3>Tee Styles</h3> -->
                     <select class="form-control" id="tshirtTypes">
-                        <option value="1" selected="selected">Short Sleeve Shirts</option>
-                        <option value="2">Long Sleeve Shirts</option>
-                        <option value="3">Hoodies</option>
-                        <option value="4">Tank tops</option>
+                        <option value="1" {{#ifCond product.type.code '==' 1}} selected="selected" {{/ifCond}}>Short Sleeve</option>
+                        <option value="2" {{#ifCond product.type.code '==' 2}} selected="selected" {{/ifCond}}>Long Sleeve</option>
+                        <option value="3" {{#ifCond product.type.code '==' 3}} selected="selected" {{/ifCond}}>Tank tops</option>
+                        <option value="4" {{#ifCond product.type.code '==' 4}} selected="selected" {{/ifCond}}>Hoodies</option>
+                    </select>
+					<label for="tshirtTypes" style="margin-top: 20px;">Size: </label>
+					<select class="form-control" id="tshirtSizes">
+						{{#each product.sizes}}
+                        	<option value="{{sizeNumber}}">{{sizeLatin}}</option>
+                        {{/each}}
+
+
                     </select>
 
                   </div>
+				  {{#ifCond type '==' 0}}
 				  <div class="well">
-  			      	<!-- <h3>Tee Styles</h3> -->
 					{{#ifCond gender '==' 'female'}}
-                      	<a href="/design" type="button" class="btn btn-default" style="width: 100%" id="toMen">Change to Men</a>
+                      	<a href="?gender=male" type="button" class="btn btn-default" style="width: 100%" id="toMen">Change to Men</a>
 					{{else}}
-					 	<a href="/design?gender=female" class="btn btn-default" style="width: 100%" id="toWomen">Change to Women</a>
+					 	<a href="?gender=female" class="btn btn-default" style="width: 100%" id="toWomen">Change to Women</a>
 					{{/ifCond}}
+
             	  </div>
+				  {{/ifCond}}
                   <div class="well">
                     <ul class="nav">
                         <li class="color-preview" title="White" style="background-color:#ffffff;"></li>
@@ -85,12 +95,12 @@
                       <hr>
                     </div>
                     <div id="avatarlist">
-                        <img style="cursor:pointer;" class="img-polaroid" src="img//icons/invisibleman.png">
-                        <img style="cursor:pointer;" class="img-polaroid" src="img/icons/polaroid1.png">
-                        <img style="cursor:pointer;" class="img-polaroid" src="img/icons/polaroid2.png">
-                        <img style="cursor:pointer;" class="img-polaroid" src="img/icons/polaroid3.png">
-                        <img style="cursor:pointer;" class="img-polaroid" src="img/icons/polaroid4.png">
-                        <img style="cursor:pointer;" class="img-polaroid" src="img/icons/polaroid5.png">
+                        <img style="cursor:pointer;" class="img-polaroid" src="/img//icons/invisibleman.png">
+                        <img style="cursor:pointer;" class="img-polaroid" src="/img/icons/polaroid1.png">
+                        <img style="cursor:pointer;" class="img-polaroid" src="/img/icons/polaroid2.png">
+                        <img style="cursor:pointer;" class="img-polaroid" src="/img/icons/polaroid3.png">
+                        <img style="cursor:pointer;" class="img-polaroid" src="/img/icons/polaroid4.png">
+                        <img style="cursor:pointer;" class="img-polaroid" src="/img/icons/polaroid5.png">
                     </div>
                 </div>
             </div>
@@ -118,10 +128,10 @@
                         <li><a tabindex="-1" href="#" onclick="setFont('Plaster');" class="Plaster">Plaster</a></li>
                         <li><a tabindex="-1" href="#" onclick="setFont('Engagement');" class="Engagement">Engagement</a></li>
                     </ul>
-                    <button id="text-bold" class="btn" data-original-title="Bold"><img src="img/font_bold.png" height="" width=""></button>
-                    <button id="text-italic" class="btn" data-original-title="Italic"><img src="img/font_italic.png" height="" width=""></button>
-                    <button id="text-strike" class="btn" title="Strike" style=""><img src="img/font_strikethrough.png" height="" width=""></button>
-                    <button id="text-underline" class="btn" title="Underline" style=""><img src="img/font_underline.png"></button>
+                    <button id="text-bold" class="btn" data-original-title="Bold"><img src="/img/font_bold.png" height="" width=""></button>
+                    <button id="text-italic" class="btn" data-original-title="Italic"><img src="/img/font_italic.png" height="" width=""></button>
+                    <button id="text-strike" class="btn" title="Strike" style=""><img src="/img/font_strikethrough.png" height="" width=""></button>
+                    <button id="text-underline" class="btn" title="Underline" style=""><img src="/img/font_underline.png"></button>
                     <button style="padding-bottom: 8px;" class="btn" href="" rel="tooltip" data-placement="top" data-original-title="Font Color"><input type="hidden" id="text-fontcolor" class="color-picker" size="7" value="#000000"></button>
                     <button style="padding-bottom: 8px;" class="btn" href="" rel="tooltip" data-placement="top" data-original-title="Font Border Color"><input type="hidden" id="text-strokecolor" class="color-picker" size="7" value="#000000"></button>
                       <!--- Background <input type="hidden" id="text-bgcolor" class="color-picker" size="7" value="#ffffff"> --->
@@ -139,9 +149,9 @@
         <!--	EDITOR      -->
         <div id="shirtDiv" class="page" style="width: 530px; height: 630px; position: relative; top: 0; background-color: rgb(255, 255, 255);">
 			{{#ifCond gender '==' 'male'}}
-            	<img id="tshirtFacing" src="img/templates/men/short_sleeve_front.png"></img>
+            	<img id="tshirtFacing" src="/img/templates/men/short_sleeve_front.png"></img>
 			{{else}}
-				<img id="tshirtFacing" src="img/templates/women/short_sleeve_front.png"></img>
+				<img id="tshirtFacing" src="/img/templates/women/short_sleeve_front.png"></img>
 			{{/ifCond}}
             <div id="drawingArea" style="position: absolute;top: 100px;left: 165px;z-index: 10;width: 200px;height: 400px;">
                 <canvas id="tcanvas" width=200 height="400" class="hover" style="-webkit-user-select: none;"></canvas>
@@ -178,7 +188,7 @@
 
 </section>
 
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-35639689-1']);
