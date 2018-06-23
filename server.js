@@ -28,7 +28,7 @@ var hbs = expressHbs.create({
 });
 hbs.handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
 Handlebars.registerHelper('isMember', function(role){
-	
+
 });
 Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
@@ -102,9 +102,6 @@ app.use('/view-cart', cart);
 var vnpay = require('./routes/vnpay');
 app.use('/vnpay', vnpay);
 
-var design = require('./routes/design');
-app.use('/design', design);
-
 
 
 
@@ -144,27 +141,6 @@ app.post('/payment', (req, res) => {
 	else if (method=='vnpay') res.redirect('/vnpay');
 	else res.redirect('/');
 });
-app.get('/contact', (req, res) => {
-    res.render('contact.hbs', {
-		pageHeader: false,
-		cssContact: true,
-		activeContact: true,
-		breadcrumbs: [
-			{title: "Contact", link: "/contact"}
-		]
-    });
-});
-
-app.get('/about-us', (req, res) => {
-    res.render('about-us.hbs', {
-		pageHeader: false,
-		cssAboutUs: true,
-		activeAboutUs: true,
-		breadcrumbs: [
-			{title: "About Us", link: "/about-us"}
-		]
-    });
-});
 
 app.get('/personal-products', (req, res) => {
     res.render('personal-products.hbs', {
@@ -173,6 +149,15 @@ app.get('/personal-products', (req, res) => {
 		activeAboutUs: true,
 		breadcrumbs: [
 			{title: "My Products", link: "/personal-products"}
+		]
+    });
+});
+
+app.get('/finished', (req, res) => {
+    res.render('finish-design.hbs', {
+		pageHeader: true,
+		breadcrumbs: [
+			{title: "Design", link: "/design"}
 		]
     });
 });
@@ -202,31 +187,6 @@ app.get('/checkout-step3', (req, res) => {
 		cssProductDetail: true,
 		cssViewCart: true,
 		hideBreadcrumb: true
-    });
-});
-
-app.get('/login', (req, res) => {
-    res.render('auth/login.hbs', {
-		pageHeader: false,
-		activeLogin: true,
-		cssLogin: true,
-		hideBreadcrumb: true,
-		message: req.flash('loginMessage'),
-		breadcrumbs:[
-			{title: "Login", link: "/login"}
-		]
-    });
-});
-
-app.get('/register', (req, res) => {
-    res.render('auth/register.hbs', {
-		pageHeader: false,
-		activeRegister: true,
-		cssRegister: true,
-		message: req.flash('registerMessage'),
-		breadcrumbs:[
-			{title: "Register", link: "/register"}
-		]
     });
 });
 

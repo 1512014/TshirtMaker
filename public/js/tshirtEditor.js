@@ -416,4 +416,8 @@ var line4;
              }
          });
 		 $("#tshirtTypes").trigger("change");
+
+		 $("#add-to-cart").on('click', function(){
+			 location.href = "/finished";
+		 });
      });

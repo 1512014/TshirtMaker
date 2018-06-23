@@ -47,4 +47,76 @@ router.get('/', (req, res) => {
       });
 });
 
+router.get('/design', (req, res) => {
+	gender = req.query.gender;
+	if (!gender){
+		gender = 'male';
+	}
+	var product = [];
+	product.sizes = [];
+	for (var i = 0; i <= 7; i++){
+		product.sizes.push({
+			sizeNumber: i,
+			sizeLatin: productsController.getSize(i)
+		});
+	}
+    res.render('design.hbs', {
+		gender: gender,
+		product: product,
+		pageHeader: true,
+		activeDesign: true,
+		breadcrumbs: [
+			{title: "Design", link: "/design"}
+		]
+    });
+});
+
+router.get('/contact', (req, res) => {
+    res.render('contact.hbs', {
+		pageHeader: false,
+		cssContact: true,
+		activeContact: true,
+		breadcrumbs: [
+			{title: "Contact", link: "/contact"}
+		]
+    });
+});
+
+router.get('/about-us', (req, res) => {
+    res.render('about-us.hbs', {
+		pageHeader: false,
+		cssAboutUs: true,
+		activeAboutUs: true,
+		breadcrumbs: [
+			{title: "About Us", link: "/about-us"}
+		]
+    });
+});
+
+
+router.get('/login', (req, res) => {
+    res.render('auth/login.hbs', {
+		pageHeader: false,
+		activeLogin: true,
+		cssLogin: true,
+		hideBreadcrumb: true,
+		message: req.flash('loginMessage'),
+		breadcrumbs:[
+			{title: "Login", link: "/login"}
+		]
+    });
+});
+
+router.get('/register', (req, res) => {
+    res.render('auth/register.hbs', {
+		pageHeader: false,
+		activeRegister: true,
+		cssRegister: true,
+		message: req.flash('registerMessage'),
+		breadcrumbs:[
+			{title: "Register", link: "/register"}
+		]
+    });
+});
+
 module.exports = router;
