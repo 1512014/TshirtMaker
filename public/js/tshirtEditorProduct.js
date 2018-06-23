@@ -358,6 +358,7 @@ var line4;
 
      $(document).ready(function () {
 		 $("#add-to-cart").on('click', function(){
-			 location.href = "/finished";
+			 productId = $(this).data('product-id');
+			 location.href = "/products/" + productId + "/finished";
 		 });
      });
