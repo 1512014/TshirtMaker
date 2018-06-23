@@ -20,14 +20,14 @@
         </div>
         <div class="col-sm-4 description" style="padding-left: 0; padding-right: 20px">
             <h4>{{product.name}}</h4>
-            <p>Types: <span class="author"><a href="#">{{product.type.name}}</a></span></p>
+            <p>Types: <span class="author"><a href="#">{{product.type.name}} - {{product.type.gender}}</a></span></p>
             <p style="border-bottom: 1px solid #ececec; padding-bottom: 20px">Available Sizes: <span class="author">{{product.minSizeLatin}}, {{product.maxSizeLatin}}</span></p>
 
             <div class="product-desc">
                 {{product.description}}
             </div>
             <div class="price-container" style="border-bottom:  1px solid #ececec;">
-                <p><span class="price">{{formatNumber product.discountPrice style="currency" currency="USD"}}</span> <span style="color: #9b9b9b; font-size: 14px">Included tax</span></p>
+                <p><span class="price">{{formatNumber product.discountPrice style="currency" currency="USD"}}</span> <span style="color: #9b9b9b; font-size: 14px">Not included tax</span></p>
                 <p style="color: #9b9b9b">Save: <span class="percent">{{product.discount}}%</span> <span class="discount">({{formatNumber product.discountAmount style="currency" currency="USD"}})</span></p>
                 <p style="color: #9b9b9b">Original Price: <span class="price-original">{{formatNumber product.price style="currency" currency="USD"}}</span></p>
             </div>
@@ -108,6 +108,12 @@
                 <td rel="dich_gia">Types</td>
                 <td class="last">
                     {{product.type.name}}
+                </td>
+            </tr>
+			<tr>
+                <td rel="dich_gia">Gender</td>
+                <td class="last">
+                    {{product.type.gender}}
                 </td>
             </tr>
             <tr>

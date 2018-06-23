@@ -53,6 +53,7 @@ router.get('/:id', function (req, res) {
 
     productsController.getById(id, function(object){
         product = object;
+		product.type.gender = (product.type.gender == 'male')? 'Male':'Female';
 
         res.render('product-detail', {
 

@@ -7,12 +7,12 @@ module.exports = (sequelize, DataTypes) => {
   	email: { type: DataTypes.STRING, allowNull: false, unique: true },
   	password: { type: DataTypes.STRING, allowNull: false },
   	rememberToken: { type: DataTypes.STRING, allowNull: true },
-  	role: { type: DataTypes.INTEGER, allowNull: false },
-  	gender: { type: DataTypes.INTEGER, allowNull: false },
-  	phoneNumber: { type: DataTypes.STRING, allowNull: false },
-  	country: { type: DataTypes.STRING(50), allowNull: false },
-  	city: { type: DataTypes.STRING(50), allowNull: false },
-  	address: { type: DataTypes.STRING(512), allowNull: false },
+  	role: { type: DataTypes.STRING, allowNull: false },
+  	gender: { type: DataTypes.INTEGER, allowNull: true },
+  	phoneNumber: { type: DataTypes.STRING, allowNull: true },
+  	country: { type: DataTypes.STRING(50), allowNull: true },
+  	city: { type: DataTypes.STRING(50), allowNull: true },
+  	address: { type: DataTypes.STRING(512), allowNull: true },
   	isActive: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
   }, {
   instanceMethods: {
