@@ -12,14 +12,21 @@ const path = require("path");
 var ordersController = require('../../controllers/ordersController');
 var productsController = require('../../controllers/productsController');
 router.get('/', (req, res) => {
-	res.render('admin/product_types/list-product-types.hbs', {
-		layout: 'admin-layout',
-		addNewPage: '/admin/product-types/create',
-		adminContentHeader: 'All Product Types',
-		breadcrumbs: [
-			{title: "Product Types", link: "/admin/product-types"}
-		]
-	})
+	var message = req.session.message;
+  	req.session.message = null;
+	productsController.getAllProductTypes(function(objects){
+		var productTypes = objects;
+		res.render('admin/product_types/list-product-types.hbs', {
+			productTypes: productTypes,
+			message: message,
+			layout: 'admin-layout',
+			addNewPage: '/admin/product-types/create',
+			adminContentHeader: 'All Product Types',
+			breadcrumbs: [
+				{title: "Product Types", link: "/admin/product-types"}
+			]
+		})
+	});
 });
 
 router.get('/create', (req, res) => {
@@ -33,25 +40,7 @@ router.get('/create', (req, res) => {
 	})
 });
 
-router.post("/create", function (req, res) {
-	var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-      var oldFrontPath = files.templateFront.path;
-	  if (fields.gender == 'male'){
-		  var newFrontPath = __dirname + '/../../public/img/templates/male/' + files.templateFront.name;
-	  } else {
-		  var newFrontPath = __dirname + '/../../public/img/templates/female/' + files.templateFront.name;
-	  }
-
-      fs.rename(oldFrontPath, newFrontPath, function (err) {
-        if (err) throw err;
-        res.write('File uploaded and moved!');
-        res.end();
-      });
-  	});
-});
-
-router.post("/upload", upload.fields([{ name: 'templateFront', maxCount: 1 },  { name: 'templateBack', maxCount: 1 }]), (req, res) => {
+router.post("/create", upload.fields([{ name: 'templateFront', maxCount: 1 },  { name: 'templateBack', maxCount: 1 }]), (req, res) => {
 	var productTypeName = req.body.productTypeName;
 	var gender = req.body.gender;
 
@@ -65,13 +54,13 @@ router.post("/upload", upload.fields([{ name: 'templateFront', maxCount: 1 },  {
 	var templateBack = "/img/templates/male/" + backName;
 
 	var targetFront = path.join(__dirname, "/../../public/img/templates/male/" + frontName);
-	var targetBack = path.join(__dirname, "/../../public/img/templates/male/" + frontName);
+	var targetBack = path.join(__dirname, "/../../public/img/templates/male/" + backName);
 
 
 
 	if (gender == 'female'){
 		targetFront = path.join(__dirname, "/../../public/img/templates/female/" + frontName);
-		targetBack = path.join(__dirname, "/../../public/img/templates/female/" + frontName);
+		targetBack = path.join(__dirname, "/../../public/img/templates/female/" + backName);
 		templateFront = "/img/templates/female/" + frontName;
 		templateBack = "/img/templates/female/" + backName;
 	}
@@ -82,38 +71,49 @@ router.post("/upload", upload.fields([{ name: 'templateFront', maxCount: 1 },  {
 		  // .status(200)
 		  // .contentType("text/plain")
 		  // .end("File uploaded!");
-	});
-	fs.rename(tempBack, targetBack, err => {
+		  fs.rename(tempBack, targetBack, err => {
 
-		object = {
-			name: productTypeName,
-			gender: gender,
-			templateFront: templateFront,
-			templateBack: templateBack,
-			basicPrice: req.body.basicPrice
-		}
-		productsController.createProductType(object, function(message){
-			res
-			.render('admin/product_types/list-product-types.hbs', {
-				message: "Create Successfully!",
-				layout: 'admin-layout',
-				addNewPage: '/admin/product-types/create',
-				adminContentHeader: 'All Product Types',
-				breadcrumbs: [
-					{title: "Product Types", link: "/admin/product-types"}
-				]
-			})
-		});
+	  		object = {
+	  			name: productTypeName,
+	  			gender: gender,
+	  			templateFront: templateFront,
+	  			templateBack: templateBack,
+	  			basicPrice: req.body.basicPrice
+	  		}
+	  		productsController.createProductType(object, function(message){
+				req.session.message = "Create Successfully!";
+ 				res.redirect('/admin/product-types');
+	  		});
 
+	  	});
 	});
+
 });
+
+router.delete('/:id', function(req, res){
+	// res.render('details', ...)
+    id = req.params.id;
+    ordersController.delete(id, function(products){
+        res.send({status:"success"});
+    });
+})
+
+// router.post("/create", function (req, res) {
+// 	var form = new formidable.IncomingForm();
+//     form.parse(req, function (err, fields, files) {
+//       var oldFrontPath = files.templateFront.path;
+// 	  if (fields.gender == 'male'){
+// 		  var newFrontPath = __dirname + '/../../public/img/templates/male/' + files.templateFront.name;
+// 	  } else {
+// 		  var newFrontPath = __dirname + '/../../public/img/templates/female/' + files.templateFront.name;
+// 	  }
 //
-// router.delete('/:id', function(req, res){
-// 	// res.render('details', ...)
-//     id = req.params.id;
-//     ordersController.delete(id, function(products){
-//         res.send({status:"success"});
-//     });
-// })
+//       fs.rename(oldFrontPath, newFrontPath, function (err) {
+//         if (err) throw err;
+//         res.write('File uploaded and moved!');
+//         res.end();
+//       });
+//   	});
+// });
 
 module.exports = router;
