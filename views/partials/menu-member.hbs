@@ -59,24 +59,30 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="/member" class="nav-link active">
+                <li class="nav-item">
+                    <a href="/member" class="nav-link {{#ifCond adminContentHeader '==' 'Dashboard'}} active {{/ifCond}}">
                         <i class="nav-icon fa fa-dashboard"></i>
                         <p>
                             Dashboard
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+				<li class="nav-item">
+                    <a href="/member/profile/" class="nav-link {{#ifCond adminContentHeader '==' 'Profile'}} active {{/ifCond}}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
                     <a href="/member/templates" class="nav-link">
                         <i class="nav-icon fa fa-table"></i>
                         <p>
                             Designed Templates
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                    <a href="/member/orders" class="nav-link">
+                    <a href="/member/orders" class="nav-link {{#ifCond adminContentHeader '==' 'All Orders'}} active {{/ifCond}}">
                         <i class="nav-icon fa fa-table"></i>
                         <p>
                             Orders
@@ -85,13 +91,13 @@
                 </li>
                 <li class="nav-header">SETTINGS</li>
                 <li class="nav-item">
-                    <a href="/member/setting" class="nav-link">
+                    <a href="/member/setting" class="nav-link  {{#ifCond adminContentHeader '==' 'Setting'}} active {{/ifCond}}">
                         <i class="nav-icon fa fa-gear"></i>
                         <p>Setting</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/member/change-password" class="nav-link">
+                    <a href="/member/change-password" class="nav-link {{#ifCond adminContentHeader '==' 'Change Password'}} active {{/ifCond}}">
                         <i class="nav-icon fa fa-gear"></i>
                         <p>Change Password</p>
                     </a>
