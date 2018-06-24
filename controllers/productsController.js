@@ -162,7 +162,13 @@ controller.getSize = (sizeNumber) => {
     }
 };
 
-
+controller.createProductType = function (object, callback){
+    models.Product_type
+    .create(object)
+    .then(function(message){
+        callback(message);
+    })
+}
 
 // Update model
 

@@ -9,15 +9,30 @@
           </div> -->
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form">
+          <form method="post" action="/admin/product-types/upload" enctype="multipart/form-data">
             <div class="card-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter category name">
+                <label for="productTypeName">Name</label>
+                <input type="text" class="form-control" id="productTypeName" name="productTypeName" placeholder="Enter product type name">
               </div>
+			  <div class="form-group">
+   	  			<label for="gender">Gender</label>
+   				<select class="form-control" id="gender" name="gender">
+					 <option value="male">Male</option>
+					 <option value="female">Female</option>
+   	 			</select>
+			  </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Product Types</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter product types">
+                <label for="templateFront">Template Front</label>
+                <input type="file" class="form-control" id="templateFront" name="templateFront">
+              </div>
+			  <div class="form-group">
+                <label for="templateFront">Template Back</label>
+                <input type="file" class="form-control" id="templateBack" name="templateBack">
+              </div>
+			  <div class="form-group">
+                <label for="basicPrice">Basic Price</label>
+                <input type="number" class="form-control" id="basicPrice" name="basicPrice">
               </div>
             </div>
             <!-- /.card-body -->

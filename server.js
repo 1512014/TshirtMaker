@@ -1,10 +1,23 @@
 const express = require('express');
-// const hbs = require('hbs');
+const bodyParser = require('body-parser');
 const models = require('./models');
-var bodyParser = require('body-parser');
+const path = require("path");
+const fs = require("fs");
+const formidable = require('formidable');
+const multer = require("multer");
+const handleError = (err, res) => {
+  res
+    .status(500)
+    .contentType("text/plain")
+    .end("Oops! Something went wrong!");
+};
+const upload = multer({
+  dest: "/public/img/uploads"
+});
 var passport = require('passport');
 var flash    = require('connect-flash');
 var session      = require('express-session');
+var qs = require('querystring');
 
 var app = express();
 var expressHbs = require('express-handlebars');
@@ -61,14 +74,16 @@ HandlebarsIntl.registerWith(Handlebars);
 app.engine('hbs', hbs.engine);
 app.set('port', (process.env.PORT || 3000));
 app.set('view engine', 'hbs');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
-
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
 //Routes
 
 var authRoute = require('./routes/auth.js')(app,passport);
@@ -77,6 +92,8 @@ var authRoute = require('./routes/auth.js')(app,passport);
 //load passport strategies
 
 require('./config/passport.js')(passport, models.User);
+
+app.get("/", express.static(path.join(__dirname, "./public")));
 
 app.get('/sync', function(req, res){
 	models.sequelize.sync().then(function(){

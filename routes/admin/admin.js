@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../../models');
-
+// const bodyParser = require('body-parser');
+// router.use(bodyParser.urlencoded({ extended: false }));
+// router.use(bodyParser.json());
 var ordersController = require('../../controllers/ordersController');
 
 router.get('/', (req, res) => {

@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
 	var name="";
 	if(req.user) name=req.user.last_name;
 	if(req.isAuthenticated()) is_member=true;
-
 	page = parseInt(req.query.page);
     limit = 8;
     productLimit = 24;
