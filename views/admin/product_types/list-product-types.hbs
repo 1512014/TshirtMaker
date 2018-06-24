@@ -43,8 +43,11 @@
 								</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary" data-product-type-id="{{id}}">Edit</button>
-                                        <button type="button" class="btn btn-danger" data-product-type-id="{{id}}">Delete</button>
+                                        <a href="/admin/product-types/{{id}}/edit" type="button" class="btn btn-primary edit-product-type" data-product-type-id="{{id}}">Edit</a>
+										<form action="/admin/product-types/{{id}}" method="post">
+											<button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+										</form>
+
                                     </div>
                                 </td>
                             </tr>

@@ -170,6 +170,16 @@ controller.createProductType = function (object, callback){
     })
 }
 
+controller.deleteProductType = function (id, callback) {
+	models.Product_type
+	.destroy({
+		where: {id: id}
+	})
+	.then(function(message){
+		callback(message);
+	})
+}
+
 // Update model
 
 

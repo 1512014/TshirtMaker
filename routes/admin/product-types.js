@@ -90,12 +90,13 @@ router.post("/create", upload.fields([{ name: 'templateFront', maxCount: 1 },  {
 
 });
 
-router.delete('/:id', function(req, res){
+router.post('/:id', function(req, res){
 	// res.render('details', ...)
     id = req.params.id;
-    ordersController.delete(id, function(products){
-        res.send({status:"success"});
-    });
+    productsController.deleteProductType(id, function(object){
+		req.session.message = "Delete Successfully!";
+		res.redirect('/admin/product-types');
+	});
 })
 
 // router.post("/create", function (req, res) {
