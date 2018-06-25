@@ -9,11 +9,11 @@
           </div> -->
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="/admin/product-types/create" enctype="multipart/form-data">
+          <form method="post" action="/admin/product-types/create" enctype="multipart/form-data" id="create-product-type">
             <div class="card-body">
               <div class="form-group">
                 <label for="productTypeName">Name</label>
-                <input type="text" class="form-control" id="productTypeName" name="productTypeName" placeholder="Enter product type name">
+                <input type="text" class="form-control" id="productTypeName" name="productTypeName" placeholder="Enter product type name" required>
               </div>
 			  <div class="form-group">
    	  			<label for="gender">Gender</label>
@@ -24,11 +24,11 @@
 			  </div>
               <div class="form-group">
                 <label for="templateFront">Template Front</label>
-                <input type="file" class="form-control" id="templateFront" name="templateFront">
+                <input type="file" class="form-control" id="templateFront" name="templateFront" accept=".jpg, .jpeg, .png">
               </div>
 			  <div class="form-group">
                 <label for="templateFront">Template Back</label>
-                <input type="file" class="form-control" id="templateBack" name="templateBack">
+                <input type="file" class="form-control" id="templateBack" name="templateBack" accept=".jpg, .jpeg, .png">
               </div>
 			  <div class="form-group">
                 <label for="basicPrice">Basic Price</label>
@@ -38,7 +38,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-primary submit-create-product-type">Submit</button>
               <button type="button" class="btn btn-default float-right">Cancel</button>
             </div>
           </form>
