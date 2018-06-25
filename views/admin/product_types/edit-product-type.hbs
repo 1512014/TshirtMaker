@@ -15,21 +15,17 @@
 			  {{message}}
 		  </div>
 		  {{/if}}
-		  {{#if productType}}
-		  <form method="post" action="/admin/product-types/{{productType.id}}/edit" enctype="multipart/form-data" id="create-product-type">
-		  {{else}}
-		  <form method="post" action="/admin/product-types/create" enctype="multipart/form-data" id="create-product-type">
-		  {{/if}}
+          <form method="post" action="/admin/product-types/create" enctype="multipart/form-data" id="create-product-type">
             <div class="card-body">
               <div class="form-group">
                 <label for="productTypeName">Name</label>
-                <input type="text" class="form-control" id="productTypeName" name="productTypeName" placeholder="Enter product type name" value="{{productType.name}}" required>
+                <input type="text" class="form-control" id="productTypeName" name="productTypeName" placeholder="Enter product type name" required>
               </div>
 			  <div class="form-group">
    	  			<label for="gender">Gender</label>
    				<select class="form-control" id="gender" name="gender">
-					 <option value="male" {{#ifCond productType.gender '==' 'male'}} selected {{/ifCond}}>Male</option>
-					 <option value="female" {{#ifCond productType.gender '==' 'female'}} selected {{/ifCond}}>Female</option>
+					 <option value="male">Male</option>
+					 <option value="female">Female</option>
    	 			</select>
 			  </div>
               <div class="form-group">
@@ -42,7 +38,7 @@
               </div>
 			  <div class="form-group">
                 <label for="basicPrice">Basic Price</label>
-                <input type="number" class="form-control" id="basicPrice" name="basicPrice" value="{{productType.basicPrice}}" required>
+                <input type="number" class="form-control" id="basicPrice" name="basicPrice" required>
               </div>
             </div>
             <!-- /.card-body -->

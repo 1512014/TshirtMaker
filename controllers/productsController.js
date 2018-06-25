@@ -17,14 +17,10 @@ controller.getAll = function(callback){
 };
 
 controller.getById = function(id, callback){
-	console.log(id);
     models.Product
     .findOne({
         where: {id: id},
         // include: [models.Product_type],
-        order: [
-            ['id', 'DESC']
-        ]
     })
     .then(function(object){
         //Calculate discount price
@@ -165,6 +161,18 @@ controller.getSize = (sizeNumber) => {
 controller.createProductType = function (object, callback){
     models.Product_type
     .create(object)
+    .then(function(message){
+        callback(message);
+    })
+}
+
+controller.updateProductType = function (id, object, callback){
+	// console.log("Hiiii: " + object.name);
+    models.Product_type
+    .update(
+		object,
+		{ where: {id: id} }
+	)
     .then(function(message){
         callback(message);
     })
