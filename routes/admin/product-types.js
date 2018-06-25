@@ -30,7 +30,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/create', (req, res) => {
+	var message = req.session.message;
+  	req.session.message = null;
 	res.render('admin/product_types/new-product-type.hbs', {
+		message: message,
 		layout: 'admin-layout',
 		adminContentHeader: 'New Product Type',
 		breadcrumbs: [
@@ -41,6 +44,12 @@ router.get('/create', (req, res) => {
 });
 
 router.post("/create", upload.fields([{ name: 'templateFront', maxCount: 1 },  { name: 'templateBack', maxCount: 1 }]), (req, res) => {
+	if (!req.files['templateFront'][0] || !req.files['templateBack'][0]){
+		console.log("Hello!");
+		req.session.message = "Template images are requied.";
+		res.redirect('/admin/product-types/create');
+		return;
+	}
 	var productTypeName = req.body.productTypeName;
 	var gender = req.body.gender;
 
