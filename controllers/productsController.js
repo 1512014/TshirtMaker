@@ -3,6 +3,7 @@ var controller = {};
 var models = require('../models');
 var ordersController = require('../controllers/ordersController');
 var settingsController = require('../controllers/settingsController');
+var productTypesController = require('../controllers/productTypesController');
 
 controller.getAll = function(callback){
     models.Product
@@ -11,8 +12,15 @@ controller.getAll = function(callback){
             ['id', 'DESC']
         ]
     })
-    .then(function(objects){
-        callback(objects);
+    .then(function(products){
+		products.forEach(function(product){
+			productTypesController.getProductType(product.typeId, function(type){
+				product.typeName = type.name;
+				product.gender = type.gender;
+			});
+
+		});
+        setTimeout(callback, 1000, products);
     })
 };
 
@@ -20,7 +28,6 @@ controller.getById = function(id, callback){
     models.Product
     .findOne({
         where: {id: id},
-        // include: [models.Product_type],
     })
     .then(function(object){
         //Calculate discount price
@@ -39,7 +46,7 @@ controller.getById = function(id, callback){
 		}
         //Get all types of a product & breadcrumbs
         typeId = object.typeId;
-        controller.getProductType(typeId, function(type){
+        productTypesController.getProductType(typeId, function(type){
             object.type = type;
             object.breadcrumbs = [
 				{title: object.type.name, link: "#"},
@@ -82,34 +89,6 @@ controller.getProductFromOrder = function(order, products, totalPrice, callback)
     });
 
 };
-
-controller.getProductType = function (typeId, callback) {
-    models.Product_type
-    .findOne({
-        where: { id: typeId }
-    })
-    .then(function(object){
-        callback(object);
-    })
-}
-
-controller.getAllProductTypes = function (callback){
-    models.Product_type
-    .findAll({})
-    .then(function(objects){
-        callback(objects);
-    })
-}
-
-controller.getProductTypesByGender = function (gender, callback){
-    models.Product_type
-    .findAll({
-        where: { gender: gender }
-    })
-	.then(function(objects){
-        callback(objects);
-    })
-}
 
 controller.getRelatedProduct = function(callback){
     models.Product
@@ -157,36 +136,6 @@ controller.getSize = (sizeNumber) => {
         default:
     }
 };
-
-controller.createProductType = function (object, callback){
-    models.Product_type
-    .create(object)
-    .then(function(message){
-        callback(message);
-    })
-}
-
-controller.updateProductType = function (id, object, callback){
-	// console.log("Hiiii: " + object.name);
-    models.Product_type
-    .update(
-		object,
-		{ where: {id: id} }
-	)
-    .then(function(message){
-        callback(message);
-    })
-}
-
-controller.deleteProductType = function (id, callback) {
-	models.Product_type
-	.destroy({
-		where: {id: id}
-	})
-	.then(function(message){
-		callback(message);
-	})
-}
 
 // Update model
 

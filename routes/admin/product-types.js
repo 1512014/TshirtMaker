@@ -10,11 +10,12 @@ const fs = require("fs");
 const path = require("path");
 
 var ordersController = require('../../controllers/ordersController');
-var productsController = require('../../controllers/productsController');
+var productTypesController = require('../../controllers/productTypesController');
+
 router.get('/', (req, res) => {
 	var message = req.session.message;
   	req.session.message = null;
-	productsController.getAllProductTypes(function(objects){
+	productTypesController.getAllProductTypes(function(objects){
 		var productTypes = objects;
 		res.render('admin/product_types/list-product-types.hbs', {
 			productTypes: productTypes,
@@ -89,7 +90,7 @@ router.post("/create", upload.fields([{ name: 'templateFront', maxCount: 1 },  {
 	  			templateBack: templateBack,
 	  			basicPrice: req.body.basicPrice
 	  		}
-	  		productsController.createProductType(object, function(message){
+	  		productTypesController.createProductType(object, function(message){
 				req.session.message = "Created Successfully!";
  				res.redirect('/admin/product-types');
 	  		});
@@ -100,7 +101,7 @@ router.post("/create", upload.fields([{ name: 'templateFront', maxCount: 1 },  {
 
 router.get("/:id/edit", (req, res) => {
 	var id = req.params.id;
-	productsController.getProductType(id, function(object){
+	productTypesController.getProductType(id, function(object){
 		res.render('admin/product_types/new-product-type.hbs', {
 			productType: object,
 			layout: 'admin-layout',
@@ -115,7 +116,7 @@ router.get("/:id/edit", (req, res) => {
 
 router.post("/:id/edit", upload.fields([{ name: 'templateFront', maxCount: 1 },  { name: 'templateBack', maxCount: 1 }]), (req, res) => {
 	var id = req.params.id;
-	productsController.getProductType(id, function(object){
+	productTypesController.getProductType(id, function(object){
 		var productType = object;
 		productType.name = req.body.productTypeName;
 		productType.gender = req.body.gender;
@@ -162,7 +163,7 @@ router.post("/:id/edit", upload.fields([{ name: 'templateFront', maxCount: 1 }, 
 			templateFront: productType.templateFront,
 			templateBack: productType.templateBack
 		};
-		productsController.updateProductType(id, productTypeData, function(message){
+		productTypesController.updateProductType(id, productTypeData, function(message){
 
 			req.session.message = "Updated Successfully!";
 			res.redirect('/admin/product-types');
@@ -175,7 +176,7 @@ router.post("/:id/edit", upload.fields([{ name: 'templateFront', maxCount: 1 }, 
 router.post('/:id', function(req, res){
 	// res.render('details', ...)
     id = req.params.id;
-    productsController.deleteProductType(id, function(object){
+    productTypesController.deleteProductType(id, function(object){
 		req.session.message = "Delete Successfully!";
 		res.redirect('/admin/product-types');
 	});
