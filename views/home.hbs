@@ -1,3 +1,12 @@
+<!-- Add script-->
+{{#section 'script'}}
+<script type="text/javascript" src="/js/home-script.js"></script>
+{{/section}}
+
+<!-- Add stype -->
+{{#section 'style'}}
+
+{{/section}}
 <div class="TM-body">
 
     <div class="row">
@@ -59,220 +68,65 @@
 
 
     <div class="row TM-categories" style="background: white; margin: 20px">
-        <h3 style="padding-left: 20px;">Most Popular</h3>
-        <div class="col-sm-3 categories">
+		<div class="row header">
+	        <div class="col-sm-8">
+	            <h3 style="padding-left: 20px; margin-top: 10px; margin-bottom: 30px;">Most Popular</h3>
+	        </div>
+	        <div class="col-sm-4" style="text-align: right; line-height: 40px;">
+	            <a href="/products" style="text-decoration: none; font-size: 16px;">
+	                <p style=" padding-right: 20px;">View More
+	                    <span><i class="glyphicon glyphicon-triangle-right"></i> </span>
+	                </p>
+	            </a>
+	        </div>
+
+	    </div>
+
+        <!-- <div class="col-sm-3 categories">
             <ul>
-                <li>
-                    <label class="container">Trending
+				{{#each productTypes}}
+                <li class="type">
+                    <label class="container li-container">{{name}}
                         <input type="checkbox" checked="checked">
+						<input type="hidden" class="productTypeId" value="{{id}}" />
                         <span class="checkmark"></span>
                     </label>
                 </li>
-                <li>
-                    <label class="container">Sports
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container">Parties & Events
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container">Top Best-sellers
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container">Business
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container">College
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container">Charities & Fundraisers
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container">Religious
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container">Holidays & Seasons
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container">Test
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li>
-                    <label class="container">Test
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
+                {{/each}}
             </ul>
-        </div>
-        <div class="col-sm-9 book-list">
+        </div> -->
+        <div class="col-sm-12 book-list">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template1.jpg" width="100%">
-                            <div class="percent">20%</div>
-                            <p class="book-title">Gildan Ultra Cotton T-shirt</p>
+                {{#each products}}
+                    {{#if isBreakLine}}
+                    <div class="row" style="margin-bottom: 30px;">
+                    {{/if}}
+					<!-- Start product -->
+                    <div class="col-sm-3 product-item type-{{typeId}}">
+                        <a href="/products/{{id}}">
+                            <img src="{{imagePath1}}" width="100%">
+                            <div class="percent">{{discount}}%</div>
+                            <p class="book-title">{{name}}</p>
                         </a>
-                        <p><span class="price">$9.25</span> <span class="original-price">$12.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(65)</span>
-                        </div>
+                        <p><span class="price">{{formatNumber discountPrice style="currency" currency="USD"}}</span> <span class="original-price">{{formatNumber price style="currency" currency="USD"}}</span></p>
+						<div class="size">Size:
+							<span class="size">{{minSizeLatin}}</span>
+							-
+							<span class="size">{{maxSizeLatin}}</span>
+						</div>
                     </div>
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template2.jpg" width="100%">
-                            <div class="percent">15%</div>
-                            <p class="book-title">Anvil Jersey T-shirt</p>
-                        </a>
-                        <p><span class="price">$9.98</span> <span class="original-price">$11.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(65)</span>
-                        </div>
+					<!-- End product -->
+                    {{#if isBreakLine}}
                     </div>
-
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template3.jpg" width="100%">
-                            <div class="percent">20%</div>
-                            <p class="book-title">Gildan Ultra Cotton Long Sleeve T-shirt</p>
-                        </a>
-                        <p><span class="price">$11.99</span> <span class="original-price">$15.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(65)</span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template4.jpg" width="100%">
-                            <div class="percent">15%</div>
-                            <p class="book-title">Hanes Cool Dri Performance Shirt</p>
-                        </a>
-                        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(32)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template5.jpg" width="100%">
-                            <div class="percent">15%</div>
-                            <p class="book-title">Dyenomite 100% Cotton Rainbow Tie-Dye T-shirt</p>
-                        </a>
-                        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(32)</span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template6.jpg" width="100%">
-                            <div class="percent">15%</div>
-                            <p class="book-title">Rabbit Skins Toddler Vintage T-shirt</p>
-                        </a>
-                        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(32)</span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template4.jpg" width="100%">
-                            <div class="percent">15%</div>
-                            <p class="book-title">Hanes Cool Dri Performance Shirt</p>
-                        </a>
-                        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(32)</span>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <a href="/product-detail">
-                            <img src="img/templates/template4.jpg" width="100%">
-                            <div class="percent">15%</div>
-                            <p class="book-title">Hanes Cool Dri Performance Shirt</p>
-                        </a>
-                        <p><span class="price">$14.50</span> <span class="original-price">$20.00</span></p>
-                        <div class="vote">
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="glyphicon glyphicon-star"></i>
-                            <i class="	glyphicon glyphicon-star-empty"></i>
-                            <span class="comment">(32)</span>
-                        </div>
-                    </div>
-                </div>
+                    {{/if}}
+                {{/each}}
             </div>
 
             <div class="center">
+                {{{paginateHelper pagination leftText="Prev" rightText="Next" paginationClass="pagination"}}}
+            </div>
+
+            <!-- <div class="center">
                 <div class="pagination">
                     <a href="#">&laquo;</a>
                     <a href="#">1</a>
@@ -283,7 +137,7 @@
                     <a href="#">6</a>
                     <a href="#">&raquo;</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

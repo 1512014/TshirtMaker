@@ -18,7 +18,7 @@
                                 </a>
                             </h4>
                             <p class="author">Type:
-                                <span class="author"> {{product.listTypes}}</span>
+                                <span class="author"> {{product.type.name}}</span>
                             </p>
                             <p class="author">Size:
                                 <span class="author"> {{productSize}}</span>
@@ -38,68 +38,6 @@
                                     {{formatNumber order.shipping style="currency" currency="USD"}}
                                 </span>
                             </p>
-                            <div class="row extras-{{order.id}}">
-                                <div class="col-md-9">
-                                    <div class="panel-group" style="width: 100%; float:left; margin-button: 10px;">
-                                        <div class="panel panel-default">
-                                          <div data-toggle="collapse" data-target="#extras-{{order.id}}" class="panel-heading" style="cursor: pointer">
-                                            <h4 class="panel-title" style="font-size: 14px">
-                                                Extras <span style="float: right">{{formatNumber productExtra.totalPrice style="currency" currency="USD"}}</span>
-                                            </h4>
-                                         </div>
-                                         <div id="extras-{{order.id}}" class="panel-collapse collapse">
-                                            <ul class="list-group">
-                                                {{#each productExtra.extras}}
-                                                <li class="list-group-item" style="padding-left: 30px">{{name}}
-                                                    <span class="extra-price">
-                                                        {{formatNumber price style="currency" currency="USD"}}
-                                                    </span>
-                                                </li>
-                                                {{/each}}
-                                            </ul>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary edit-extras" data-id="{{order.id}}">Edit Extras</button>
-                                </div>
-                            </div>
-
-                            <div class="row choose-extras-{{order.id}}" style="margin:0; display: none">
-                                <div class="col-md-9">
-                                    <div class="panel-group" style="width: 100%; float:left">
-                                        <div class="panel panel-default">
-                                          <div class="panel-heading" style="cursor: pointer">
-                                            <h4 class="panel-title" style="font-size: 14px">
-                                                Choose extras:
-                                            </h4>
-                                         </div>
-
-                                            <ul class="list-group">
-
-                                                {{#each extras}}
-                                                <li class="list-group-item">
-                                                    <div class="checkbox">
-                                                        <label><input type="checkbox" name="extras" value="{{id}}">{{name}} (${{price}})</label>
-                                                    </div>
-                                                </li>
-                                                {{/each}}
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-success submit-extras" data-id="{{order.id}}" style="margin-top:10px;">Choose</button>
-                                    <button type="button" class="btn btn-default cancel-extras" data-id="{{order.id}}" style="margin-top:10px;">Cancel</button>
-                                </div>
-
-
-
-                            </div>
 
 
                             <button type="button" class="btn btn-danger delete-order" data-id="{{order.id}}" href="#" style="margin-top:20px;">Delete Order</a></button>
@@ -137,7 +75,15 @@
                     <p style="color: #333">Subtotal:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-                    <p>{{formatNumber totalPrice.subtotal style="currency" currency="USD"}}</p>
+					<p>{{formatNumber totalPrice.subtotal style="currency" currency="USD"}}</p>
+                </div>
+            </div>
+			<div class="row book-price" style="border-bottom: 5px solid #eee">
+                <div class="col-sm-5" style="text-align: left">
+                    <p style="color: #333">Tax:</p>
+                </div>
+                <div class="col-sm-7" style="text-align: right">
+					<p>{{totalPrice.tax}}%</p>
                 </div>
             </div>
             <div class="row book-price">
@@ -145,7 +91,7 @@
                     <p style="padding-top: 10px; color: #333">Total:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-                    <p class="total-price">{{formatNumber totalPrice.total style="currency" currency="USD"}}</p>
+					<p class="total-price">{{formatNumber totalPrice.total style="currency" currency="USD"}}</p>
                     <p style="font-size: 13px">(Included Tax)</p>
 
                 </div>

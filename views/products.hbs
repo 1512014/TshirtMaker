@@ -41,84 +41,6 @@
             </div>
 
             <div class="filter-row">
-                <h4>Material</h4>
-                <ul>
-                    <li><a href="#">100% Cotton <span>(23)</span></a></li>
-                    <li><a href="#">Ultra Soft <span>(13)</span></a></li>
-                    <li><a href="#">Organic <span>(43)</span></a></li>
-                    <li><a href="#">Tri-Blend <span>(120)</span></a></li>
-                    <li><a href="#">Pigment Dyed <span>(200)</span></a></li>
-                    <li><a href="#">Uv Protection <span>(10)</span></a></li>
-                    <li><a href="#">Performance Blend <span>(10)</span></a></li>
-                    <li><a href="#">Poly/Cotton <span>(10)</span></a></li>
-                    <li><a href="#">Snag Proof/Resistant <span>(10)</span></a></li>
-                    <li><a href="#">Antimicrobial <span>(10)</span></a></li>
-                    <li><a href="#">Water Resistant <span>(10)</span></a></li>
-                </ul>
-            </div>
-
-            <div class="filter-row">
-                <h4>Brand</h4>
-                <ul>
-                    <li><a href="#">Addidas <span>(45)</span></a></li>
-                    <li><a href="#">Nike <span>(45)</span></a></li>
-                    <li><a href="#">New Balance <span>(45)</span></a></li>
-                    <li><a href="#">Anvil <span>(45)</span></a></li>
-                    <li><a href="#">American Apparel <span>(45)</span></a></li>
-                    <li><a href="#">Champion <span>(45)</span></a></li>
-                    <li><a href="#">The Blue <span>(45)</span></a></li>
-                    <li><a href="#">Gildan <span>(45)</span></a></li>
-                    <li><a href="#">GAP <span>(45)</span></a></li>
-                    <li><a href="#">Hanes <span>(45)</span></a></li>
-                    <li class="load-more" style=" font-weight: 600; padding-top: 10px">
-                        <a href="#" style="color: black;">
-                            Others
-                            <span>
-                                <i class="glyphicon glyphicon-triangle-bottom"></i>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="filter-row">
-                <h4>Review</h4>
-                <div class="vote">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <span class="comment">(At least 1 star)</span>
-                </div>
-                <div class="vote">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <span class="comment">(At least 2 stars)</span>
-                </div>
-                <div class="vote">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <span class="comment">(At least 3 stars)</span>
-                </div>
-                <div class="vote">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <span class="comment">(At least 4 stars)</span>
-                </div>
-
-            </div>
-
-            <div class="filter-row">
                 <h4>Price</h4>
                 <ul>
                     <li><a href="#">Budget <span>(46)</span></a></li>
@@ -128,11 +50,13 @@
             </div>
 
             <div class="filter-row">
-                <h4>Specialty Sizes</h4>
+                <h4>Sizes</h4>
                 <ul>
-                    <li><a href="#">2XL & Up <span>(12)</span></a></li>
-                    <li><a href="#">Tall <span>(4)</span></a></li>
-                    <li><a href="#">Youth <span>(38)</span></a></li>
+                    <li><a href="#">XXS <span>(12)</span></a></li>
+                    <li><a href="#">XS <span>(4)</span></a></li>
+                    <li><a href="#">S <span>(38)</span></a></li>
+					<li><a href="#">M <span>(38)</span></a></li>
+					<li><a href="#">L <span>(38)</span></a></li>
                 </ul>
             </div>
 
@@ -153,13 +77,10 @@
                                 <p class="book-title">{{name}}</p>
                             </a>
                             <p><span class="price">{{formatNumber discountPrice style="currency" currency="USD"}}</span> <span class="original-price">{{formatNumber price style="currency" currency="USD"}}</span></p>
-                            <div class="vote">
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="	glyphicon glyphicon-star-empty"></i>
-                                <span class="comment">(65)</span>
+                            <div class="size">Size:
+                                <span class="size">{{minSizeLatin}}</span>
+								-
+								<span class="size">{{maxSizeLatin}}</span>
                             </div>
                         </div>
                         {{#if isBreakLine}}
@@ -172,18 +93,6 @@
             <div class="center">
                 {{{paginateHelper pagination leftText="Prev" rightText="Next" paginationClass="pagination"}}}
             </div>
-            <!-- <div class="center">
-                <div class="pagination">
-                    <a href="#">&laquo;</a>
-                    <a href="#">1</a>
-                    <a class="active" href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#">&raquo;</a>
-                </div>
-            </div> -->
         </div>
     </div>
 

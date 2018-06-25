@@ -1,5 +1,6 @@
 var canvas;
-var tshirts = new Array(); //prototype: [{style:'x',color:'white',front:'a',back:'b',price:{tshirt:'12.95',frontPrint:'4.99',backPrint:'4.99',total:'22.47'}}]
+var tshirts = new Array();
+//prototype: [{style:'x',color:'white',front:'a',back:'b',price:{tshirt:'12.95',frontPrint:'4.99',backPrint:'4.99',total:'22.47'}}]
 var a;
 var b;
 var line1;
@@ -70,7 +71,6 @@ var line4;
             canvas.add(textSample);
             canvas.item(canvas.item.length-1).hasRotatingPoint = true;
             $("#texteditor").css('display', 'block');
-            $("#imageeditor").css('display', 'block');
 	  	};
 	  	$("#text-string").keyup(function(){
 	  		var activeObject = canvas.getActiveObject();
@@ -274,25 +274,11 @@ var line4;
 
 	   $('#flip').click(
 		   function() {
+			   typeId = parseInt($('#tshirtTypes').val());
 			   	if ($(this).attr("data-original-title") == "Show Back View") {
 			   		$(this).attr('data-original-title', 'Show Front View');
-                    switch (parseInt($('#tshirtTypes').val())) {
-                        case 1:
-                            $("#tshirtFacing").attr("src","img/crew_back.png");
-                            break;
-                        case 2:
-                            $("#tshirtFacing").attr("src","img/mens_longsleeve_back.png");
-                            break;
-                        case 3:
-                            $("#tshirtFacing").attr("src","img/mens_hoodie_back.png");
-                            break;
-                        case 4:
-                            $("#tshirtFacing").attr("src","img/mens_tank_back.png");
-                            break;
-                        default:
-                            break;
-
-                    }
+					templateBack = $('#templateImages').find('#template-back-' + typeId).val();
+	   			 	$('#tshirtFacing').attr('src', templateBack);
 			        a = JSON.stringify(canvas);
 			        canvas.clear();
 			        try
@@ -305,23 +291,8 @@ var line4;
 
 			    } else {
 			    	$(this).attr('data-original-title', 'Show Back View');
-                    switch (parseInt($('#tshirtTypes').val())) {
-                        case 1:
-                            $("#tshirtFacing").attr("src","img/crew_front.png");
-                            break;
-                        case 2:
-                            $("#tshirtFacing").attr("src","img/mens_longsleeve_front.png");
-                            break;
-                        case 3:
-                            $("#tshirtFacing").attr("src","img/mens_hoodie_front.png");
-                            break;
-                        case 4:
-                            $("#tshirtFacing").attr("src","img/mens_tank_front.png");
-                            break;
-                        default:
-                            break;
-
-                    }
+					templateFront = $('#templateImages').find('#template-front-' + typeId).val();
+	   			 	$('#tshirtFacing').attr('src', templateFront);
 			    	b = JSON.stringify(canvas);
 			    	canvas.clear();
 			    	try
@@ -370,7 +341,6 @@ var line4;
 	 function onSelectedCleared(e){
 		 $("#texteditor").css('display', 'none');
 		 $("#text-string").val("");
-		 $("#imageeditor").css('display', 'none');
 	 }
 	 function setFont(font){
 		  var activeObject = canvas.getActiveObject();
@@ -389,17 +359,14 @@ var line4;
 
      $(document).ready(function () {
          $("#tshirtTypes").change(function(e){
-             if ($(this).val() == "1"){
-                 $('#tshirtFacing').attr('src', "img/crew_front.png");
-             }
-             else if ($(this).val() == "2"){
-                 $('#tshirtFacing').attr('src', "img/mens_longsleeve_front.png");
-             }
-             else if ($(this).val() == "3"){
-                 $('#tshirtFacing').attr('src', "img/mens_hoodie_front.png");
-             }
-             else if ($(this).val() == "4"){
-                 $('#tshirtFacing').attr('src', "img/mens_tank_front.png");
-             }
+			 gender = $('input#gender').val();
+			 typeId = $(this).val();
+             templateFront = $('#templateImages').find('#template-front-' + typeId).val();
+			 $('#tshirtFacing').attr('src', templateFront);
          });
+		 // $("#tshirtTypes").trigger("change");
+
+		 $("#add-to-cart").on('click', function(){
+			 location.href = "/finished";
+		 });
      });

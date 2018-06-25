@@ -4,6 +4,11 @@
 
 .container {
     background: #eee;
+    min-height: 100vh;
+}
+
+.li-container {
+    min-height: 0!important;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -586,6 +591,10 @@ span.comment{
 
 #myCarousel img{
     height: 450px;
+}
+
+span.size {
+	color: #007ff0;
 }
 
 /*Responsive for TM-header*/

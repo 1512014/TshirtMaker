@@ -1,0 +1,32 @@
+<div class="TM-body">
+    <div class="container-fluid" style="background: white;">
+      	<h3 style="text-align: center">Your designed product has been added to cart</h3>
+		<div class="well" style="margin-top: 40px;">
+          <h3>Total Prices</h3>
+            <p>
+              <table class="table">
+                  <tr>
+	                  <td>{{product.name}}</td>
+                      <td align="right">{{formatNumber product.price style="currency" currency="USD"}}</td>
+                  </tr>
+                  <tr>
+                      <td>Front Design</td>
+                      <td align="right">{{formatNumber setting.frontDesignPrice style="currency" currency="USD"}}</td>
+                  </tr>
+                  <tr>
+                      <td>Back Design</td>
+                      <td align="right">{{formatNumber setting.backDesignPrice style="currency" currency="USD"}}</td>
+                  </tr>
+                  <tr>
+                      <td><strong>Total</strong></td>
+                      <td align="right"><strong>{{formatNumber totalPrice style="currency" currency="USD"}}</strong></td>
+                  </tr>
+              </table>
+            </p>
+        </div>
+		<div style="text-align: center; margin-top: 50px; margin-bottom: 50px;" >
+			<a href="/view-cart" type="button" class="btn btn-lg btn-success">View Cart</a>
+			<a href="/products" type="button" class="btn btn-lg btn-primary">Continue Shopping</a>
+		</div>
+    </div>
+</div>

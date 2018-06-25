@@ -8,17 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      name: { type: Sequelize.STRING, allowNull: false },
+	  gender: { type: Sequelize.STRING, allowNull: false, defaultValue: 'male' },
+	  templateFront: { type: Sequelize.STRING, allowNull: false},
+  	  templateBack: { type: Sequelize.STRING, allowNull: false},
+	  basicPrice: { type: Sequelize.FLOAT(11, 2), allowNull: false }
     });
   },
   down: (queryInterface, Sequelize) => {

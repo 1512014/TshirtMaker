@@ -104,7 +104,7 @@ $(document).ready(function () {
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({
-                product_qty: qty,
+                productQty: qty,
 
              }),
             success: function(response){
@@ -138,7 +138,7 @@ $(document).ready(function () {
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({
-                product_qty: qty
+                productQty: qty
              }),
             success: function(response){
                 $('.bootstrap-touchspin-up').removeAttr('disabled');
@@ -150,43 +150,5 @@ $(document).ready(function () {
             }
         });
 
-    });
-
-    $('.edit-extras').on('click', function(e){
-        orderId = $(this).data('id');
-        $('.extras-' + orderId).hide();
-        $('.choose-extras-' + orderId).css('display','');
-    });
-
-    $('.cancel-extras').on('click',function(){
-        orderId = $(this).data('id');
-        $('.choose-extras-' + orderId).hide();
-        $('.extras-' + orderId).show();
-    })
-
-    $('.submit-extras').on('click', function(){
-        orderId = $(this).data('id');
-        url = '/orders/' + orderId;
-        extrasId = [];
-
-        $('.choose-extras-' + orderId).find('input[name="extras"]:checked').each(function() {
-            extrasId.push(parseInt(this.value));
-        });
-        extras_id = JSON.stringify(extrasId);
-        $.ajax({
-            url: url,
-            contentType: 'application/json',
-            type: 'PUT',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                extras_id: extras_id
-             }),
-            success: function(response){
-                location.reload();
-            },
-            error: function(error) {
-                alert(error);
-            }
-        });
     });
 });

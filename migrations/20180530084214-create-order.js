@@ -8,9 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
-        type: Sequelize.STRING
-      },
+      productId: { type: Sequelize.INTEGER, allowNull: false },
+      productQty: { type: Sequelize.INTEGER, allowNull: false},
+      productSize: { type: Sequelize.INTEGER, allowNull: false},
+      status: { type: Sequelize.INTEGER, allowNull: false },
+      subtotal: { type: Sequelize.FLOAT(11, 2), allowNull: false },
+      shipping: { type: Sequelize.FLOAT(11, 2), defaultValue: 0},
+      userId: { type: Sequelize.INTEGER, allowNull: false },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

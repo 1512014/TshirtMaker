@@ -14,7 +14,6 @@ router.get('/', function(req, res){
     totalPrice = {subtotal: 0, total: 0};
     // orders = [];
     // products = [];
-    // productExtra = [];
     // totalPrice = {subtotal: 0, total: 0};
 
     ordersController.getAllByUserId(userId, status, function(objects){
@@ -24,7 +23,7 @@ router.get('/', function(req, res){
       }
       orders = objects.slice((page-1)*limit, page*limit);
       if(orders.length==0){
-          var product=[{}];
+          var product = [];
         res.render('view-cart.hbs', {
             products: {},
             pageHeader: true,
@@ -36,8 +35,7 @@ router.get('/', function(req, res){
           });
       }
       for (var i = 0; i < orders.length; i++){
-          extraIds = JSON.parse(orders[i].extras_id);
-          productsController.getProductFromOrder(orders[i], products, totalPrice, extraIds, function(object){
+          productsController.getProductFromOrder(orders[i], products, totalPrice, function(object){
               if (object.products.length == orders.length) {
                   res.render('view-cart.hbs', {
                     products: object.products,

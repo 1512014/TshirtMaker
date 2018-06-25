@@ -8,66 +8,28 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING
+      name: { type: Sequelize.STRING, allowNull: false},
+      //model_id
+      typeId: {
+          type: Sequelize.INTEGER,
+          // references: {
+          //   model: 'Product_type',
+          //   key: 'id'
+          //   },
+           allowNull: false
       },
-      types_id: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      qty: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      minSize: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      maxSize: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      imagePath1: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      imagePath2: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      imagePath3: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      imagePath4: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      color: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      brand: {
-        allowNull: true,
-        type: Sequelize.STRING
-      },
-      price: {
-        allowNull: false,
-        type: Sequelize.DOUBLE
-      },
-      discount: {
-        allowNull: true,
-        type: Sequelize.DOUBLE
-      },
-      description: {
-        allowNull: false,
-        type: Sequelize.DOUBLE
-      },
-      review: {
-        allowNull: true,
-        type: Sequelize.DOUBLE
-      },
+      gender: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 1}, //1: Male, 2: Female
+      qty: { type: Sequelize.BIGINT(11), allowNull: false, defaultValue: 1 },
+      minSize: { type: Sequelize.INTEGER},
+      maxSize: { type: Sequelize.INTEGER},
+      imagePath1: { type: Sequelize.STRING, allowNull: false},
+      imagePath2: { type: Sequelize.STRING, allowNull: true},
+      imagePath3: { type: Sequelize.STRING, allowNull: true},
+      imagePath4: { type: Sequelize.STRING, allowNull: true},
+      color: { type: Sequelize.STRING, allowNull: true, defaultValue: "#ffffff"},
+      price: { type: Sequelize.FLOAT(11, 2), allowNull: false },
+      discount: { type: Sequelize.FLOAT(3, 0), defaultValue: 0},
+      description: { type: Sequelize.STRING(512), allowNull: false },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -2,7 +2,7 @@ var controller = {};
 
 var models = require('../models');
 var ordersController = require('../controllers/ordersController');
-var extrasController = require('../controllers/extrasController');
+var settingsController = require('../controllers/settingsController');
 
 controller.getAll = function(callback){
     models.Product
@@ -17,6 +17,7 @@ controller.getAll = function(callback){
 };
 
 controller.getById = function(id, callback){
+	console.log(id);
     models.Product
     .findOne({
         where: {id: id},
@@ -33,15 +34,21 @@ controller.getById = function(id, callback){
         //Change size from number to latin (EX: 1 -> XS, 2 -> S, 3 -> M, ...)
         object.minSizeLatin = controller.getSize(object.minSize);
         object.maxSizeLatin = controller.getSize(object.maxSize);
-        object.breadcrumbs = [];
+		object.sizes = [];
+		for (var i = object.minSize; i <= object.maxSize; i++){
+			object.sizes.push({
+				sizeNumber: i,
+				sizeLatin: controller.getSize(i)
+			});
+		}
         //Get all types of a product & breadcrumbs
-        typeIds = JSON.parse(object.types_id);
-        controller.getProductTypes(typeIds, function(types){
-            object.types = types;
-            object.listTypes = types.map(function(elem){
-                object.breadcrumbs.push({title: elem.name, link: "#"});
-                return elem.name;
-            }).join(", ");
+        typeId = object.typeId;
+        controller.getProductType(typeId, function(type){
+            object.type = type;
+            object.breadcrumbs = [
+				{title: object.type.name, link: "#"},
+				{title: object.name, link: "#"}
+			];
             callback(object);
         });
 
@@ -49,44 +56,61 @@ controller.getById = function(id, callback){
     });
 };
 
-controller.getProductFromOrder = function(order, products, totalPrice, extrasId, callback){
+controller.getProductFromOrder = function(order, products, totalPrice, callback){
 
-    productId = order.product_id;
+    productId = order.productId;
     var productData = {
           order: order,
-          extras: [],
           product: [],
-          productQty: order.product_qty,
-          productExtra: [],
-          productSize: controller.getSize(order.product_size)
+          productQty: order.productQty,
+          productSize: controller.getSize(order.productSize)
     };
 
     controller.getById(productId, function(product){
-        ordersController.getExtrasByIds(extrasId, function(result){
-            //Get totalPrice
-            tempSubtotal = order.subtotal * order.product_qty +  order.shipping + result.totalPrice;
-            totalPrice.subtotal += tempSubtotal; //TODO: add extra price
-            totalPrice.total += tempSubtotal + tempSubtotal * productData.order.tax / 100;
 
-            product.totalPrice = tempSubtotal;
-            productData.product = product;
-            productData.productExtra = result;
-            extrasController.getAll(function(objects){
-                productData.extras = objects;
-                products.push(productData);
-                callback({products: products, totalPrice: totalPrice});
-            });
-        });
+		//getTax
+		var taxKey = 'tax';
+		settingsController.getSetting(taxKey, function (setting) {
+			var tax = setting.value;
+			tempSubtotal = order.subtotal * order.productQty +  order.shipping;
+			//Get totalPrice
+	        product.totalPrice = tempSubtotal
+			totalPrice.subtotal += tempSubtotal;
+	        totalPrice.total += tempSubtotal + tempSubtotal*tax/100;
+			totalPrice.tax = tax;
+
+	        productData.product = product;
+	        products.push(productData);
+	        callback({products: products, totalPrice: totalPrice});
+		})
     });
 
 };
 
-controller.getProductTypes = function (typeIds, callback) {
+controller.getProductType = function (typeId, callback) {
+    models.Product_type
+    .findOne({
+        where: { id: typeId }
+    })
+    .then(function(object){
+        callback(object);
+    })
+}
+
+controller.getAllProductTypes = function (callback){
+    models.Product_type
+    .findAll({})
+    .then(function(objects){
+        callback(objects);
+    })
+}
+
+controller.getProductTypesByGender = function (gender, callback){
     models.Product_type
     .findAll({
-        where: { id: typeIds }
+        where: { gender: gender }
     })
-    .then(function(objects){
+	.then(function(objects){
         callback(objects);
     })
 }
@@ -100,12 +124,19 @@ controller.getRelatedProduct = function(callback){
         ]
     })
     .then(function(objects){
+		for (var i = 0; i < objects.length; i++){
+			objects[i].minSizeLatin = controller.getSize(objects[i].minSize);
+	        objects[i].maxSizeLatin = controller.getSize(objects[i].maxSize);
+		}
         callback(objects);
     })
 };
 
 controller.getSize = (sizeNumber) => {
     switch (sizeNumber) {
+		case 0:
+			return "XXS";
+			break;
         case 1:
             return "XS";
             break;
@@ -124,19 +155,31 @@ controller.getSize = (sizeNumber) => {
         case 6:
             return "XXL";
             break;
+		case 7:
+			return "3XL";
+			break;
         default:
     }
 };
 
-controller.getProductByProductIds = function (productIds, callback){
+controller.createProductType = function (object, callback){
     models.Product_type
-    .findAll({
-        where: { id: productIds }
-    })
-    .then(function(objects){
-        callback(objects);
+    .create(object)
+    .then(function(message){
+        callback(message);
     })
 }
+
+controller.deleteProductType = function (id, callback) {
+	models.Product_type
+	.destroy({
+		where: {id: id}
+	})
+	.then(function(message){
+		callback(message);
+	})
+}
+
 // Update model
 
 

@@ -3,20 +3,52 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
       var orders = [
-          // {
-          //     name: "Trending"
-          // },
-          // {
-          //     name: "Sport"
-          // },
-          // {
-          //     name: "Uniform"
-          // }
+          {
+              productId: 1,
+              productQty: 2,
+              productSize: 2, //size S
+              status: 1,
+              subtotal: 40,
+			  userId: 1
+
+          },
+          {
+              productId: 2,
+              productQty: 1,
+              productSize: 2, //size S
+              status: 1,
+              subtotal: 30,
+			  userId: 1
+          },
+          {
+              productId: 4,
+              productQty: 3,
+              productSize: 2, //size S
+              status: 1,
+              subtotal: 45,
+			  userId: 1
+          },
+          {
+              productId: 5,
+              productQty: 5,
+              productSize: 6, //size S
+              status: 1,
+              subtotal: 100,
+			  userId: 3
+          },
+          {
+              productId: 3,
+              productQty: 3,
+              productSize: 2, //size S
+              status: 1,
+              subtotal: 20,
+			  userId: 3
+          }
       ];
-      // return queryInterface.bulkInsert('Orders', orders, {});
+      return queryInterface.bulkInsert('Orders', orders, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    // return queryInterface.bulkDelete('Orders', null, {});
+    return queryInterface.bulkDelete('Orders', null, {});
   }
 };

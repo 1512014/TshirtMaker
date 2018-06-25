@@ -1,0 +1,50 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <!-- <div class="card-header">
+            <h3 class="card-title">Quick Example</h3>
+          </div> -->
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form method="post" action="/admin/product-types/create" enctype="multipart/form-data">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="productTypeName">Name</label>
+                <input type="text" class="form-control" id="productTypeName" name="productTypeName" placeholder="Enter product type name">
+              </div>
+			  <div class="form-group">
+   	  			<label for="gender">Gender</label>
+   				<select class="form-control" id="gender" name="gender">
+					 <option value="male">Male</option>
+					 <option value="female">Female</option>
+   	 			</select>
+			  </div>
+              <div class="form-group">
+                <label for="templateFront">Template Front</label>
+                <input type="file" class="form-control" id="templateFront" name="templateFront">
+              </div>
+			  <div class="form-group">
+                <label for="templateFront">Template Back</label>
+                <input type="file" class="form-control" id="templateBack" name="templateBack">
+              </div>
+			  <div class="form-group">
+                <label for="basicPrice">Basic Price</label>
+                <input type="number" class="form-control" id="basicPrice" name="basicPrice" required>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-default float-right">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+  </div>
+</div>
