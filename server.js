@@ -28,6 +28,7 @@ var hbs = expressHbs.create({
 });
 hbs.handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
 HandlebarsIntl.registerWith(Handlebars);
+
 app.engine('hbs', hbs.engine);
 app.set('port', (process.env.PORT || 3000));
 app.set('view engine', 'hbs');
