@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     price: { type: DataTypes.FLOAT(11, 2), allowNull: false },
     discount: { type: DataTypes.FLOAT(3, 0), defaultValue: 0},
     description: { type: DataTypes.STRING(512), allowNull: false }
-  }, {});
+  }, {timestamps:false});
 
   Product.associate = function(models) {
     // associations can be defined here

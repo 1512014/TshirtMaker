@@ -6,7 +6,7 @@ var productsController = require('../controllers/productsController');
 router.get('/', (req, res) => {
 	var is_member=false;
 	var name="";
-	if(req.user) name=req.user.last_name;
+	if(req.user) name=req.user.lastName;
 	if(req.isAuthenticated()) is_member=true;
 	page = parseInt(req.query.page);
     limit = 8;
@@ -48,6 +48,10 @@ router.get('/', (req, res) => {
 
 router.get('/design', (req, res) => {
 	var gender = req.query.gender;
+	var is_member=false;
+	var name="";
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
 	if (!gender){
 		gender = 'male';
 	}
@@ -62,6 +66,8 @@ router.get('/design', (req, res) => {
 				});
 			}
 			res.render('design.hbs', {
+				isMember: is_member,
+	  			name:name,
 				maleTypes: maleTypes,
 				femaleTypes: femaleTypes,
 				gender: gender,
@@ -77,7 +83,13 @@ router.get('/design', (req, res) => {
 });
 
 router.get('/contact', (req, res) => {
+	var is_member=false;
+	var name="";
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
     res.render('contact.hbs', {
+		isMember: is_member,
+	  	name:name,
 		pageHeader: false,
 		cssContact: true,
 		activeContact: true,
@@ -88,7 +100,13 @@ router.get('/contact', (req, res) => {
 });
 
 router.get('/about-us', (req, res) => {
+	var is_member=false;
+	var name="";
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
     res.render('about-us.hbs', {
+		isMember: is_member,
+	  	name:name,
 		pageHeader: false,
 		cssAboutUs: true,
 		activeAboutUs: true,
