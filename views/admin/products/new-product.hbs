@@ -23,25 +23,25 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="name">Name <span class="required">(*)</span></label>
-                <input type="name" class="form-control" id="name" name="name" placeholder="Enter product name" required>
+                <input type="name" value="{{product.name}}" class="form-control" id="name" name="name" placeholder="Enter product name" required>
 			  </div>
 			  <div class="form-group">
    	  			<label for="typeId">Type <span class="required">(*)</span></label>
    				<select class="form-control" id="typeId" name="typeId">
 					{{#each productTypes}}
-					<option value="{{id}}" {{#ifCond product.typeId '==' id}} selected {{/ifCond}}>{{name}} - {{gender}}</option>
+					<option value="{{id}}" {{#ifCond ../product.typeId '==' this.id}} selected {{/ifCond}}>{{name}} - {{gender}}</option>
 					{{/each}}
    	 			</select>
 			  </div>
 			  <div class="form-group">
                 <label for="qty">Qty <span class="required">(*)</span></label>
-                <input type="number" class="form-control" id="qty" name="qty" placeholder="Enter product qty">
+                <input type="number" value="{{product.qty}}" class="form-control" id="qty" name="qty" placeholder="Enter product qty">
               </div>
 			  <div class="form-group">
    	  			<label for="minSize">Min Size <span class="required">(*)</span></label>
    				<select class="form-control" id="minSize" name="minSize">
 					{{#each sizes}}
-					<option value="{{@index}}" {{#ifCond product.size '==' @index}} selected {{/ifCond}}>{{this}}</option>
+					<option value="{{@index}}" {{#ifCond ../product.minSize '==' @index}} selected {{/ifCond}}>{{this}}</option>
 					{{/each}}
    	 			</select>
 			  </div>
@@ -49,17 +49,17 @@
    	  			<label for="maxSize">Max Size <span class="required">(*)</span></label>
    				<select class="form-control" id="maxSize" name="maxSize">
 					{{#each sizes}}
-					<option value="{{@index}}" {{#ifCond product.size '==' @index}} selected {{/ifCond}}>{{this}}</option>
+					<option value="{{@index}}" {{#ifCond ../product.maxSize '==' @index}} selected {{/ifCond}}>{{this}}</option>
 					{{/each}}
    	 			</select>
 			  </div>
 			  <div class="form-group">
 				<label for="price">Price ($) <span class="required">(*)</span></label>
-				<input type="number" class="form-control" id="price" name="price" placeholder="Enter price">
+				<input type="number" value="{{product.price}}" class="form-control" id="price" name="price" placeholder="Enter price">
 			  </div>
 			  <div class="form-group">
 				<label for="discount">Discount (%) <span class="required">(*)</span></label>
-				<input type="number" class="form-control" id="discount" name="discount" placeholder="Enter product discount">
+				<input type="number" value="{{product.discount}}" class="form-control" id="discount" name="discount" placeholder="Enter product discount">
 			  </div>
 			  <div class="form-group">
 				<label for="image1">Image 1 <span class="required">(*)</span></label>
@@ -71,11 +71,11 @@
 			  </div>
 			  <div class="form-group">
 				<label for="color">Color (hex)</label>
-				<input type="text" class="form-control" id="color" name="color" placeholder="#000000">
+				<input type="text" value="{{product.color}}" class="form-control" id="color" name="color" placeholder="#000000">
 			  </div>
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter product description"></textarea>
+                <textarea type="text" value="{{product.description}}" class="form-control" id="description" name="description" placeholder="Enter product description"></textarea>
               </div>
 
             </div>
@@ -83,7 +83,7 @@
 
             <div class="card-footer">
               <button type="submit" class="btn btn-primary">Submit</button>
-              <button type="button" class="btn btn-default float-right">Cancel</button>
+              <a href="/admin/products" type="button" class="btn btn-default float-right">Cancel</a>
             </div>
           </form>
         </div>

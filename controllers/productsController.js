@@ -82,7 +82,7 @@ controller.getProductFromOrder = function(order, products, totalPrice, callback)
 	        totalPrice.total += tempSubtotal + tempSubtotal*tax/100;
 			totalPrice.tax = tax;
             productData.product = product;
-            
+
 	        products.push(productData);
 	        callback({products: products, totalPrice: totalPrice});
 		})
@@ -143,6 +143,29 @@ controller.createProduct = function (object, callback){
     .then(function(message){
         callback(message);
     })
+}
+
+
+controller.updateProduct = function (id, object, callback){
+	// console.log("Hiiii: " + object.name);
+    models.Product
+    .update(
+		object,
+		{ where: {id: id} }
+	)
+    .then(function(message){
+        callback(message);
+    })
+}
+
+controller.deleteProduct = function (id, callback) {
+	models.Product
+	.destroy({
+		where: {id: id}
+	})
+	.then(function(message){
+		callback(message);
+	})
 }
 
 

@@ -44,9 +44,11 @@
 								<td><img src="{{imagePath1}}" width="50px"></td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
+                                        <a href="/admin/products/{{id}}" type="button" class="btn btn-default">View</a>
+                                        <a href="/admin/products/{{id}}/edit" type="button" class="btn btn-primary">Edit</a>
+										<form action="/admin/products/{{id}}" method="post">
+											<button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+										</form>
                                     </div>
                                 </td>
                             </tr>
