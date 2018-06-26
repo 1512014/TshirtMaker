@@ -6,6 +6,10 @@ var productsController = require('../controllers/productsController');
 var settingsController = require('../controllers/settingsController');
 router.get('/', function(req, res){
     page = parseInt(req.query.page);
+    var is_member=false;
+	var name="";
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
     limit = 16;
     // test = [1, 2, 3];
     // test = JSON.stringify(test);
@@ -29,6 +33,8 @@ router.get('/', function(req, res){
 			  objects[i].maxSizeLatin = productsController.getSize(objects[i].maxSize);
           }
           res.render('products.hbs', {
+            isMember: is_member,
+            name:name,
             products: objects,
       		pageHeader: true,
       		cssProduct: true,

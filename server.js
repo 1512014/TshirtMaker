@@ -24,7 +24,8 @@ var expressHbs = require('express-handlebars');
 var Handlebars     = require('handlebars');
 var HandlebarsIntl = require('handlebars-intl');
 var paginateHelper = require('express-handlebars-paginate');
-
+var ordersController = require('./controllers/ordersController');
+var productsController = require('./controllers/productsController');
 var hbs = expressHbs.create({
 	extname			: 'hbs',
 	defaultLayout	: 'layout',
@@ -161,7 +162,29 @@ app.post('/payment', (req, res) => {
 	else if (method=='vnpay') res.redirect('/vnpay');
 	else res.redirect('/');
 });
-
+app.post('/checkout2',(req,res)=>{
+    var userId=req.body.userId;
+    products = [];
+    totalPrice = {subtotal: 0, total: 0};
+    ordersController.getAllByUserId(userId, 1, function(objects){
+        orders = objects;
+        for (var i = 0; i < orders.length; i++){
+            productsController.getProductFromOrder(orders[i], products, totalPrice, function(object){
+                if (object.products.length == orders.length) {
+                    res.render('checkout-step2.hbs', {
+                      products: object.products,
+                      totalPrice: object.totalPrice,
+                      nOrders: orders.length,
+                      pageHeader: false,
+                      cssCheckOutStep2: true,
+		              hideBreadcrumb: true
+                    });
+                }
+            });
+        }
+    });
+    console.log(req.body);
+})
 app.get('/templates', (req, res) => {
     res.render('templates.hbs', {
 		pageHeader: true,

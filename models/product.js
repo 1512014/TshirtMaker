@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     //modelId
     typeId: { type: DataTypes.INTEGER, allowNull: false},
     qty: { type: DataTypes.BIGINT(11), allowNull: false, defaultValue: 1 },
-    minSize: { type: DataTypes.INTEGER, defaultValue: 0},
-    maxSize: { type: DataTypes.INTEGER, defaultValue: 7},
+    minSize: { type: DataTypes.INTEGER},
+    maxSize: { type: DataTypes.INTEGER},
     imagePath1: { type: DataTypes.STRING, allowNull: false},
     imagePath2: { type: DataTypes.STRING, allowNull: true},
     // imagePath3: { type: DataTypes.STRING, allowNull: true},
@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     color: { type: DataTypes.STRING, allowNull: true, defaultValue: "#ffffff"},
     price: { type: DataTypes.FLOAT(11, 2), allowNull: false },
     discount: { type: DataTypes.FLOAT(3, 0), defaultValue: 0},
-    description: { type: DataTypes.STRING(512), allowNull: true }
-  }, {});
+    description: { type: DataTypes.STRING(512), allowNull: false }
+  }, {timestamps:false});
 
   Product.associate = function(models) {
     // associations can be defined here

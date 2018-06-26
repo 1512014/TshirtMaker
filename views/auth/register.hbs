@@ -1,16 +1,44 @@
 <div class="row">
     <div class="hidden" name="message">{{message}}</div>
     <script>
-        if(document.getElementsByName("message")[0].innerText.length>0)
-            alert(document.getElementsByName("message")[0].innerText)
+        if (document.getElementsByName("message")[0].innerText.length > 0)
+            alert(document.getElementsByName("message")[0].innerText);
+    </script>
+    <script>
+
+        function Validate() {
+            var input1 = document.getElementById("InputName1").value;
+            var input2 = document.getElementById("InputName2").value;
+            var input3 = document.getElementById("InputName3").value;
+            var input4 = document.getElementById("InputName4").value;
+            var input5 = document.getElementById("InputName5").value;
+            var input6 = document.getElementById("InputName6").value;
+            var check = document.getElementById("Checkbox1").checked;
+            if (input1 == '' || input2 == '' || input3 == '' || input4 == '' || input5 == '' || input6 == '') {
+                alert("Chưa nhập đủ thông tin.");
+               
+                return false;
+            }
+            else if (input5!=input6){
+                 alert("Mật khẩu lần 2 không đúng.");
+                return false;
+            }
+            else if (check==false){
+                 alert("Bạn chưa chấp nhận điều khoản.");
+                return false;
+            }
+            return true;
+
+        }
+
     </script>
     <div class="col-md-offset-2 col-md-8">
-        <form class="form-horizontal" action="/signup" method="post">
+        <form class="form-horizontal" action="/signup" method="post" onsubmit="return Validate()">
             <div class="header">Register</div>
             <div class="form-content">
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <input class="form-control name" id="InputName2" name="first_name" placeholder="First Name" type="text">
+                        <input class="form-control name" id="InputName1" name="first_name" placeholder="First Name" type="text">
                     </div>
                     <div class="col-sm-6">
                         <input class="form-control name" id="InputName2" name="last_name" placeholder="Last Name" type="text">
@@ -18,23 +46,35 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <input class="form-control" id="InputName2" name="username" placeholder="Username" type="text"> <label class="control-label" for="InputName2"><i class="fa fa-user"></i></label>
+                        <input class="form-control" id="InputName3" name="username" placeholder="Username" type="text">
+                        <label class="control-label" for="InputName2">
+                            <i class="fa fa-user"></i>
+                        </label>
                     </div>
                     <div class="col-sm-6">
-                        <input class="form-control" id="InputName2" name="email" placeholder="Email" type="email"> <label class="control-label" for="InputName2"><i class="fa fa-envelope-o"></i></label>
+                        <input class="form-control" id="InputName4" name="email" placeholder="Email" type="email">
+                        <label class="control-label" for="InputName2">
+                            <i class="fa fa-envelope-o"></i>
+                        </label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <input class="form-control" id="InputName2" name="password" placeholder="Password" type="password"> <label class="control-label" for="InputName2"><i class="fa fa-lock"></i></label>
+                        <input class="form-control" id="InputName5" name="password" placeholder="Password" type="password">
+                        <label class="control-label" for="InputName2">
+                            <i class="fa fa-lock"></i>
+                        </label>
                     </div>
                     <div class="col-sm-6">
-                        <input class="form-control" id="InputName2" name="password_confirm" placeholder="Confirm Password" type="password"> <label class="control-label" for="InputName2"><i class="fa fa-unlock"></i></label>
+                        <input class="form-control" id="InputName6" name="password_confirm" placeholder="Confirm Password" type="password">
+                        <label class="control-label" for="InputName2">
+                            <i class="fa fa-unlock"></i>
+                        </label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <select class="form-control" name="gender" >
+                        <select class="form-control" name="gender">
                             <option value="none" selected="">Choose Gender...</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -43,12 +83,17 @@
                     </div>
                 </div>
                 <div class="policy">
-                    <label class="checkbox-inline"><input name="checkbtn" id="Checkbox1" value="check" type="checkbox">I agree to the <a href="#" style="margin:0">Terms of Service</a></label>
+                    <label class="checkbox-inline">
+                        <input name="checkbtn" id="Checkbox1" value="check" type="checkbox">I agree to the
+                        <a href="#" style="margin:0">Terms of Service</a>
+                    </label>
                 </div>
             </div>
             <div class="footer clearfix">
-                <button type="submit" class="btn btn-default">Register now</button>
+                <button type="submit" class="btn btn-default" id="submitbutton">Register now</button>
+
             </div>
-        </form>
+
+            </thi>
     </div>
 </div>

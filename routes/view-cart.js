@@ -25,6 +25,7 @@ router.get('/', function(req, res){
       if(orders.length==0){
           var product = [];
         res.render('view-cart.hbs', {
+            userId:userId,
             products: {},
             pageHeader: true,
             cssViewCart: true,
@@ -38,6 +39,7 @@ router.get('/', function(req, res){
           productsController.getProductFromOrder(orders[i], products, totalPrice, function(object){
               if (object.products.length == orders.length) {
                   res.render('view-cart.hbs', {
+                    userId:userId,
                     products: object.products,
                     totalPrice: object.totalPrice,
                     nOrders: orders.length,

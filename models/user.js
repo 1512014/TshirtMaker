@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   	address: { type: DataTypes.STRING(512), allowNull: true },
   	isActive: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
   }, {
+		timestamps:false,
   instanceMethods: {
 	  generateHash: function (password) {
           return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)

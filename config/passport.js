@@ -36,7 +36,10 @@ module.exports = function(passport, user) {
                 {
 
                     var userPassword = generateHash(password);
-
+                    var gender=0;
+                    if(req.body.gender=='male') gender=1;
+                    else if(req.body.gender=='female') gender=2;
+                    else gender=3;
                     var data =
 
                         {
@@ -48,11 +51,7 @@ module.exports = function(passport, user) {
 
                             rememberToken: null,
                             role: 1,
-                            gender: 1,
-                            phoneNumber: '123456789',
-                            country: "vietnam",
-                            city: "hcm",
-                            address: "3/2 hcm"
+                            gender: gender
 
                         };
 

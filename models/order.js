@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     status: { type: DataTypes.INTEGER, allowNull: false },
     subtotal: { type: DataTypes.FLOAT(11, 2), allowNull: false },
     shipping: { type: DataTypes.FLOAT(11, 2), defaultValue: 0}
-  }, {});
+  }, {timestamps:false});
   Order.associate = function(models) {
     // associations can be defined here
     // Order.belongsTo(models.User);

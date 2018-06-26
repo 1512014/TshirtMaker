@@ -22,11 +22,13 @@ module.exports = {
       isActive: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 1 },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue:  Sequelize.literal('NOW()')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue:  Sequelize.literal('NOW()')
       }
     });
   },
