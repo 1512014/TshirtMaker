@@ -157,9 +157,10 @@ app.use('/member', member);
 
 
 app.post('/payment', (req, res) => {
-	var method=req.body.payment_method;
-	if(method=='paypal') res.redirect('/paypal');
-	else if (method=='vnpay') res.redirect('/vnpay');
+    method=req.body.payment_method;
+    total=req.body.total;
+	if(method=='paypal') res.redirect('/paypal'+'?total='+total);
+	else if (method=='vnpay') res.redirect('/vnpay'+'?total='+total);
 	else res.redirect('/');
 });
 app.post('/checkout2',(req,res)=>{

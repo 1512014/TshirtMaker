@@ -5,7 +5,8 @@ var router = express.Router();
 var $ = require('jquery');
 
 router.get('/', function(req, res, next){
-    res.redirect('http://localhost:3000/vnpay/create_payment_url')
+    var total= req.query.total;
+    res.redirect('http://localhost:3000/vnpay/create_payment_url?total='+total)
 });
 
 /*router.get('/create_payment_url', function (req, res, next) {
@@ -24,8 +25,7 @@ router.get('/create_payment_url', function (req, res, next) {
 
     var config = require('../config/vnpay.json');
     var dateFormat = require('dateformat');
-
-    
+    var total= req.query.total;
     var tmnCode = config.vnp_TmnCode;
     var secretKey = config.vnp_HashSecret;
     var vnpUrl = config.vnp_Url;
@@ -35,7 +35,7 @@ router.get('/create_payment_url', function (req, res, next) {
 
     var createDate = dateFormat(date, 'yyyymmddHHmmss');
     var orderId = dateFormat(date, 'HHmmss');
-    var amount = '10000';
+    var amount = total*20000;
     var bankCode = '';
     
     var orderInfo = "Thanh toan quan ao";
