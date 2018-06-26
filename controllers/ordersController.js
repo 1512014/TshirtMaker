@@ -30,6 +30,25 @@ controller.getAll = function(callback){
     })
 };
 
+controller.getById = function(id, callback){
+    models.Order
+    .findOne({
+		where: {
+			id: id
+		}
+	})
+    .then(function(order){
+		productsController.getById(order.productId, function(product){
+			order.product = product;
+		});
+		usersController.getById(order.userId, function(user){
+			order.user = user;
+		});
+
+		setTimeout(callback, 1000, order);
+    })
+};
+
 controller.getAllByUserId = function(userId, status, callback){
     models.Order
     .findAll({

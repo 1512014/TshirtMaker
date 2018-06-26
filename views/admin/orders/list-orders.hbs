@@ -34,11 +34,16 @@
 								<td>{{product.qty}}</td>
 								<td>{{subtotal}}</td>
 								<td>{{shipping}}</td>
-                                <td>{{status}}</td>
+                                <td>
+									<select class="form-control order-status" id="order-status-{{id}}" data-order-id="{{id}}">
+										<option value="pending" {{#ifCond status '==' 'pending'}} selected {{/ifCond}}>Pending</option>
+										<option value="processing" {{#ifCond status '==' 'processing'}} selected {{/ifCond}}>Processing</option>
+										<option value="delivered" {{#ifCond status '==' 'delivered'}} selected {{/ifCond}}>Delivered</option>
+									</select>
+								</td>
                                 <th>
                                     <div class="btn-group">
-                                        <a  type="button" class="btn btn-default">View</a>
-                                        <button type="button" class="btn btn-primary">Edit</button>
+                                        <a href="/admin/orders/{{id}}" type="button" class="btn btn-default">View</a>
                                         <button type="button" class="btn btn-danger delete-order" data-order-id="{{id}}">Delete</button>
                                     </div>
                                 </th>

@@ -41,9 +41,6 @@ $(document).ready(function(){
             url: url,
             contentType: 'application/json',
             type: 'PUT',
-            data: JSON.stringify({
-                isActive: false,
-             }),
             success: function(response){
                 $('#deactive-user-' + userId).css('display', 'none');
 				$('#active-user-' + userId).css('display', 'block');
@@ -65,9 +62,6 @@ $(document).ready(function(){
 	            url: url,
 	            contentType: 'application/json',
 	            type: 'POST',
-	            data: JSON.stringify({
-	                isActive: false,
-	             }),
 	            success: function(response){
 	                row.remove();
 	            },
@@ -77,4 +71,24 @@ $(document).ready(function(){
 	        });
 		}
 	})
+
+	$('select.order-status').on('change', function(){
+		var orderId = $(this).data('order-id');
+		var status = $("#order-status-" + orderId).val();
+		var url = '/admin/orders/' + orderId + '/changeStatus';
+		$.ajax({
+			url: url,
+			contentType: 'application/json',
+			type: 'POST',
+			data: JSON.stringify({
+				status: status
+			}),
+			success: function(response){
+				console.log('Change status success!');
+			},
+			error: function(error) {
+				alert("Error: " + error);
+			}
+		});
+	});
 });

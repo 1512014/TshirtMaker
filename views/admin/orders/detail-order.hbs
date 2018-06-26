@@ -6,64 +6,111 @@
 		  	<div class="card-body">
 				<table class="detail" style="width:100%">
 				  <tbody>
-					  <tr>
-						  <th>Name:</th>
-						  <td>{{product.name}}</td>
+					  <tr style="text-align: center; background-color: #dadada !important;">
+						<th colspan="2">
+							User Info
+						</th>
 					  </tr>
 					  <tr>
-						  <th>Type:</th>
-						  <td>{{product.type.name}}</td>
+						  <th>Full Name:</th>
+						  <td>{{order.user.firstName}} {{order.user.lastName}}</td>
+					  </tr>
+					  <tr>
+						  <th>Email:</th>
+						  <td>{{order.user.email}}</td>
 					  </tr>
 					  <tr>
 						  <th>Gender:</th>
-						  <td>{{product.type.gender}}</td>
+						  <td>{{order.user.gender}}</td>
 					  </tr>
+					  <tr style="text-align: center; background-color: #dadada !important;">
+						<th colspan="2">
+							Product Info
+						</th>
+					  </tr>
+					  <tr>
+						  <th>Product Name:</th>
+						  <td>{{order.product.name}}</td>
+					  </tr>
+					  <tr>
+						  <th>Product Type</th>
+						  <td>{{order.product.type.name}} ({{order.product.type.gender}})</td>
+					  </tr>
+					  <tr>
+						  <th>Images</th>
+						  <td>
+							  <img src="{{order.product.imagePath1}}" width="100px" />
+							  <img src="{{order.product.imagePath2}}" width="100px" />
+						  </td>
+					  </tr>
+					  <!-- <tr>
+						  <th></th>
+						  <td>{{order.phoneNumber}}</td>
+					  </tr> -->
+					  <tr style="text-align: center; background-color: #dadada !important;">
+					    <th colspan="2">
+						    Order Info
+					    </th>
+				 	  </tr>
 					  <tr>
 						  <th>Qty:</th>
-						  <td>{{product.qty}}</td>
+						  <td>{{order.productQty}}</td>
 					  </tr>
 					  <tr>
-						  <th>Min Size:</th>
-						  <td>{{product.minSizeLatin}}</td>
+						  <th>Size:</th>
+						  <td>{{order.productSize}}</td>
 					  </tr>
 					  <tr>
-						  <th>Max Size:</th>
-						  <td>{{product.maxSizeLatin}}</td>
+						  <th>Status:</th>
+						  <td>{{order.status}}</td>
+					  </tr>
+					  <tr style="text-align: center; background-color: #dadada !important;">
+					    <th colspan="2">
+						    Price
+					    </th>
+				 	  </tr>
+					  <tr>
+						  <th>Subtotal:</th>
+						  <td>{{order.subtotal}}</td>
 					  </tr>
 					  <tr>
-						  <th>Color:</th>
-						  <td>{{product.color}}</td>
+						  <th>Shipping:</th>
+						  <td>{{order.shipping}}</td>
 					  </tr>
 					  <tr>
-						  <th>Price:</th>
-						  <td>{{formatNumber product.price style="currency" currency="USD" }}</td>
+						  <th>Total Price:</th>
+						  <td>{{order.totalPrice}}</td>
+					  </tr>
+					  <tr style="text-align: center; background-color: #dadada !important;">
+						<th colspan="2">
+							Delivery Info
+						</th>
 					  </tr>
 					  <tr>
-						  <th>Discount:</th>
-						  <td>{{product.discount}}</td>
+						  <th>Phone Number:</th>
+						  <td>{{order.user.phoneNumber}}</td>
 					  </tr>
 					  <tr>
-						  <th>Description:</th>
-						  <td>{{product.description}}</td>
+						  <th>Country:</th>
+						  <td>{{order.user.country}}</td>
 					  </tr>
-					  <tr style="text-align: center">
-						  <td>
-							  <img src="{{product.imagePath1}}" width="300px;" />
-						  </td>
-						  <td>
-							  <img src="{{product.imagePath2}}" width="300px;" />
-						  </td>
+					  <tr>
+						  <th>City:</th>
+						  <td>{{order.user.city}}</td>
 					  </tr>
-					  <tr style="text-align: center">
-						  <th>Image 1</th>
-						  <th>Image 2</th>
+					  <tr>
+						  <th>Address:</th>
+						  <td>{{order.user.address}}</td>
 					  </tr>
+
+
+
 				  </tbody>
 				</table>
 		  	</div>
 		  	<!-- /.card-body -->
 			<div class="card-footer">
-  				<a href="/admin/products" type="button" class="btn btn-default float-right">Cancel</a>
+  				<a href="/admin/orders" type="button" class="btn btn-default float-right">Cancel</a>
   		  </div>
 		  </div>
 		  <!-- /.card -->

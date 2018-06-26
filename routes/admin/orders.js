@@ -23,22 +23,35 @@ router.get('/', (req, res) => {
 
 });
 
-router.get('/create', (req, res) => {
-	var message = req.session.message;
-  	req.session.message = null;
-	res.render('admin/orders/new-order.hbs', {
-		layout: 'admin-layout',
-		adminContentHeader: 'New Order',
-		breadcrumbs: [
-			{title: "Orders", link: "/admin/orders"},
-			{title: "New Oder", link: "/admin/orders/create"}
-		]
+router.post('/:id/changeStatus', (req, res) => {
+	var id = req.params.id;
+	var newStatus = req.body.status;
+	object = {
+		status: newStatus
+	};
+	// console.log("new status: " + newStatus);
+	ordersController.update(id, object, function(object){
+		res.send({message:"success"});
 	})
 });
 
-// router.post('/create', (req, res) => {
-//
-// });
+router.get('/:id', (req, res) => {
+	var id = req.params.id;
+	ordersController.getById(id, function(order){
+		order.productSize = productsController.getSize(order.productSize);
+		order.totalPrice = order.subtotal + order.shipping;
+		res.render('admin/orders/detail-order.hbs', {
+			order: order,
+			layout: 'admin-layout',
+			adminContentHeader: 'Order Detail',
+			breadcrumbs: [
+				{title: "Orders", link: "/admin/orders"},
+				{title: "Order Detail", link: "#"}
+			]
+		})
+	});
+
+});
 
 router.get('/:id/invoice', (req, res) => {
 	res.render('admin/orders/invoice.hbs', {
