@@ -137,7 +137,13 @@ controller.getSize = (sizeNumber) => {
     }
 };
 
-// Update model
+controller.createProduct = function (object, callback){
+    models.Product
+    .create(object)
+    .then(function(message){
+        callback(message);
+    })
+}
 
 
 // controller.update = function(id, comment, callback){

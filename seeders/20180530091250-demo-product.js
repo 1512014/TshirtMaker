@@ -11,7 +11,7 @@ module.exports = {
           qty: 2,
           minSize: 1,
           maxSize: 6,
-          imagePath1: "/img/templates/template1.jpg",
+          imagePath1: "/img/products/template1.jpg",
           price: 20,
           discount: 20,
           description: "This is a nice T-shirt. Your group will love this fashionable tank."
@@ -22,19 +22,7 @@ module.exports = {
           qty: 2,
           minSize: 1,
           maxSize: 6,
-          imagePath1: "/img/templates/template1.jpg",
-          price: 20,
-          discount: 20,
-          description: "This is a nice T-shirt. Your group will love this fashionable tank."
-
-        },
-		{
-          name: "Gildan Ultra Cotton T-shirt",
-          typeId: 1,
-          qty: 2,
-          minSize: 1,
-          maxSize: 6,
-          imagePath1: "/img/templates/template1.jpg",
+          imagePath1: "/img/products/template1.jpg",
           price: 20,
           discount: 20,
           description: "This is a nice T-shirt. Your group will love this fashionable tank."
@@ -46,7 +34,19 @@ module.exports = {
           qty: 2,
           minSize: 1,
           maxSize: 6,
-          imagePath1: "/img/templates/template1.jpg",
+          imagePath1: "/img/products/template1.jpg",
+          price: 20,
+          discount: 20,
+          description: "This is a nice T-shirt. Your group will love this fashionable tank."
+
+        },
+		{
+          name: "Gildan Ultra Cotton T-shirt",
+          typeId: 1,
+          qty: 2,
+          minSize: 1,
+          maxSize: 6,
+          imagePath1: "/img/products/template1.jpg",
           price: 20,
           discount: 20,
           description: "This is a nice T-shirt. Your group will love this fashionable tank."
@@ -58,7 +58,7 @@ module.exports = {
           qty: 2,
           minSize: 2,
           maxSize: 5,
-          imagePath1: "/img/templates/template2.jpg",
+          imagePath1: "/img/products/template2.jpg",
           price: 15,
           discount: 20,
           description: "This ultra lightweight tank hits all the right trends: tri‑blend, racerback, and a flattering flowy fit. Your group will love this fashionable tank."

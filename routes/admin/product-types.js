@@ -2,12 +2,14 @@ var express = require('express');
 var router = express.Router();
 var models = require('../../models');
 
+//This code block is for uploading images
 const multer = require("multer");
 const upload = multer({
   dest:__dirname + "/../../public/img/uploads/"
 });
 const fs = require("fs");
 const path = require("path");
+//End codeblock
 
 var ordersController = require('../../controllers/ordersController');
 var productTypesController = require('../../controllers/productTypesController');
@@ -46,7 +48,6 @@ router.get('/create', (req, res) => {
 
 router.post("/create", upload.fields([{ name: 'templateFront', maxCount: 1 },  { name: 'templateBack', maxCount: 1 }]), (req, res) => {
 	if (!req.files['templateFront'] || !req.files['templateBack']){
-		console.log("Hello!");
 		req.session.message = "Template images are requied.";
 		res.redirect('/admin/product-types/create');
 		return;

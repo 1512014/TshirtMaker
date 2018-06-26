@@ -19,8 +19,8 @@ module.exports = {
            allowNull: false
       },
       qty: { type: Sequelize.BIGINT(11), allowNull: false, defaultValue: 1 },
-      minSize: { type: Sequelize.INTEGER},
-      maxSize: { type: Sequelize.INTEGER},
+      minSize: { type: Sequelize.INTEGER, defaultValue: 0},
+      maxSize: { type: Sequelize.INTEGER, defaultValue: 7},
       imagePath1: { type: Sequelize.STRING, allowNull: false},
       imagePath2: { type: Sequelize.STRING, allowNull: true},
       // imagePath3: { type: Sequelize.STRING, allowNull: true},
@@ -28,7 +28,7 @@ module.exports = {
       color: { type: Sequelize.STRING, allowNull: true, defaultValue: "#ffffff"},
       price: { type: Sequelize.FLOAT(11, 2), allowNull: false },
       discount: { type: Sequelize.FLOAT(3, 0), defaultValue: 0},
-      description: { type: Sequelize.STRING(512), allowNull: false },
+      description: { type: Sequelize.STRING(512), allowNull: true },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
