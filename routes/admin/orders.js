@@ -3,19 +3,29 @@ var router = express.Router();
 var models = require('../../models');
 
 var ordersController = require('../../controllers/ordersController');
+var productsController = require('../../controllers/productsController');
 
 router.get('/', (req, res) => {
-	res.render('admin/orders/list-orders.hbs', {
-		layout: 'admin-layout',
-		addNewPage: '/admin/orders/create',
-		adminContentHeader: 'All Orders',
-		breadcrumbs: [
-			{title: "All Oders", link: "/admin/orders"}
-		]
+	var message = req.session.message;
+  	req.session.message = null;
+	ordersController.getAll(function(orders){
+		res.render('admin/orders/list-orders.hbs', {
+			message: message,
+			orders: orders,
+			layout: 'admin-layout',
+			addNewPage: '/admin/orders/create',
+			adminContentHeader: 'All Orders',
+			breadcrumbs: [
+				{title: "All Oders", link: "/admin/orders"}
+			]
+		})
 	})
+
 });
 
 router.get('/create', (req, res) => {
+	var message = req.session.message;
+  	req.session.message = null;
 	res.render('admin/orders/new-order.hbs', {
 		layout: 'admin-layout',
 		adminContentHeader: 'New Order',
@@ -25,6 +35,10 @@ router.get('/create', (req, res) => {
 		]
 	})
 });
+
+// router.post('/create', (req, res) => {
+//
+// });
 
 router.get('/:id/invoice', (req, res) => {
 	res.render('admin/orders/invoice.hbs', {
@@ -37,6 +51,15 @@ router.get('/:id/invoice', (req, res) => {
 	})
 });
 
+router.post('/:id/delete', (req, res) => {
+	var id = req.params.id;
+	object = {
+		status: 'deleted'
+	};
+	ordersController.update(id, object, function(object){
+		res.send({message:"success"});
+	})
+});
 
 //
 // router.delete('/:id', function(req, res){

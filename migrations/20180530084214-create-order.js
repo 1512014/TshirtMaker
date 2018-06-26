@@ -11,7 +11,7 @@ module.exports = {
       productId: { type: Sequelize.INTEGER, allowNull: false },
       productQty: { type: Sequelize.INTEGER, allowNull: false},
       productSize: { type: Sequelize.INTEGER, allowNull: false},
-      status: { type: Sequelize.INTEGER, allowNull: false },
+      status: { type: Sequelize.STRING, allowNull: false },
       subtotal: { type: Sequelize.FLOAT(11, 2), allowNull: false },
       shipping: { type: Sequelize.FLOAT(11, 2), defaultValue: 0},
       userId: { type: Sequelize.INTEGER, allowNull: false },

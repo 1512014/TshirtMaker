@@ -7,7 +7,7 @@ module.exports = {
               productId: 1,
               productQty: 2,
               productSize: 2, //size S
-              status: 1,
+              status: 'pending',
               subtotal: 40,
 			  userId: 1
 
@@ -16,7 +16,7 @@ module.exports = {
               productId: 2,
               productQty: 1,
               productSize: 2, //size S
-              status: 1,
+              status: 'pending',
               subtotal: 30,
 			  userId: 1
           },
@@ -24,7 +24,7 @@ module.exports = {
               productId: 4,
               productQty: 3,
               productSize: 2, //size S
-              status: 1,
+              status: 'pending',
               subtotal: 45,
 			  userId: 1
           },
@@ -32,7 +32,7 @@ module.exports = {
               productId: 5,
               productQty: 5,
               productSize: 6, //size S
-              status: 1,
+              status: 'pending',
               subtotal: 100,
 			  userId: 3
           },
@@ -40,7 +40,7 @@ module.exports = {
               productId: 3,
               productQty: 3,
               productSize: 2, //size S
-              status: 1,
+              status: 'pending',
               subtotal: 20,
 			  userId: 3
           }
