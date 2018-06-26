@@ -1,5 +1,6 @@
 var bCrypt = require('bcrypt-nodejs');
 var models = require('../models');
+const request = require('request');
 module.exports = function(passport, user) {
 
     var User = models.User;
@@ -13,11 +14,27 @@ module.exports = function(passport, user) {
 
         },
         function(req, email, password, done) {
+            captcha=req.body['g-recaptcha-response'];
+            if(captcha===undefined||captcha===''||captcha===null){
+                return done(null, false, req.flash('registerMessage','Chưa kiểm tra captcha.'
+                    ));
+            }
+            const secretkey='6LfA1GAUAAAAAC8K5hKqMjfza5FrFvnJ5rJSLNS5';
+            const verifyUrl="https://www.google.com/recaptcha/api/siteverify?secret=" + secretkey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+            request(verifyUrl,function(error,response,body) {
+                body = JSON.parse(body);
+            
+                if(body.success !== undefined && !body.success) {
+                  return res.json({"responseError" : "Failed captcha verification"});
+                }
+              });
+            console.log("bbbbbbbb");
             var generateHash = function(password) {
 
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
 
             };
+            console.log(req.body);
             models.User.findOne({
                 where: {
                     email: email

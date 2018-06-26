@@ -1,3 +1,4 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <div class="row">
     <div class="hidden" name="message">{{message}}</div>
     <script>
@@ -7,6 +8,7 @@
     <script>
 
         function Validate() {
+            
             var input1 = document.getElementById("InputName1").value;
             var input2 = document.getElementById("InputName2").value;
             var input3 = document.getElementById("InputName3").value;
@@ -14,6 +16,8 @@
             var input5 = document.getElementById("InputName5").value;
             var input6 = document.getElementById("InputName6").value;
             var check = document.getElementById("Checkbox1").checked;
+           var captcha = document.getElementById('captcha').value;
+           console.log(captcha);
             if (input1 == '' || input2 == '' || input3 == '' || input4 == '' || input5 == '' || input6 == '') {
                 alert("Chưa nhập đủ thông tin.");
                
@@ -89,11 +93,12 @@
                     </label>
                 </div>
             </div>
+            <div class="g-recaptcha" name="captcha" data-sitekey="6LfA1GAUAAAAAK3J3C93mUbEpWhaFxzH3DJZfX-y"></div>
             <div class="footer clearfix">
                 <button type="submit" class="btn btn-default" id="submitbutton">Register now</button>
 
             </div>
 
-            </thi>
+        </form>
     </div>
 </div>
