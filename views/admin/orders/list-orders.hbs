@@ -26,6 +26,7 @@
                             </thead>
                             <tbody>
 							{{#each orders}}
+
                             <tr>
                                 <td>{{id}}</td>
                                 <td>{{user.firstName}} {{user.lastName}}</td>
@@ -38,7 +39,7 @@
                                     <div class="btn-group">
                                         <a  type="button" class="btn btn-default">View</a>
                                         <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
+                                        <button type="button" class="btn btn-danger delete-order" data-order-id="{{id}}">Delete</button>
                                     </div>
                                 </th>
                             </tr>

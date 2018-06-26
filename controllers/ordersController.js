@@ -1,5 +1,7 @@
-var controller = {};
+var Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
+var controller = {};
 var models = require('../models');
 var settingsController = require('../controllers/settingsController');
 var productTypesController = require('../controllers/productTypesController');
@@ -8,14 +10,17 @@ var usersController = require('../controllers/usersController');
 
 controller.getAll = function(callback){
     models.Order
-    .findAll({})
+    .findAll({
+		where: {
+			status: {[Op.not]: 'deleted'}
+		}
+	})
     .then(function(orders){
 		orders.forEach(function(order){
 			productsController.getById(order.productId, function(product){
 				order.product = product;
 			});
 			usersController.getById(order.userId, function(user){
-				console.log("ID: " + order.userId);
 				order.user = user;
 			});
 		});

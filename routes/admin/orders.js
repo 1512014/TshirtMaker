@@ -24,6 +24,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/create', (req, res) => {
+	var message = req.session.message;
+  	req.session.message = null;
 	res.render('admin/orders/new-order.hbs', {
 		layout: 'admin-layout',
 		adminContentHeader: 'New Order',
@@ -33,6 +35,10 @@ router.get('/create', (req, res) => {
 		]
 	})
 });
+
+// router.post('/create', (req, res) => {
+//
+// });
 
 router.get('/:id/invoice', (req, res) => {
 	res.render('admin/orders/invoice.hbs', {
@@ -45,6 +51,15 @@ router.get('/:id/invoice', (req, res) => {
 	})
 });
 
+router.post('/:id/delete', (req, res) => {
+	var id = req.params.id;
+	object = {
+		status: 'deleted'
+	};
+	ordersController.update(id, object, function(object){
+		res.send({message:"success"});
+	})
+});
 
 //
 // router.delete('/:id', function(req, res){

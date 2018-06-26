@@ -54,4 +54,27 @@ $(document).ready(function(){
             }
         });
 	});
+
+	$('button.delete-order').on('click', function(){
+		var orderId = $(this).data('order-id');
+		var row = $(this).parents('tr');
+		var confirmDelete = confirm('Are you sure?');
+		if (confirmDelete){
+			url = '/admin/orders/' + orderId + '/delete';
+	        $.ajax({
+	            url: url,
+	            contentType: 'application/json',
+	            type: 'POST',
+	            data: JSON.stringify({
+	                isActive: false,
+	             }),
+	            success: function(response){
+	                row.remove();
+	            },
+	            error: function(error) {
+	                alert(error);
+	            }
+	        });
+		}
+	})
 });
