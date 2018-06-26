@@ -1,0 +1,76 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+		  <div class="card">
+		  	<div class="card-body">
+				<table class="detail" style="width:100%">
+				  <tbody>
+					  <tr>
+						  <th>Name:</th>
+						  <td>{{product.name}}</td>
+					  </tr>
+					  <tr>
+						  <th>Type:</th>
+						  <td>{{product.type.name}}</td>
+					  </tr>
+					  <tr>
+						  <th>Gender:</th>
+						  <td>{{product.type.gender}}</td>
+					  </tr>
+					  <tr>
+						  <th>Qty:</th>
+						  <td>{{product.qty}}</td>
+					  </tr>
+					  <tr>
+						  <th>Min Size:</th>
+						  <td>{{product.minSizeLatin}}</td>
+					  </tr>
+					  <tr>
+						  <th>Max Size:</th>
+						  <td>{{product.maxSizeLatin}}</td>
+					  </tr>
+					  <tr>
+						  <th>Color:</th>
+						  <td>{{product.color}}</td>
+					  </tr>
+					  <tr>
+						  <th>Price:</th>
+						  <td>{{formatNumber product.price style="currency" currency="USD" }}</td>
+					  </tr>
+					  <tr>
+						  <th>Discount:</th>
+						  <td>{{product.discount}}</td>
+					  </tr>
+					  <tr>
+						  <th>Description:</th>
+						  <td>{{product.description}}</td>
+					  </tr>
+					  <tr style="text-align: center">
+						  <td>
+							  <img src="{{product.imagePath1}}" width="300px;" />
+						  </td>
+						  <td>
+							  <img src="{{product.imagePath2}}" width="300px;" />
+						  </td>
+					  </tr>
+					  <tr style="text-align: center">
+						  <th>Image 1</th>
+						  <th>Image 2</th>
+					  </tr>
+				  </tbody>
+				</table>
+		  	</div>
+		  	<!-- /.card-body -->
+			<div class="card-footer">
+  				<a href="/admin/products" type="button" class="btn btn-default float-right">Cancel</a>
+  		  </div>
+		  </div>
+		  <!-- /.card -->
+
+	  </div>
+
+      </div>
+    </div>
+  </div>
+</div>

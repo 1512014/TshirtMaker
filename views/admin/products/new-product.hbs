@@ -35,7 +35,7 @@
 			  </div>
 			  <div class="form-group">
                 <label for="qty">Qty <span class="required">(*)</span></label>
-                <input type="number" value="{{product.qty}}" class="form-control" id="qty" name="qty" placeholder="Enter product qty">
+                <input type="number" value="{{product.qty}}" class="form-control" id="qty" name="qty" min="0" max="99" placeholder="Enter product qty">
               </div>
 			  <div class="form-group">
    	  			<label for="minSize">Min Size <span class="required">(*)</span></label>
@@ -59,7 +59,7 @@
 			  </div>
 			  <div class="form-group">
 				<label for="discount">Discount (%) <span class="required">(*)</span></label>
-				<input type="number" value="{{product.discount}}" class="form-control" id="discount" name="discount" placeholder="Enter product discount">
+				<input type="number" value="{{product.discount}}" class="form-control" id="discount" name="discount" name="qty" min="0" max="100" placeholder="Enter product discount">
 			  </div>
 			  <div class="form-group">
 				<label for="image1">Image 1 <span class="required">(*)</span></label>
@@ -70,8 +70,8 @@
 				<input type="file" class="form-control" id="image2" name="image2" accept=".jpg, .jpeg, .png">
 			  </div>
 			  <div class="form-group">
-				<label for="color">Color (hex)</label>
-				<input type="text" value="{{product.color}}" class="form-control" id="color" name="color" placeholder="#000000">
+				<label for="color">Color</label>
+				<input type="color" value="{{product.color}}" class="form-control" id="color" name="color" style="height: 50px; width: 100px;">
 			  </div>
               <div class="form-group">
                 <label for="description">Description</label>

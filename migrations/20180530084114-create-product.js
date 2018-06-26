@@ -25,7 +25,7 @@ module.exports = {
       imagePath2: { type: Sequelize.STRING, allowNull: true},
       // imagePath3: { type: Sequelize.STRING, allowNull: true},
       // imagePath4: { type: Sequelize.STRING, allowNull: true},
-      color: { type: Sequelize.STRING, allowNull: true, defaultValue: "#ffffff"},
+      color: { type: Sequelize.STRING, allowNull: true, defaultValue: "#0000ff"},
       price: { type: Sequelize.FLOAT(11, 2), allowNull: false },
       discount: { type: Sequelize.FLOAT(3, 0), defaultValue: 0},
       description: { type: Sequelize.STRING(512), allowNull: true },

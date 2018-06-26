@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     imagePath2: { type: DataTypes.STRING, allowNull: true},
     // imagePath3: { type: DataTypes.STRING, allowNull: true},
     // imagePath4: { type: DataTypes.STRING, allowNull: true},
-    color: { type: DataTypes.STRING, allowNull: true, defaultValue: "#ffffff"},
+    color: { type: DataTypes.STRING, allowNull: true, defaultValue: "#0000ff"},
     price: { type: DataTypes.FLOAT(11, 2), allowNull: false },
     discount: { type: DataTypes.FLOAT(3, 0), defaultValue: 0},
     description: { type: DataTypes.STRING(512), allowNull: true }

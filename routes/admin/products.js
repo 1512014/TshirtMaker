@@ -9,6 +9,7 @@ const upload = multer({
 });
 const fs = require("fs");
 const path = require("path");
+var validator = require('validator');
 //End codeblock
 
 
@@ -32,19 +33,18 @@ router.get('/', (req, res) => {
 	});
 });
 
-// router.get('/:id', (req, res) => {
-//
-// });
-
 router.get('/create', (req, res) => {
 	var message = req.session.message;
+	var product = req.session.product;
 	req.session.message = null;
+	req.session.product = null;
 	productTypesController.getAllProductTypes(function(types){
 		sizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL'];
 		res.render('admin/products/new-product.hbs', {
 			message: message,
 			sizes: sizes,
 			productTypes: types,
+			product: product,
 			layout: 'admin-layout',
 			adminContentHeader: 'New Product',
 			breadcrumbs: [
@@ -56,12 +56,29 @@ router.get('/create', (req, res) => {
 
 });
 
+router.get('/:id', (req, res) => {
+	var id = req.params.id;
+	productsController.getById(id, function(product){
+		res.render('admin/products/detail-product.hbs', {
+			product: product,
+			layout: 'admin-layout',
+			adminContentHeader: 'Product Detail',
+			breadcrumbs: [
+				{title: "Products", link: "/admin/products/"},
+				{title: "Product Detail", link: "#"}
+			]
+		})
+	})
+});
+
 router.post("/create", upload.fields([{ name: 'image1', maxCount: 1 },  { name: 'image2', maxCount: 1 }]), (req, res) => {
 	if (!req.files['image1']){
 		req.session.message = "Image 1 is requied.";
+		req.session.product = req.body;
 		res.redirect('/admin/products/create');
 		return;
 	}
+
 	var name = req.body.name;
 
 	var image1Name = name.trim().replace(/\s\s+/g, '').replace(/ /g,"_").toLowerCase() + '_image1' + path.extname(req.files['image1'][0].originalname).toLowerCase();
