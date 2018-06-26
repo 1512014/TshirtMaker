@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+	$('.select2').select2();
+
 	$('#maxSize').on('change', function(){
 		var minSize = $('#minSize').val();
 		var maxSize = $(this).val();

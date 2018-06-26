@@ -3,16 +3,24 @@ var router = express.Router();
 var models = require('../../models');
 
 var ordersController = require('../../controllers/ordersController');
+var productsController = require('../../controllers/productsController');
 
 router.get('/', (req, res) => {
-	res.render('admin/orders/list-orders.hbs', {
-		layout: 'admin-layout',
-		addNewPage: '/admin/orders/create',
-		adminContentHeader: 'All Orders',
-		breadcrumbs: [
-			{title: "All Oders", link: "/admin/orders"}
-		]
+	var message = req.session.message;
+  	req.session.message = null;
+	ordersController.getAll(function(orders){
+		res.render('admin/orders/list-orders.hbs', {
+			message: message,
+			orders: orders,
+			layout: 'admin-layout',
+			addNewPage: '/admin/orders/create',
+			adminContentHeader: 'All Orders',
+			breadcrumbs: [
+				{title: "All Oders", link: "/admin/orders"}
+			]
+		})
 	})
+
 });
 
 router.get('/create', (req, res) => {
