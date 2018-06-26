@@ -8,6 +8,8 @@ paypal.configure({
     'client_secret': 'ENIhZGkKaghcEVKtAIKxkG5j9JKZjlmu47UvFse4xRz6n5LhaOHZkktGsgzObMUmUiZi_sK8K1GvYS49'
   });
 router.get('/',function(req,res){
+    const total= req.query.total;
+    console.log(total);
     const create_payment_json = {
         "intent": "sale",
         "payer": {
@@ -20,20 +22,21 @@ router.get('/',function(req,res){
         "transactions": [{
             "item_list": {
                 "items": [{
-                    "name": "Red Jeans",
+                    "name": "Only one",
                     "sku": "001",
-                    "price": "10.00",
+                    "price": total,
                     "currency": "USD",
                     "quantity": 1
                 }]
             },
             "amount": {
                 "currency": "USD",
-                "total": "10.00"
+                "total":total
             },
             "description": "This is the payment description."
         }]
     };
+
     paypal.payment.create(create_payment_json, function (error, payment) {
         if (error) {
             throw error;
@@ -50,12 +53,13 @@ router.get('/',function(req,res){
 router.get('/success',function(req,res){
     const payerId=req.query.PayerID;
     const paymentId=req.query.paymentId;
+    //total= req.query.total;
     const execute_payment_json={
         "payer_id":payerId,
         "transactions": [{
             "amount": {
                 "currency": "USD",
-                "total": "10.00"
+                "total":10
             }
         }]
     }

@@ -157,9 +157,10 @@ app.use('/member', member);
 
 
 app.post('/payment', (req, res) => {
-	var method=req.body.payment_method;
-	if(method=='paypal') res.redirect('/paypal');
-	else if (method=='vnpay') res.redirect('/vnpay');
+    method=req.body.payment_method;
+    total=req.body.total;
+	if(method=='paypal') res.redirect('/paypal'+'?total='+total);
+	else if (method=='vnpay') res.redirect('/vnpay'+'?total='+total);
 	else res.redirect('/');
 });
 app.post('/checkout2',(req,res)=>{
@@ -172,6 +173,7 @@ app.post('/checkout2',(req,res)=>{
             productsController.getProductFromOrder(orders[i], products, totalPrice, function(object){
                 if (object.products.length == orders.length) {
                     res.render('checkout-step2.hbs', {
+                        userId:userId,
                       products: object.products,
                       totalPrice: object.totalPrice,
                       nOrders: orders.length,
@@ -185,6 +187,45 @@ app.post('/checkout2',(req,res)=>{
     });
     console.log(req.body);
 })
+
+app.post('/checkout3',(req,res)=>{
+    userId=req.body.userId;
+    name=req.body.firstname;
+    email=req.body.email;
+    state=req.body.state;
+    zip=req.body.zip;
+    address=req.body.address;
+    city=req.body.city;
+    payment_method=req.body.payment_method;
+    products = [];
+    totalPrice = {subtotal: 0, total: 0};
+    ordersController.getAllByUserId(userId, 1, function(objects){
+        orders = objects;
+        for (var i = 0; i < orders.length; i++){
+            productsController.getProductFromOrder(orders[i], products, totalPrice, function(object){
+                if (object.products.length == orders.length) {
+                    res.render('checkout-step3.hbs', {
+                        name:name,
+                        email:email,
+                        state:state,
+                        zip:zip,
+                        address:address,
+                        city:city,
+                        payment_method:payment_method,
+                      products: object.products,
+                      totalPrice: object.totalPrice,
+                      nOrders: orders.length,
+                      pageHeader: false,
+                      cssCheckOutStep2: true,
+		              hideBreadcrumb: true
+                    });
+                }
+            });
+        }
+    });
+    console.log(req.body);
+})
+
 app.get('/templates', (req, res) => {
     res.render('templates.hbs', {
 		pageHeader: true,
