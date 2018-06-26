@@ -2,29 +2,46 @@ var express = require('express');
 var router = express.Router();
 var models = require('../../models');
 
-var ordersController = require('../../controllers/ordersController');
+var usersController = require('../../controllers/usersController');
 
 router.get('/', (req, res) => {
-	res.render('admin/users/list-users.hbs', {
-		layout: 'admin-layout',
-		addNewPage: '/admin/users/create',
-		adminContentHeader: 'All Users',
-		breadcrumbs: [
-			{title: "All Users", link: "/admin/users"}
-		]
+	usersController.getAll(function(users){
+		res.render('admin/users/list-users.hbs', {
+			users: users,
+			layout: 'admin-layout',
+			addNewPage: '/admin/users/create',
+			adminContentHeader: 'All Users',
+			breadcrumbs: [
+				{title: "All Users", link: "/admin/users"}
+			]
+		})
 	})
+
 });
 
-router.get('/create', (req, res) => {
-	res.render('admin/users/new-user.hbs', {
-		layout: 'admin-layout',
-		adminContentHeader: 'New User',
-		breadcrumbs: [
-			{title: "Users", link: "/admin/users"},
-			{title: "New User", link: "#"}
-		]
-	})
+router.get('/:id', (req, res) => {
+	var id = req.params.id;
+	usersController.getById(id, function(user){
+		res.render('admin/users/detail-user.hbs', {
+			user: user,
+			layout: 'admin-layout',
+			adminContentHeader: 'User Detail',
+			breadcrumbs: [
+				{title: "Users", link: "/admin/users"},
+				{title: "User Detail", link: "#"}
+			]
+		})
+	});
+
 });
+
+router.put('/:id', function(req, res){
+    id = req.params.id;
+
+    usersController.update(id, req.body, function(comment){
+        res.send({status:"success"});
+    });
+})
 
 //
 // router.delete('/:id', function(req, res){

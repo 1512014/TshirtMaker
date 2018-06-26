@@ -3,12 +3,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header">
-                        <!-- <h3 class="card-title">Data Table With Full Features</h3> -->
+                    <!-- <div class="card-header">
                         <a type="button" class="btn btn-primary add-new" href="{{addNewPage}}">
                             Add New
                         </a>
-                    </div>
+                    </div> -->
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -18,186 +17,47 @@
                                 <th>Full Name</th>
                                 <th>Email</th>
                                 <th>Gender</th>
-                                <th>Phone Number</th>
-                                <th>Address</th>
+								<th>Phone Number</th>
+                                <th>Active Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
+							{{#each users}}
                             <tr>
-                                <td>2</td>
-                                <td>User 2</td>
-                                <td>user2@gmail.com</td>
-                                <td>Female</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
+                                <td>{{id}}</td>
+                                <td>{{firstName}} {{lastName}}</td>
+                                <td>{{email}}</td>
+                                <td>{{gender}}</td>
+                                <td>{{phoneNumber}}</td>
+                                <td id="active-status-{{id}}">
+									{{#ifCond isActive '==' '1'}}
+									Active
+									{{else}}
+									Not active
+									{{/ifCond}}
+								</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
+                                        <a href="/admin/users/{{id}}" type="button" class="btn btn-default">View</a>
+
+										<button type="button" {{#ifCond isActive '==' '0'}} style="display: none" {{/ifCond}} class="btn btn-danger deactive-user" id="deactive-user-{{id}}" data-user-id="{{id}}">Deactive</button>
+										<button type="button" {{#ifCond isActive '==' '1'}} style="display: none" {{/ifCond}} class="btn btn-primary active-user" id="active-user-{{id}}" data-user-id="{{id}}">Active</button>
+
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Tom Cruise</td>
-                                <td>tomcruise@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. ABC</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Alex Andrew</td>
-                                <td>alexandrew@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Alex Andrew</td>
-                                <td>alexandrew@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Alex Andrew</td>
-                                <td>alexandrew@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Alex Andrew</td>
-                                <td>alexandrew@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Alex Andrew</td>
-                                <td>alexandrew@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Alex Andrew</td>
-                                <td>alexandrew@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>Alex Andrew</td>
-                                <td>alexandrew@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11</td>
-                                <td>Alex Andrew</td>
-                                <td>alexandrew@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>Alex Andrew</td>
-                                <td>alexandrew@gmail.com</td>
-                                <td>Male</td>
-                                <td>0123456789</td>
-                                <td>123 St. Elizabet</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
+							{{/each}}
+
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>#</th>
+								<th>#</th>
                                 <th>Full Name</th>
                                 <th>Email</th>
                                 <th>Gender</th>
-                                <th>Phone Number</th>
-                                <th>Address</th>
+								<th>Phone Number</th>
+                                <th>Active Status</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>

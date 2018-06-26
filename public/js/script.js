@@ -102,7 +102,6 @@ $(document).ready(function () {
             url: url,
             contentType: 'application/json',
             type: 'PUT',
-            contentType: 'application/json',
             data: JSON.stringify({
                 productQty: qty,
 

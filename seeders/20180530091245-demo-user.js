@@ -10,12 +10,11 @@ module.exports = {
               email: 'huynhan@gmail.com',
               password: '$2a$08$hguFhdL8y.Me101EzFcFNOVrO73udXEpSCdxjDUYbjO5w8/yICYHi',
 			  role: 'user',
-			  gender: 1,
+			  gender: 'male',
 			  phoneNumber: '0123456789',
 			  country: 'Vietnam',
 			  city: 'Ho Chi Minh',
-			  address: '123 Nguyen Thi Minh Khai',
-			  isActive: 1
+			  address: '123 Nguyen Thi Minh Khai'
           },
 		  {
               id: 2,
@@ -24,12 +23,11 @@ module.exports = {
               email: 'huynhduy@gmail.com',
               password: '$2a$08$hguFhdL8y.Me101EzFcFNOVrO73udXEpSCdxjDUYbjO5w8/yICYHi',
 			  role: 'admin',
-			  gender: 1,
+			  gender: 'male',
 			  phoneNumber: '0123456789',
 			  country: 'Vietnam',
 			  city: 'Ho Chi Minh',
-			  address: '123 Nguyen Thi Minh Khai',
-			  isActive: 1
+			  address: '123 Nguyen Thi Minh Khai'
           },
 		  {
               id: 3,
@@ -38,12 +36,11 @@ module.exports = {
               email: 'quanghung@gmail.com',
               password: '$2a$08$hguFhdL8y.Me101EzFcFNOVrO73udXEpSCdxjDUYbjO5w8/yICYHi',
 			  role: 'user',
-			  gender: 1,
+			  gender: 'male',
 			  phoneNumber: '01233332333',
 			  country: 'Vietnam',
 			  city: 'Ho Chi Minh',
-			  address: '33 Dinh Tien Hoang',
-			  isActive: 1
+			  address: '33 Dinh Tien Hoang'
           }
       ];
        return queryInterface.bulkInsert('Users', users, {});
