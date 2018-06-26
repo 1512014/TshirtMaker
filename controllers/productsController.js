@@ -77,12 +77,12 @@ controller.getProductFromOrder = function(order, products, totalPrice, callback)
 			var tax = setting.value;
 			tempSubtotal = order.subtotal * order.productQty +  order.shipping;
 			//Get totalPrice
-	        product.totalPrice = tempSubtotal
+	        product.totalPrice = tempSubtotal;
 			totalPrice.subtotal += tempSubtotal;
 	        totalPrice.total += tempSubtotal + tempSubtotal*tax/100;
 			totalPrice.tax = tax;
-
-	        productData.product = product;
+            productData.product = product;
+            
 	        products.push(productData);
 	        callback({products: products, totalPrice: totalPrice});
 		})

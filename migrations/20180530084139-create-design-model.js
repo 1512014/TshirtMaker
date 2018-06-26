@@ -14,11 +14,13 @@ module.exports = {
       size: { type: Sequelize.STRING(11), defaultValue: 0},
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue:  Sequelize.literal('NOW()')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue:  Sequelize.literal('NOW()')
       }
     });
   },

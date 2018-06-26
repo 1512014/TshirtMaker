@@ -1,6 +1,9 @@
+
 <div class="container-fluid TM-checkout">
     <div class="row">
-        <h4 class="title">Shopping Cart <span>({{nOrders}} Orders)</span></h4>
+        <h4 class="title">Shopping Cart
+            <span>({{nOrders}} Orders)</span>
+        </h4>
         <div class="col-sm-9 book-list">
 
             {{#each products}}
@@ -14,7 +17,7 @@
                         <div class="col-sm-7">
                             <h4 class="book-title">
                                 <a href="/products/{{product.id}}">
-                                {{product.name}}
+                                    {{product.name}}
                                 </a>
                             </h4>
                             <p class="author">Type:
@@ -25,8 +28,7 @@
                             </p>
                             <p class="author">Product Price:
                                 <span class="price">
-                                    <input type="hidden" class="product-price" data-id="{{order.id}}" value="{{product.discountPrice}}" />
-                                    {{formatNumber product.discountPrice style="currency" currency="USD"}}
+                                    <input type="hidden" class="product-price" data-id="{{order.id}}" value="{{product.discountPrice}}" /> {{formatNumber product.discountPrice style="currency" currency="USD"}}
                                 </span>
                                 <span class="original-price">
                                     ({{formatNumber product.price style="currency" currency="USD" }})
@@ -40,7 +42,8 @@
                             </p>
 
 
-                            <button type="button" class="btn btn-danger delete-order" data-id="{{order.id}}" href="#" style="margin-top:20px;">Delete Order</a></button>
+                            <button type="button" class="btn btn-danger delete-order" data-id="{{order.id}}" href="#" style="margin-top:20px;">Delete Order</a>
+                            </button>
 
                         </div>
                         <div class="col-sm-5 item-price">
@@ -54,7 +57,8 @@
                                         <button class="btn btn-default bootstrap-touchspin-down" data-id="{{order.id}}" type="button">-</button>
                                     </span>
                                     <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                                    <input type="tel" class="form-control quantity-r2 quantity js-quantity-product-{{order.id}}" min="0" data-js-qty="" value="{{productQty}}" style="display: block; text-align: center">
+                                    <input type="tel" class="form-control quantity-r2 quantity js-quantity-product-{{order.id}}" min="0" data-js-qty="" value="{{productQty}}"
+                                        style="display: block; text-align: center">
                                     <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
                                     <span class="input-group-btn">
                                         <button class="btn btn-default bootstrap-touchspin-up" data-id="{{order.id}}" type="button">+</button>
@@ -75,28 +79,34 @@
                     <p style="color: #333">Subtotal:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-					<p>{{formatNumber totalPrice.subtotal style="currency" currency="USD"}}</p>
+                    <p>{{formatNumber totalPrice.subtotal style="currency" currency="USD"}}</p>
                 </div>
             </div>
-			<div class="row book-price" style="border-bottom: 5px solid #eee">
+            <div class="row book-price" style="border-bottom: 5px solid #eee">
                 <div class="col-sm-5" style="text-align: left">
                     <p style="color: #333">Tax:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-					<p>{{totalPrice.tax}}%</p>
+                    <p>{{totalPrice.tax}}%</p>
                 </div>
             </div>
+            <form action="/checkout2" method="POST">
             <div class="row book-price">
                 <div class="col-sm-5" style="text-align: left">
                     <p style="padding-top: 10px; color: #333">Total:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-					<p class="total-price">{{formatNumber totalPrice.total style="currency" currency="USD"}}</p>
+                    <p class="total-price">{{formatNumber totalPrice.total style="currency" currency="USD"}}</p>
                     <p style="font-size: 13px">(Included Tax)</p>
+                    <input class="hide" name="userId" value={{userId}}>
 
                 </div>
             </div>
-            <a href="/checkout-step2"><button type="button" class="btn btn-danger checkout">Checkout</button></a>
+
+            <button type="submit" class="btn btn-danger checkout">Checkout</button>
+            </form>
+            
+
         </div>
     </div>
 </div>
