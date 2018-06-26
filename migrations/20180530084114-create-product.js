@@ -18,14 +18,13 @@ module.exports = {
           //   },
            allowNull: false
       },
-      gender: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 1}, //1: Male, 2: Female
       qty: { type: Sequelize.BIGINT(11), allowNull: false, defaultValue: 1 },
       minSize: { type: Sequelize.INTEGER},
       maxSize: { type: Sequelize.INTEGER},
       imagePath1: { type: Sequelize.STRING, allowNull: false},
       imagePath2: { type: Sequelize.STRING, allowNull: true},
-      imagePath3: { type: Sequelize.STRING, allowNull: true},
-      imagePath4: { type: Sequelize.STRING, allowNull: true},
+      // imagePath3: { type: Sequelize.STRING, allowNull: true},
+      // imagePath4: { type: Sequelize.STRING, allowNull: true},
       color: { type: Sequelize.STRING, allowNull: true, defaultValue: "#ffffff"},
       price: { type: Sequelize.FLOAT(11, 2), allowNull: false },
       discount: { type: Sequelize.FLOAT(3, 0), defaultValue: 0},

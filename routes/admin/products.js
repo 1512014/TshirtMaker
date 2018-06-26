@@ -2,29 +2,41 @@ var express = require('express');
 var router = express.Router();
 var models = require('../../models');
 
-var ordersController = require('../../controllers/ordersController');
+var productsController = require('../../controllers/productsController');
+var productTypesController = require('../../controllers/productTypesController');
 
 router.get('/', (req, res) => {
-	res.render('admin/products/list-products.hbs', {
-		layout: 'admin-layout',
-		addNewPage: '/admin/products/create',
-		adminContentHeader: 'All Products',
-		breadcrumbs: [
-			{title: "Products", link: "/admin/products/"}
-		]
-	})
+	productsController.getAll(function(products){
+		res.render('admin/products/list-products.hbs', {
+			products: products,
+			layout: 'admin-layout',
+			addNewPage: '/admin/products/create',
+			adminContentHeader: 'All Products',
+			breadcrumbs: [
+				{title: "Products", link: "/admin/products/"}
+			]
+		})
+	});
 });
 
+// router.get('/:id', (req, res) => {
+//
+// });
 
 router.get('/create', (req, res) => {
-	res.render('admin/products/new-product.hbs', {
-		layout: 'admin-layout',
-		adminContentHeader: 'New Product',
-		breadcrumbs: [
-			{title: "Products", link: "/admin/products/"},
-			{title: "New Product", link: "/admin/products/create"}
-		]
+
+	productTypesController.getAllProductTypes(function(types){
+		res.render('admin/products/new-product.hbs', {
+			productTypes: types,
+			layout: 'admin-layout',
+			adminContentHeader: 'New Product',
+			breadcrumbs: [
+				{title: "Products", link: "/admin/products/"},
+				{title: "New Product", link: "/admin/products/create"}
+			]
+		})
 	})
+
 });
 
 

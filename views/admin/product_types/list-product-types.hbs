@@ -26,6 +26,7 @@
 								<th>Gender</th>
                                 <th>Template Front</th>
                                 <th>Template Back</th>
+								<th>Basic Price</th>
 								<th>Action</th>
                             </tr>
                             </thead>
@@ -41,6 +42,7 @@
 								<td style="text-align: center">
 									<img width="50px" src="{{templateBack}}" />
 								</td>
+								<td>{{formatNumber basicPrice style="currency" currency="USD"}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="/admin/product-types/{{id}}/edit" type="button" class="btn btn-primary edit-product-type" data-product-type-id="{{id}}">Edit</a>
@@ -62,6 +64,7 @@
 								<th>Gender</th>
                                 <th>Template Front</th>
                                 <th>Template Back</th>
+								<th>Basic Price</th>
 								<th>Action</th>
                             </tr>
                             </tfoot>

@@ -10,11 +10,12 @@ const fs = require("fs");
 const path = require("path");
 
 var ordersController = require('../../controllers/ordersController');
-var productsController = require('../../controllers/productsController');
+var productTypesController = require('../../controllers/productTypesController');
+
 router.get('/', (req, res) => {
 	var message = req.session.message;
   	req.session.message = null;
-	productsController.getAllProductTypes(function(objects){
+	productTypesController.getAllProductTypes(function(objects){
 		var productTypes = objects;
 		res.render('admin/product_types/list-product-types.hbs', {
 			productTypes: productTypes,
@@ -44,7 +45,7 @@ router.get('/create', (req, res) => {
 });
 
 router.post("/create", upload.fields([{ name: 'templateFront', maxCount: 1 },  { name: 'templateBack', maxCount: 1 }]), (req, res) => {
-	if (!req.files['templateFront'][0] || !req.files['templateBack'][0]){
+	if (!req.files['templateFront'] || !req.files['templateBack']){
 		console.log("Hello!");
 		req.session.message = "Template images are requied.";
 		res.redirect('/admin/product-types/create');
@@ -89,20 +90,93 @@ router.post("/create", upload.fields([{ name: 'templateFront', maxCount: 1 },  {
 	  			templateBack: templateBack,
 	  			basicPrice: req.body.basicPrice
 	  		}
-	  		productsController.createProductType(object, function(message){
-				req.session.message = "Create Successfully!";
+	  		productTypesController.createProductType(object, function(message){
+				req.session.message = "Created Successfully!";
  				res.redirect('/admin/product-types');
 	  		});
 
 	  	});
 	});
+});
+
+router.get("/:id/edit", (req, res) => {
+	var id = req.params.id;
+	productTypesController.getProductType(id, function(object){
+		res.render('admin/product_types/new-product-type.hbs', {
+			productType: object,
+			layout: 'admin-layout',
+			adminContentHeader: 'Edit Product Type',
+			breadcrumbs: [
+				{title: "Product Types", link: "/admin/product-types"},
+				{title: "Edit Product Type", link: "#"}
+			]
+		})
+	});
+});
+
+router.post("/:id/edit", upload.fields([{ name: 'templateFront', maxCount: 1 },  { name: 'templateBack', maxCount: 1 }]), (req, res) => {
+	var id = req.params.id;
+	productTypesController.getProductType(id, function(object){
+		var productType = object;
+		productType.name = req.body.productTypeName;
+		productType.gender = req.body.gender;
+		productType.basicPrice = req.body.basicPrice;
+		console.log("productType: " + productType);
+		if (req.files['templateFront']){
+			var frontName = productType.name.trim().replace(/\s\s+/g, '').replace(/ /g,"_").toLowerCase() + '_front' + path.extname(req.files['templateFront'][0].originalname).toLowerCase();
+			var tempFront = req.files['templateFront'][0].path;
+			var templateFront = "/img/templates/male/" + frontName;
+			var targetFront = path.join(__dirname, "/../../public/img/templates/male/" + frontName);
+
+			if (productType.gender == 'female'){
+				targetFront = path.join(__dirname, "/../../public/img/templates/female/" + frontName);
+				templateFront = "/img/templates/female/" + frontName;
+			}
+
+			productType.templateFront = templateFront;
+			fs.rename(tempFront, targetFront, err => {
+
+			});
+		}
+
+		if(req.files['templateBack']){
+			var backName = productType.name.trim().replace(/\s\s+/g, '').replace(/ /g,"_").toLowerCase() + '_back' + path.extname(req.files['templateBack'][0].originalname).toLowerCase();
+			var tempBack = req.files['templateBack'][0].path;
+			var templateBack = "/img/templates/male/" + backName;
+			var targetBack = path.join(__dirname, "/../../public/img/templates/male/" + backName);
+
+			if (productType.gender == 'female'){
+				targetBack = path.join(__dirname, "/../../public/img/templates/female/" + backName);
+				templateBack = "/img/templates/female/" + backName;
+			}
+
+			productType.templateBack = templateBack;
+			fs.rename(tempBack, targetBack, err => {
+
+			});
+		}
+
+		productTypeData = {
+			name: productType.name,
+			gender: productType.gender,
+			basicPrice: productType.basicPrice,
+			templateFront: productType.templateFront,
+			templateBack: productType.templateBack
+		};
+		productTypesController.updateProductType(id, productTypeData, function(message){
+
+			req.session.message = "Updated Successfully!";
+			res.redirect('/admin/product-types');
+		});
+	});
+
 
 });
 
 router.post('/:id', function(req, res){
 	// res.render('details', ...)
     id = req.params.id;
-    productsController.deleteProductType(id, function(object){
+    productTypesController.deleteProductType(id, function(object){
 		req.session.message = "Delete Successfully!";
 		res.redirect('/admin/product-types');
 	});
