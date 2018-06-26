@@ -11,37 +11,37 @@
             <tr>
                 <td rel="publisher_vn">Full Name</td>
                 <td class="last">
-                    Andrew Huynh
+                    {{name}}
                 </td>
             </tr>
             <tr>
                 <td rel="manufacturer_book_vn">Email</td>
                 <td class="last">
-                    andrewhuynh@gmail.com
+                    {{email}}
                 </td>
             </tr>
             <tr>
                 <td rel="dimensions">Address</td>
                 <td class="last">
-                    543 W. 15th Street
+                    {{address}}
                 </td>
             </tr>
             <tr>
                 <td rel="author">City</td>
                 <td class="last">
-                    New York
+                    {{city}}
                 </td>
             </tr>
             <tr>
                 <td rel="dich_gia">State</td>
                 <td class="last">
-                    NY
+                    {{state}}
                 </td>
             </tr>
             <tr>
                 <td rel="book_cover">Zip</td>
                 <td class="last">
-                    10001
+                    {{zip}}
                 </td>
             </tr>
             </tbody>
@@ -74,37 +74,35 @@
         <h4 class="title">Shopping Cart <span>(2 Products)</span></h4>
         <div class="row">
             <div class="col-sm-9 book-list">
+                {{#each products}}
                 <!--Item 1-->
                 <div class="row book-item">
                     <div class="col-sm-2">
-                        <img src="img/templates/template1.jpg" width="100%">
-                        <div class="percent">20%</div>
+                        <img src={{product.imagePath1}} width="100%">
+                        <div class="percent">{{product.discount}}%</div>
                     </div>
                     <div class="col-sm-10">
                         <div class="row">
                             <div class="col-sm-7">
                                 <h4 class="book-title">
                                     <a href="/product-detail">
-                                        Gildan Ultra Cotton T-shirt
+                                       {{product.name}}
                                     </a>
                                 </h4>
                                 <p class="author">Categories:
                                     <span class="author"> Sports, Trending</span>
                                 </p>
-                                <span><a href="#">Delete</a></span>
-                                <span style="padding-left: 30px">
-                                    <a href="#">Edit</a>
-                                </span>
+                                
                             </div>
                             <div class="col-sm-5 item-price">
                                 <div class="row">
                                     <div class="col-sm-5">
-                                        <p class="final-price">$9.25</p>
-                                        <p class="original-price">$12.00</p>
+                                        <p class="final-price">${{product.discountPrice}}</p>
+                                        <p class="original-price">${{product.price}}</p>
                                     </div>
                                     <div class="col-sm-7 center">
                                         <p><strong>Quantity</strong></p>
-                                        <p class="center"> 1 </p>
+                                        <p class="center"> {{order.productQty}} </p>
                                     </div>
 
                                 </div>
@@ -112,44 +110,8 @@
                         </div>
                     </div>
                 </div>
+                {{/each}}
                 <!--Item 2-->
-                <div class="row book-item">
-                    <div class="col-sm-2">
-                        <img src="img/templates/template2.jpg" width="100%">
-                        <div class="percent">20%</div>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="row ">
-                            <div class="col-sm-7">
-                                <h4 class="book-title">
-                                    <a href="/product-detail">
-                                        Anvil Jersey T-shirt
-                                    </a>
-                                </h4>
-                                <p class="author">Categories:
-                                    <span class="author"> Sports, Trending</span>
-                                </p>
-                                <span><a href="#">Delete</a></span>
-                                <span style="padding-left: 30px">
-                                    <a href="#">Edit</a>
-                                </span>
-                            </div>
-                            <div class="col-sm-5 item-price">
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <p class="final-price">$9.98</p>
-                                        <p class="original-price">$11.00</p>
-                                    </div>
-                                    <div class="col-sm-7 center">
-                                        <p><strong>Quantity</strong></p>
-                                        <p class="center"> 1 </p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col-sm-3">
                 <div class="row book-price" style="border-bottom: 5px solid #eee">
@@ -157,7 +119,7 @@
                         <p style="color: #333">Subtotal:</p>
                     </div>
                     <div class="col-sm-7" style="text-align: right">
-                        <p>$19.23</p>
+                        <p>{{totalPrice.subtotal}}</p>
                     </div>
                 </div>
                 <div class="row book-price">
@@ -165,7 +127,7 @@
                         <p style="padding-top: 10px; color: #333">Total:</p>
                     </div>
                     <div class="col-sm-7" style="text-align: right">
-                        <p class="total-price">$19.23</p>
+                        <p class="total-price">{{totalPrice.total}}</p>
                         <p style="font-size: 13px">(Included Tax)</p>
 
                     </div>
