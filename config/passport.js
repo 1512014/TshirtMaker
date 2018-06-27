@@ -36,22 +36,16 @@ module.exports = function(passport, user) {
                 {
 
                     var userPassword = generateHash(password);
-                    var gender=0;
-                    if(req.body.gender=='male') gender=1;
-                    else if(req.body.gender=='female') gender=2;
-                    else gender=3;
                     var data =
 
                         {
                             firstName: req.body.first_name,
                             lastName:req.body.last_name ,
                             email: email,
-
                             password: userPassword,
-
                             rememberToken: null,
-                            role: 1,
-                            gender: gender
+                            role: 'user',
+                            gender: req.body.gender
 
                         };
 
