@@ -134,16 +134,13 @@ controller.getAllByCode = function(orderCode, callback){
     })
 }
 
-// controller.addNew = function(comment, articleId, callback){
-//     models.Comment
-//     .create({
-//         comment: comment,
-//         ArticleId: articleId
-//     })
-//     .then(function(comments){
-//         callback(comments);
-//     })
-// };
+controller.create = function(object, callback){
+    models.Order
+    .create(object)
+    .then(function(order){
+        callback(order);
+    })
+};
 
 controller.delete = function(id, callback){
     models.Order

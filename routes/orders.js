@@ -20,9 +20,19 @@ router.delete('/:id', function(req, res){
 })
 
 router.post('/:productId/add-to-cart', function(req, res){
-	ordersController.getAll(function(orders){
-		req.session.nOrders = orders.count;
-		res.send({message: "success"});
+	var productId = req.params.productId;
+	//add design here
+	orderData = {
+		productId: productId,
+		productQty: 1,
+		status: 'pending',
+		shipping: 0,
+		designId: 1, //add design here
+		userId: 1 //change to current user id
+
+	};
+	ordersController.create(orderData, function(order){
+		res.redirect('/products/' + productId + '/finished');
 	});
 });
 

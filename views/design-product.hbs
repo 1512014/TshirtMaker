@@ -24,7 +24,9 @@
   			<h1>Customize T-Shirt</h1>
   		</div>
   		<div class="col-md-3">
-  			<button type="button" class="btn btn-large btn-block btn-success" name="add-to-cart" id="add-to-cart" data-product-id={{product.id}}>Add to Cart <i class="icon-briefcase icon-white"></i></button>
+			<form action="/orders/{{product.id}}/add-to-cart" method="post" >
+				<button type="submit" class="btn btn-large btn-block btn-success" name="add-to-cart" id="add-to-cart" data-product-id={{product.id}}>Add to Cart <i class="icon-briefcase icon-white"></i></button>
+			</form>
   		</div>
   	</div>
   </div>

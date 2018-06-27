@@ -22,7 +22,12 @@ router.get('/', function(req, res){
 			}
 			objects = objects.slice((page-1)*limit, page*limit);
 			for (var i = 0; i<objects.length; i++){
-				if (i % 4 == 3){
+				if (i % 4  == 0){
+					objects[i].isStartLine = true;
+				} else {
+					objects[i].isStartLine = false;
+				}
+				if (i % 4  == 3){
 					objects[i].isBreakLine = true;
 				} else {
 					objects[i].isBreakLine = false;
