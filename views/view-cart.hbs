@@ -1,4 +1,3 @@
-
 <div class="container-fluid TM-checkout">
     <div class="row">
         <h4 class="title">Shopping Cart
@@ -12,6 +11,7 @@
                     <img src="{{product.imagePath1}}" width="100%">
                     <div class="percent">{{product.discount}}%</div>
                 </div>
+
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="col-sm-7">
@@ -50,12 +50,13 @@
 
                             <button type="button" class="btn btn-danger delete-order" data-id="{{id}}" href="#" style="margin-top:20px;">Delete Order</a>
                             </button>
+							<button type="button" class="btn btn-primary" data-front="{{design.imageFront}}" data-back="{{design.imageBack}}" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-top:20px;">Preview Design</button>
 
                         </div>
                         <div class="col-sm-5 item-price">
                             <div class="row">
                                 <h4>Product Total</h4>
-                                <p class="final-price">{{formatNumber product.totalPrice style="currency" currency="USD"}}</p>
+                                <p class="final-price">{{formatNumber subtotal style="currency" currency="USD"}}</p>
                                 <input type="hidden" class="product-total-price" value="{{product.totalPrice}}" />
 
                                 <div class="input-group bootstrap-touchspin" style="width:80%; padding-left: 20%">
@@ -123,4 +124,36 @@
 
         </div>
     </div>
+
+<!-- Modal -->
+	<div class="modal fade bd-example-modal-lg" id="previewDesign" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h3 class="modal-title" id="exampleModalLabel">Design Preview</h3>
+	      </div>
+	      <div class="modal-body">
+  			<div class="row">
+  				<div class="col-sm-6">
+					<img class="front" src="{{design.imageFront}}" width="100%" />
+					<h4 style="text-align: center">
+						Front Design
+					</h4>
+  				</div>
+  				<div class="col-sm-6">
+					<img class="back" src="{{design.imageBack}}" width="100%" />
+					<h4 style="text-align: center">
+						Back Design
+					</h4>
+  				</div>
+  			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
 </div>

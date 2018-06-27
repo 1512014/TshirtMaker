@@ -8,7 +8,6 @@ module.exports = {
               productId: 1,
               productQty: 2,
               status: 'pending',
-              subtotal: 40,
 			  userId: 1,
 			  designId: 1
           },
@@ -17,7 +16,6 @@ module.exports = {
               productId: 2,
               productQty: 1,
               status: 'pending',
-              subtotal: 30,
 			  userId: 1,
 			  designId: 1
           },
@@ -26,7 +24,6 @@ module.exports = {
               productId: 4,
               productQty: 3,
               status: 'pending',
-              subtotal: 45,
 			  userId: 1,
 			  designId: 1
           },
@@ -35,7 +32,6 @@ module.exports = {
               productId: 1,
               productQty: 2,
               status: 'processing',
-              subtotal: 40,
 			  userId: 1,
 			  designId: 1
           },
@@ -44,7 +40,6 @@ module.exports = {
               productId: 2,
               productQty: 1,
               status: 'processing',
-              subtotal: 30,
 			  userId: 1,
 			  designId: 1
           },
@@ -53,7 +48,6 @@ module.exports = {
               productId: 4,
               productQty: 3,
               status: 'processing',
-              subtotal: 45,
 			  userId: 1,
 			  designId: 1
           },
@@ -62,7 +56,6 @@ module.exports = {
               productId: 5,
               productQty: 5,
               status: 'pending',
-              subtotal: 100,
 			  userId: 3,
 			  designId: 1
           },
@@ -71,7 +64,6 @@ module.exports = {
               productId: 3,
               productQty: 3,
               status: 'pending',
-              subtotal: 20,
 			  userId: 3,
 			  designId: 1
           }

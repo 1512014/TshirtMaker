@@ -20,6 +20,10 @@ controller.getAll = function(callback){
 		orders.forEach(function(order){
 			productsController.getById(order.productId, function(product){
 				order.product = product;
+				settingsController.getAll(function(settings){
+					order.subtotal = order.product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
+					order.total = order.subtotal + order.subtotal * settings.tax / 100;
+				})
 			});
 			usersController.getById(order.userId, function(user){
 				order.user = user;
@@ -41,6 +45,10 @@ controller.getById = function(id, callback){
     .then(function(order){
 		productsController.getById(order.productId, function(product){
 			order.product = product;
+			settingsController.getAll(function(settings){
+				order.subtotal = order.product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
+				order.total = order.subtotal + order.subtotal * settings.tax / 100;
+			})
 		});
 		usersController.getById(order.userId, function(user){
 			order.user = user;
@@ -77,6 +85,10 @@ controller.getAllByUserId = function(userId, statuses, callback){
 		orders.forEach(function(order){
 			productsController.getById(order.productId, function(product){
 				order.product = product;
+				settingsController.getAll(function(settings){
+					order.subtotal = order.product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
+					order.total = order.subtotal + order.subtotal * settings.tax / 100;
+				})
 			});
 			usersController.getById(order.userId, function(user){
 				order.user = user;
@@ -105,6 +117,10 @@ controller.getAllByCode = function(orderCode, callback){
 		orders.forEach(function(order){
 			productsController.getById(order.productId, function(product){
 				order.product = product;
+				settingsController.getAll(function(settings){
+					order.subtotal = order.product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
+					order.total = order.subtotal + order.subtotal * settings.tax / 100;
+				})
 			});
 			usersController.getById(order.userId, function(user){
 				order.user = user;
@@ -116,10 +132,6 @@ controller.getAllByCode = function(orderCode, callback){
 
 		setTimeout(callback, 1000, orders);
     })
-}
-
-controller.getQtyAndSize = function(order, callback){
-    callback({productQty: order.qty, productSize: order.size})
 }
 
 // controller.addNew = function(comment, articleId, callback){

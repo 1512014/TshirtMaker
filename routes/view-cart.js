@@ -26,30 +26,14 @@ router.get('/', function(req, res){
 	          page = 1;
 	      }
 	      orders = objects.slice((page-1)*limit, page*limit);
-	      // if(orders.length==0){
-	      //     var product = [];
-	      //   res.render('view-cart.hbs', {
-	      //       userId:userId,
-	      //       products: {},
-	      //       pageHeader: true,
-	      //       cssViewCart: true,
-	      //       breadcrumbs: [
-	      //           {title: "View Cart", link: "/view-cart"}
-	      //       ],
-	      //       pagination: { page: page, limit: limit ,totalRows: numRows }
-	      //     });
-	      // }
-
 		  var totalPrice = {
 			  subtotal: 0,
 			  total: 0
 		  };
 	      for (var i in orders){
 			  totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
-			  orders[i].product.totalPrice = orders[i].product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
 	      }
 		  totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax/100;
-
 
 		  res.render('view-cart.hbs', {
 			userId : userId,
