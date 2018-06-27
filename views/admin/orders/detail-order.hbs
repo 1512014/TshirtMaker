@@ -99,8 +99,20 @@
 						  <td>{{formatNumber order.shipping style="currency" currency="USD" }}</td>
 					  </tr>
 					  <tr>
+						  <th>Front Design:</th>
+						  <td>{{formatNumber order.frontDesignPrice style="currency" currency="USD" }}</td>
+					  </tr>
+					  <tr>
+						  <th>Back Design:</th>
+						  <td>{{formatNumber order.backDesignPrice style="currency" currency="USD" }}</td>
+					  </tr>
+					  <tr>
+						 <th>Qty:</th>
+						 <td>{{order.productQty}}</td>
+					 </tr>
+					  <tr>
 						  <th>Tax:</th>
-						  <td>{{tax}}%</td>
+						  <td>{{order.tax}}%</td>
 					  </tr>
 					  <tr>
 						  <th>Total Price:</th>

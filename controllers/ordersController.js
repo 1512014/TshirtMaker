@@ -47,7 +47,15 @@ controller.getById = function(id, callback){
 		});
 		designsController.getById(order.designId, function(design){
 			order.design = design;
-			console.log(design.size);
+		});
+		settingsController.getSetting('tax', function(tax){
+			order.tax = tax.value;
+		});
+		settingsController.getSetting('frontDesignPrice', function(front){
+			order.frontDesignPrice = front.value;
+		});
+		settingsController.getSetting('backDesignPrice', function(back){
+			order.backDesignPrice = back.value;
 		});
 
 		setTimeout(callback, 1000, order);

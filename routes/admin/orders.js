@@ -40,19 +40,16 @@ router.post('/:id/changeStatus', (req, res) => {
 router.get('/:id', (req, res) => {
 	var id = req.params.id;
 	ordersController.getById(id, function(order){
-		settingsController.getSetting('tax', function(tax){
-			tax = tax.value;
-			order.totalPrice = order.subtotal + order.shipping + (order.subtotal + order.shipping) * tax / 100;
-			res.render('admin/orders/detail-order.hbs', {
-				order: order,
-				tax: tax,
-				layout: 'admin-layout',
-				adminContentHeader: 'Order Detail',
-				breadcrumbs: [
-					{title: "Orders", link: "/admin/orders"},
-					{title: "Order Detail", link: "#"}
-				]
-			})
+		var temp = (order.subtotal + order.shipping + order.frontDesignPrice + order.backDesignPrice) * order.productQty;
+		order.totalPrice = temp + temp * order.tax / 100;
+		res.render('admin/orders/detail-order.hbs', {
+			order: order,
+			layout: 'admin-layout',
+			adminContentHeader: 'Order Detail',
+			breadcrumbs: [
+				{title: "Orders", link: "/admin/orders"},
+				{title: "Order Detail", link: "#"}
+			]
 		});
 	});
 });
