@@ -74,7 +74,7 @@
         <h4 class="title">Shopping Cart <span>(2 Products)</span></h4>
         <div class="row">
             <div class="col-sm-9 book-list">
-                {{#each products}}
+                {{#each orders}}
                 <!--Item 1-->
                 <div class="row book-item">
                     <div class="col-sm-2">
@@ -102,7 +102,7 @@
                                     </div>
                                     <div class="col-sm-7 center">
                                         <p><strong>Quantity</strong></p>
-                                        <p class="center"> {{order.productQty}} </p>
+                                        <p class="center"> {{productQty}} </p>
                                     </div>
 
                                 </div>
@@ -136,5 +136,6 @@
         </div>
     </div>
     <input class="hide" name="total" value={{totalPrice.total}}>
+    <input class="hide" name="userId" value={{userId}}>
     <input type="submit" class="btn" value="Confirm"></input>
 </form>

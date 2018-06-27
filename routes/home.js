@@ -4,10 +4,15 @@ var models = require('../models');
 
 var productsController = require('../controllers/productsController');
 var productTypesController = require('../controllers/productTypesController');
-
+var usersController = require('../controllers/usersController');
 router.get('/', (req, res) => {
 	var is_member=false;
 	var name="";
+	usersController.getRole('1',function(err,ret){
+		role=ret;
+		console.log(role);
+	});
+	
 	if(req.user) name=req.user.lastName;
 	if(req.isAuthenticated()) is_member=true;
 	page = parseInt(req.query.page);

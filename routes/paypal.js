@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var paypal = require('paypal-rest-sdk');
-
+var ordersController = require('../controllers/ordersController');
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
     'client_id': 'AYRuFMC6voxDzrtXDk5BO5LjMsRgihIDHvRBQXwVx8JWtyNF4ums5y9CLn_68ArLcTLI5sDriR9uFQ4u',
@@ -9,6 +9,7 @@ paypal.configure({
   });
 router.get('/',function(req,res){
     const total= req.query.total;
+    const id= req.query.id;
     console.log(total);
     const create_payment_json = {
         "intent": "sale",
@@ -43,6 +44,9 @@ router.get('/',function(req,res){
         } else {
             for( let i=0;i<payment.links.length;i++){
                 if(payment.links[i].rel==='approval_url'){
+                    console.log(payment.links[i].href);
+                    req.flash('total',total);
+                    req.flash('idpaypal',id);
                     res.redirect(payment.links[i].href);
                 }
             }
@@ -53,13 +57,15 @@ router.get('/',function(req,res){
 router.get('/success',function(req,res){
     const payerId=req.query.PayerID;
     const paymentId=req.query.paymentId;
-    //total= req.query.total;
+    id=req.flash('idpaypal');
+    console.log(id);
+    total= req.flash('total');
     const execute_payment_json={
         "payer_id":payerId,
         "transactions": [{
             "amount": {
                 "currency": "USD",
-                "total":10
+                "total":total[0]
             }
         }]
     }
@@ -68,10 +74,17 @@ router.get('/success',function(req,res){
             console.log(error.response);
             throw error;
         }else{
-            console.log(JSON.stringify(payment));
-            res.send('success');
+            ordersController.updateAllByUserId(id[0],'pending','PAYPAL',function(objects){
+            })
+            res.render('success.hbs', {
+                pageHeader: true,
+                //cssCheckOutStep2: true,
+                hideBreadcrumb: true,
+                code:true
+            });
         }
     });
+    
 });
 
 router.get('/cancel',function(req,res){

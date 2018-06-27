@@ -1,3 +1,5 @@
+
+
 var controller = {};
 
 var models = require('../models');
@@ -29,5 +31,15 @@ controller.update = function (id, object, callback){
 	.then(function(object){
         callback(object);
     })
+}
+controller.getRole = function(id,callback){
+    models.User
+    .findOne({
+		where: {id: id}
+	}).then(function(object){
+        temp=JSON.stringify(object.dataValues);
+        temp1=JSON.parse(temp);
+        callback(null,temp1.role);
+    });
 }
 module.exports = controller;

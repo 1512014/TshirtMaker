@@ -90,6 +90,21 @@ controller.getAllByUserId = function(userId, statuses, callback){
     })
 };
 
+controller.updateAllByUserId = function(userId, status1,status2, callback){
+    models.Order
+	.update({status:status2},
+		{where: {
+			status:  status1,
+            userId: userId
+		},
+		returning: true,
+  		plain: true
+    })
+    .then(function(orders){
+		console.log(orders);
+    });
+};
+
 controller.getAllByCode = function(orderCode, callback){
 	models.Order
     .findAll({

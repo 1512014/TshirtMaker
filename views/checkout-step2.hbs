@@ -1,7 +1,7 @@
 <h2>
   Checkout Detail</h2>
 <div class="row">
-  <div class="col-75">
+  <div class="col-65">
     <div class="container-fluid">
       <script>
 
@@ -74,7 +74,7 @@
       </form>
     </div>
   </div>
-  <div class="col-25">
+  <div class="col-35">
     <div class="container-fluid">
       <h4>Cart
         <span class="price" style="color:black">
@@ -82,10 +82,10 @@
           <b>{{nOrders}}</b>
         </span>
       </h4>
-      {{#each products}}
+      {{#each orders}}
       <p>
         <a href="#">{{product.name}}</a>
-        <span class="price">{{product.totalPrice}}</span>
+        <span class="price">{{formatNumber total style="currency" currency="USD"}}</span>
       </p>
       {{/each}}
       <hr>
