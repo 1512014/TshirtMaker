@@ -71,15 +71,19 @@
 				 	  </tr>
 					  <tr>
 						  <th>Subtotal:</th>
-						  <td>{{order.subtotal}}</td>
+						  <td>{{formatNumber order.subtotal style="currency" currency="USD" }}</td>
 					  </tr>
 					  <tr>
 						  <th>Shipping:</th>
-						  <td>{{order.shipping}}</td>
+						  <td>{{formatNumber order.shipping style="currency" currency="USD" }}</td>
+					  </tr>
+					  <tr>
+						  <th>Tax:</th>
+						  <td>{{tax}}%</td>
 					  </tr>
 					  <tr>
 						  <th>Total Price:</th>
-						  <td>{{order.totalPrice}}</td>
+						  <td>{{formatNumber order.totalPrice style="currency" currency="USD" }}</td>
 					  </tr>
 					  <tr style="text-align: center; background-color: #dadada !important;">
 						<th colspan="2">

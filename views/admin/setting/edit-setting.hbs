@@ -1,0 +1,41 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <!-- <div class="card-header">
+            <h3 class="card-title">Quick Example</h3>
+          </div> -->
+          <!-- /.card-header -->
+          <!-- form start -->
+		  
+		  <form method="post" action="/admin/settings/edit">
+            <div class="card-body">
+				<div class="form-group">
+                  <label for="tax">Tax</label>
+                  <input type="number" value="{{settings.tax}}" class="form-control" id="tax" name="tax" min="0" max="100">
+                </div>
+				<div class="form-group">
+                  <label for="frontDesignPrice">Front Design Price</label>
+                  <input type="number" value="{{settings.frontDesignPrice}}" class="form-control" id="frontDesignPrice" name="frontDesignPrice">
+                </div>
+				<div class="form-group">
+                  <label for="backDesignPrice">Back Design Price</label>
+                  <input type="number" value="{{settings.backDesignPrice}}" class="form-control" id="backDesignPrice" name="backDesignPrice">
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <a href="/admin/settings" type="button" class="btn btn-default float-right">Cancel</a>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+  </div>
+</div>

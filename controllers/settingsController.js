@@ -18,13 +18,26 @@ controller.getAll = function(callback){
 	models.Setting
     .findAll({})
     .then(function(objects){
-		setting = [];
+		settings = [];
 		for (var i = 0; i < objects.length; i++){
 			key = objects[i].key
-			setting[key] = objects[i].value;
+			settings[key] = objects[i].value;
 		}
-        callback(setting);
+        callback(settings);
     })
+}
+
+controller.update = function(key, value, callback){
+	models.Setting
+	.update(
+		{ value: value },
+		{
+			where: {key: key}
+		}
+	)
+	.then(function(object){
+		callback(object);
+	})
 }
 
 module.exports = controller;
