@@ -6,7 +6,6 @@ var ordersController = require('../controllers/ordersController');
 
 router.put('/:id', function(req, res){
     id = req.params.id;
-
     ordersController.update(id, req.body, function(comment){
         res.send({status:"success"});
     });

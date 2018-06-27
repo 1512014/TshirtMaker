@@ -62,11 +62,11 @@ controller.getById = function(id, callback){
     })
 };
 
-controller.getAllByUserId = function(userId, callback){
+controller.getAllByUserId = function(userId, statuses, callback){
     models.Order
     .findAll({
         where: {
-			status: {[Op.notIn]: ['deleted', 'canceled']},
+			status: {[Op.in]: statuses},
             userId: userId
         },
         order: [
@@ -80,6 +80,9 @@ controller.getAllByUserId = function(userId, callback){
 			});
 			usersController.getById(order.userId, function(user){
 				order.user = user;
+			});
+			designsController.getById(order.designId, function(design){
+				order.design = design;
 			});
 		});
 

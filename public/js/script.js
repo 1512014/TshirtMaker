@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     //Declare variables
     var totalWidth = 0;
     var positions = [];

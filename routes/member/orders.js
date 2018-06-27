@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
 	var userId = 1;
 	var message = req.session.message;
 	req.session.message = null;
-	ordersController.getAllByUserId(userId, function(orders){
+	var statuses = ['pending', 'processing', 'delivered'];
+	ordersController.getAllByUserId(userId, statuses, function(orders){
 		res.render('member/orders/orders.hbs', {
 			orders: orders,
 			message: message,

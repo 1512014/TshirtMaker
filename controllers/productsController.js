@@ -1,4 +1,6 @@
 var controller = {};
+var Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 var models = require('../models');
 var ordersController = require('../controllers/ordersController');
@@ -23,6 +25,20 @@ controller.getAll = function(callback){
         setTimeout(callback, 1000, products);
     })
 };
+
+controller.getFilterOptions = function(callback){
+	var filters = [];
+	models.Product_type
+    .findAll({})
+    .then(function(productTypes){
+		filters.productTypes = productTypes;
+    })
+	filters.sizes = [];
+	for (var i = 0; i <= 7; i++){
+		filters.sizes.push(controller.getSize(i));
+	}
+	setTimeout(callback, 1000, filters);
+}
 
 controller.getById = function(id, callback){
     models.Product
@@ -83,9 +99,12 @@ controller.getProductFromOrder = function(order, products, totalPrice, callback)
 
 };
 
-controller.getRelatedProduct = function(callback){
+controller.getRelatedProduct = function(id, callback){
     models.Product
     .findAll({
+		where: {
+			id: {[Op.not]: id}
+		},
         limit: 4,
         order: [
             ['id', 'DESC']

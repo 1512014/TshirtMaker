@@ -17,48 +17,54 @@ router.get('/', function(req, res){
     // orders = [];
     // products = [];
     // totalPrice = {subtotal: 0, total: 0};
+	statuses = ['pending'];
 
-    ordersController.getAllByUserId(userId, status, function(objects){
-      numRows = objects.length;
-      if(!page){
-          page = 1;
-      }
-      orders = objects.slice((page-1)*limit, page*limit);
-      if(orders.length==0){
-          var product = [];
-        res.render('view-cart.hbs', {
-            userId:userId,
-            products: {},
-            pageHeader: true,
-            cssViewCart: true,
-            breadcrumbs: [
-                {title: "View Cart", link: "/view-cart"}
-            ],
-            pagination: { page: page, limit: limit ,totalRows: numRows }
-          });
-      }
-      for (var i = 0; i < orders.length; i++){
-          productsController.getProductFromOrder(orders[i], products, totalPrice, function(object){
-              if (object.products.length == orders.length) {
-		  		  settingsController.getSetting('tax', function (tax) {
-					  totalPrice.total = totalPrice.subtotal + totalPrice.subtotal*tax.value/100;
-	                  res.render('view-cart.hbs', {
-	                    userId:userId,
-	                    products: object.products,
-	                    totalPrice: object.totalPrice,
-	                    nOrders: orders.length,
-						tax: tax.value,
-	                    pageHeader: true,
-	                    cssViewCart: true,
-	                    breadcrumbs: [
-	                        {title: "View Cart", link: "/view-cart"}
-	                    ],
-	                    pagination: { page: page, limit: limit ,totalRows: numRows }
-	                  });
-		  		   });
-              }
-          });
-      }
+	settingsController.getAll(function(settings){
+	    ordersController.getAllByUserId(userId, statuses, function(objects){
+	      numRows = objects.length;
+	      if(!page){
+	          page = 1;
+	      }
+	      orders = objects.slice((page-1)*limit, page*limit);
+	      // if(orders.length==0){
+	      //     var product = [];
+	      //   res.render('view-cart.hbs', {
+	      //       userId:userId,
+	      //       products: {},
+	      //       pageHeader: true,
+	      //       cssViewCart: true,
+	      //       breadcrumbs: [
+	      //           {title: "View Cart", link: "/view-cart"}
+	      //       ],
+	      //       pagination: { page: page, limit: limit ,totalRows: numRows }
+	      //     });
+	      // }
+
+		  var totalPrice = {
+			  subtotal: 0,
+			  total: 0
+		  };
+	      for (var i in orders){
+			  totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
+			  orders[i].product.totalPrice = orders[i].product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
+	      }
+		  totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax/100;
+
+
+		  res.render('view-cart.hbs', {
+			userId : userId,
+			orders: orders,
+			settings: settings,
+			totalPrice: totalPrice,
+			nOrders: orders.length,
+			pageHeader: true,
+			cssViewCart: true,
+			breadcrumbs: [
+				{title: "View Cart", link: "/view-cart"}
+			],
+			pagination: { page: page, limit: limit ,totalRows: numRows }
+		  });
+  	});
 
   });
 });
