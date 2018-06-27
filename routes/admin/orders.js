@@ -40,7 +40,7 @@ router.post('/:id/changeStatus', (req, res) => {
 router.get('/:id', (req, res) => {
 	var id = req.params.id;
 	ordersController.getById(id, function(order){
-		var temp = (order.subtotal + order.shipping + order.frontDesignPrice + order.backDesignPrice) * order.productQty;
+		var temp = (order.subtotal) * order.productQty;
 		order.totalPrice = temp + temp * order.tax / 100;
 		res.render('admin/orders/detail-order.hbs', {
 			order: order,
@@ -56,12 +56,12 @@ router.get('/:id', (req, res) => {
 
 router.post('/:id/delete', (req, res) => {
 	var id = req.params.id;
-	object = {
+	var object = {
 		status: 'deleted'
 	};
 	ordersController.update(id, object, function(object){
 		res.send({message:"success"});
-	})
+	});
 });
 
 //

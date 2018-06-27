@@ -1,5 +1,5 @@
 var controller = {};
-
+var validator = require('validator');
 var models = require('../models');
 
 controller.getSetting = function(settingKey, callback){
@@ -10,7 +10,12 @@ controller.getSetting = function(settingKey, callback){
 		}
 	})
     .then(function(object){
-        callback(object);
+		if (validator.isNumeric(object.value))
+		{
+			callback(parseFloat(object.value));
+		} else {
+			callback(object.value);
+		}
     })
 };
 
@@ -21,7 +26,13 @@ controller.getAll = function(callback){
 		settings = [];
 		for (var i = 0; i < objects.length; i++){
 			key = objects[i].key
-			settings[key] = objects[i].value;
+			if (validator.isNumeric(objects[i].value))
+			{
+				settings[key] = parseFloat(objects[i].value);
+			} else {
+				settings[key] = objects[i].value;
+			}
+
 		}
         callback(settings);
     })

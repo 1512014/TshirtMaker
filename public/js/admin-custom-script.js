@@ -72,6 +72,26 @@ $(document).ready(function(){
 		}
 	})
 
+	$('button.cancel-order').on('click', function(){
+		var orderId = $(this).data('order-id');
+		var row = $(this).parents('tr');
+		var confirmDelete = confirm('Are you sure?');
+		if (confirmDelete){
+			url = '/member/orders/' + orderId + '/cancel';
+	        $.ajax({
+	            url: url,
+	            contentType: 'application/json',
+	            type: 'POST',
+	            success: function(response){
+	                row.remove();
+	            },
+	            error: function(error) {
+	                alert(error);
+	            }
+	        });
+		}
+	})
+
 	$('select.order-status').on('change', function(){
 		var orderId = $(this).data('order-id');
 		var status = $("#order-status-" + orderId).val();

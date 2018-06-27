@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
 	  key: { type: Sequelize.STRING, allowNull: false },
-  	  value: { type: Sequelize.FLOAT(11, 2), allowNull: false }
+  	  value: { type: Sequelize.STRING, allowNull: false }
     });
   },
   down: (queryInterface, Sequelize) => {

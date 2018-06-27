@@ -30,6 +30,33 @@ module.exports = {
 			  userId: 1,
 			  designId: 1
           },
+		  {
+			  orderCode: 22222,
+              productId: 1,
+              productQty: 2,
+              status: 'processing',
+              subtotal: 40,
+			  userId: 1,
+			  designId: 1
+          },
+          {
+			  orderCode: 44444,
+              productId: 2,
+              productQty: 1,
+              status: 'processing',
+              subtotal: 30,
+			  userId: 1,
+			  designId: 1
+          },
+          {
+			  orderCode: 44444,
+              productId: 4,
+              productQty: 3,
+              status: 'processing',
+              subtotal: 45,
+			  userId: 1,
+			  designId: 1
+          },
           {
 			  orderCode: 12345,
               productId: 5,
