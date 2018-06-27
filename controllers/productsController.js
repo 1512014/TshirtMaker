@@ -1,4 +1,6 @@
 var controller = {};
+var Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 var models = require('../models');
 var ordersController = require('../controllers/ordersController');
@@ -23,6 +25,20 @@ controller.getAll = function(callback){
         setTimeout(callback, 1000, products);
     })
 };
+
+controller.getFilterOptions = function(callback){
+	var filters = [];
+	models.Product_type
+    .findAll({})
+    .then(function(productTypes){
+		filters.productTypes = productTypes;
+    })
+	filters.sizes = [];
+	for (var i = 0; i <= 7; i++){
+		filters.sizes.push(controller.getSize(i));
+	}
+	setTimeout(callback, 1000, filters);
+}
 
 controller.getById = function(id, callback){
     models.Product
@@ -70,29 +86,25 @@ controller.getProductFromOrder = function(order, products, totalPrice, callback)
     };
 
     controller.getById(productId, function(product){
+		tempSubtotal = order.subtotal * order.productQty +  order.shipping;
+		//Get totalPrice
+        product.totalPrice = tempSubtotal;
+		totalPrice.subtotal += tempSubtotal;
+        totalPrice.total += tempSubtotal;
+        productData.product = product;
 
-		//getTax
-		var taxKey = 'tax';
-		settingsController.getSetting(taxKey, function (setting) {
-			var tax = setting.value;
-			tempSubtotal = order.subtotal * order.productQty +  order.shipping;
-			//Get totalPrice
-	        product.totalPrice = tempSubtotal;
-			totalPrice.subtotal += tempSubtotal;
-	        totalPrice.total += tempSubtotal + tempSubtotal*tax/100;
-			totalPrice.tax = tax;
-            productData.product = product;
-
-	        products.push(productData);
-	        callback({products: products, totalPrice: totalPrice});
-		})
+        products.push(productData);
+        callback({products: products, totalPrice: totalPrice});
     });
 
 };
 
-controller.getRelatedProduct = function(callback){
+controller.getRelatedProduct = function(id, callback){
     models.Product
     .findAll({
+		where: {
+			id: {[Op.not]: id}
+		},
         limit: 4,
         order: [
             ['id', 'DESC']

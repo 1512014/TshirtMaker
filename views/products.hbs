@@ -4,12 +4,17 @@
             <div class="filter-row">
             <h4>Product Categories</h4>
                 <ul>
-                    <li><a href="#">Long Sleeve T-Shirts <span>(23)</span></a></li>
-                    <li><a href="#">Short Sleeve T-Shirts <span>(23)</span></a></li>
-                    <li><a href="#">Tank Tops & Sleeveless<span>(23)</span></a></li>
-                    <li><a href="#">Raglan T-Shirts <span>(23)</span></a></li>
-                    <li><a href="#">Trendy T-Shirts <span>(23)</span></a></li>
-                    <li><a href="#">Youth T-Shirts <span>(23)</span></a></li>
+					{{#each filters.productTypes}}
+                    <li><a href="#">{{name}} ({{gender}}) <span></span></a></li>
+					{{/each}}
+                </ul>
+            </div>
+
+			<div class="filter-row">
+                <h4>Gender</h4>
+                <ul>
+                    <li><a href="#">Male <span></span></a></li>
+                    <li><a href="#">Female <span></span></a></li>
                 </ul>
             </div>
 
@@ -43,20 +48,18 @@
             <div class="filter-row">
                 <h4>Price</h4>
                 <ul>
-                    <li><a href="#">Budget <span>(46)</span></a></li>
-                    <li><a href="#">Moderate <span>(46)</span></a></li>
-                    <li><a href="#">Premium <span>(46)</span></a></li>
+                    <li><a href="#">Budget <span></span></a></li>
+                    <li><a href="#">Moderate <span></span></a></li>
+                    <li><a href="#">Premium <span></span></a></li>
                 </ul>
             </div>
 
             <div class="filter-row">
                 <h4>Sizes</h4>
                 <ul>
-                    <li><a href="#">XXS <span>(12)</span></a></li>
-                    <li><a href="#">XS <span>(4)</span></a></li>
-                    <li><a href="#">S <span>(38)</span></a></li>
-					<li><a href="#">M <span>(38)</span></a></li>
-					<li><a href="#">L <span>(38)</span></a></li>
+					{{#each filters.sizes}}
+                    <li><a href="#">{{this}} <span></span></a></li>
+					{{/each}}
                 </ul>
             </div>
 

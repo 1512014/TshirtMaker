@@ -4,6 +4,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 	  var designModels = [
           {
+			  id: 1,
+			  imageFront: '/img/designs/hoodies_front.png',
+			  imageBack: '/img/designs/hoodies_back.png',
 			  size: "L"
 		  }
       ];

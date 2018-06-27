@@ -6,7 +6,7 @@
         </h4>
         <div class="col-sm-9 book-list">
 
-            {{#each products}}
+            {{#each orders}}
             <div class="row book-item">
                 <div class="col-sm-3">
                     <img src="{{product.imagePath1}}" width="100%">
@@ -21,10 +21,10 @@
                                 </a>
                             </h4>
                             <p class="author">Type:
-                                <span class="author"> {{product.type.name}}</span>
+                                <span class="author"> {{product.type.name}} - {{product.type.gender}}</span>
                             </p>
                             <p class="author">Size:
-                                <span class="author"> {{productSize}}</span>
+                                <span class="author"> {{design.size}}</span>
                             </p>
                             <p class="author">Product Price:
                                 <span class="price">
@@ -35,14 +35,20 @@
                                 </span>
 
                             </p>
-                            <p class="author">Shipping Price:
+                            <p class="author">Front Design Price:
                                 <span class="price">
-                                    {{formatNumber order.shipping style="currency" currency="USD"}}
+                                    {{formatNumber ../settings.frontDesignPrice style="currency" currency="USD"}}
+                                </span>
+                            </p>
+
+							<p class="author">Back Design Price:
+                                <span class="price">
+                                    {{formatNumber ../settings.backDesignPrice style="currency" currency="USD"}}
                                 </span>
                             </p>
 
 
-                            <button type="button" class="btn btn-danger delete-order" data-id="{{order.id}}" href="#" style="margin-top:20px;">Delete Order</a>
+                            <button type="button" class="btn btn-danger delete-order" data-id="{{id}}" href="#" style="margin-top:20px;">Delete Order</a>
                             </button>
 
                         </div>
@@ -54,14 +60,14 @@
 
                                 <div class="input-group bootstrap-touchspin" style="width:80%; padding-left: 20%">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default bootstrap-touchspin-down" data-id="{{order.id}}" type="button">-</button>
+                                        <button class="btn btn-default bootstrap-touchspin-down" data-id="{{id}}" type="button">-</button>
                                     </span>
                                     <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                                    <input type="tel" class="form-control quantity-r2 quantity js-quantity-product-{{order.id}}" min="0" data-js-qty="" value="{{productQty}}"
+                                    <input type="tel" class="form-control quantity-r2 quantity js-quantity-product-{{id}}" min="0" data-js-qty="" value="{{productQty}}"
                                         style="display: block; text-align: center">
                                     <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default bootstrap-touchspin-up" data-id="{{order.id}}" type="button">+</button>
+                                        <button class="btn btn-default bootstrap-touchspin-up" data-id="{{id}}" type="button">+</button>
                                     </span>
                                 </div>
                             </div>
@@ -79,7 +85,11 @@
                     <p style="color: #333">Subtotal:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
+					{{#ifCond totalPrice.subtotal '==' null}}
+					<p>$0.00</p>
+					{{else}}
                     <p>{{formatNumber totalPrice.subtotal style="currency" currency="USD"}}</p>
+					{{/ifCond}}
                 </div>
             </div>
             <div class="row book-price" style="border-bottom: 5px solid #eee">
@@ -87,7 +97,7 @@
                     <p style="color: #333">Tax:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-                    <p>{{totalPrice.tax}}%</p>
+                    <p>{{settings.tax}}%</p>
                 </div>
             </div>
             <form action="/checkout2" method="POST">
@@ -96,7 +106,11 @@
                     <p style="padding-top: 10px; color: #333">Total:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-                    <p class="total-price">{{formatNumber totalPrice.total style="currency" currency="USD"}}</p>
+					{{#ifCond totalPrice.subtotal '==' null}}
+                    <p class="total-price">$0.00</p>
+					{{else}}
+					<p class="total-price">{{formatNumber totalPrice.total style="currency" currency="USD"}}</p>
+					{{/ifCond}}
                     <p style="font-size: 13px">(Included Tax)</p>
                     <input class="hide" name="userId" value={{userId}}>
 
@@ -105,7 +119,7 @@
 
             <button type="submit" class="btn btn-danger checkout">Checkout</button>
             </form>
-            
+
 
         </div>
     </div>

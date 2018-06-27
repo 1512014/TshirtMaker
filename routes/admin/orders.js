@@ -4,6 +4,8 @@ var models = require('../../models');
 
 var ordersController = require('../../controllers/ordersController');
 var productsController = require('../../controllers/productsController');
+var settingsController = require('../../controllers/settingsController');
+var designsController = require('../../controllers/designsController');
 
 router.get('/', (req, res) => {
 	var message = req.session.message;
@@ -23,42 +25,43 @@ router.get('/', (req, res) => {
 
 });
 
-router.get('/create', (req, res) => {
-	var message = req.session.message;
-  	req.session.message = null;
-	res.render('admin/orders/new-order.hbs', {
-		layout: 'admin-layout',
-		adminContentHeader: 'New Order',
-		breadcrumbs: [
-			{title: "Orders", link: "/admin/orders"},
-			{title: "New Oder", link: "/admin/orders/create"}
-		]
+router.post('/:id/changeStatus', (req, res) => {
+	var id = req.params.id;
+	var newStatus = req.body.status;
+	object = {
+		status: newStatus
+	};
+	// console.log("new status: " + newStatus);
+	ordersController.update(id, object, function(object){
+		res.send({message:"success"});
 	})
 });
 
-// router.post('/create', (req, res) => {
-//
-// });
-
-router.get('/:id/invoice', (req, res) => {
-	res.render('admin/orders/invoice.hbs', {
-		layout: 'admin-layout',
-		adminContentHeader: 'Invoice',
-		breadcrumbs: [
-			{title: "Orders", link: "/admin/orders"},
-			{title: "Invoice", link: "#"}
-		]
-	})
+router.get('/:id', (req, res) => {
+	var id = req.params.id;
+	ordersController.getById(id, function(order){
+		var temp = (order.subtotal) * order.productQty;
+		order.totalPrice = temp + temp * order.tax / 100;
+		res.render('admin/orders/detail-order.hbs', {
+			order: order,
+			layout: 'admin-layout',
+			adminContentHeader: 'Order Detail',
+			breadcrumbs: [
+				{title: "Orders", link: "/admin/orders"},
+				{title: "Order Detail", link: "#"}
+			]
+		});
+	});
 });
 
 router.post('/:id/delete', (req, res) => {
 	var id = req.params.id;
-	object = {
+	var object = {
 		status: 'deleted'
 	};
 	ordersController.update(id, object, function(object){
 		res.send({message:"success"});
-	})
+	});
 });
 
 //

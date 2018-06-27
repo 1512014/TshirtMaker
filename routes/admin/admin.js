@@ -24,8 +24,8 @@ var orders = require('./orders');
 router.use('/orders', orders);
 var products = require('./products');
 router.use('/products', products);
-var setting = require('./setting');
-router.use('/setting', setting);
+var settings = require('./settings');
+router.use('/settings', settings);
 
 // router.put('/:id', function(req, res){
 //     id = req.params.id;

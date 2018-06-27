@@ -3,6 +3,8 @@ var router = express.Router();
 var models = require('../models');
 
 var productsController = require('../controllers/productsController');
+var productTypesController = require('../controllers/productTypesController');
+
 router.get('/', (req, res) => {
 	var is_member=false;
 	var name="";
@@ -57,8 +59,8 @@ router.get('/design', (req, res) => {
 	}
 	var product = [];
 	var sizes = [];
-	productsController.getProductTypesByGender('male', function(maleTypes){
-		productsController.getProductTypesByGender('female', function(femaleTypes){
+	productTypesController.getProductTypesByGender('male', function(maleTypes){
+		productTypesController.getProductTypesByGender('female', function(femaleTypes){
 			for (var i = 0; i <= 7; i++){
 				sizes.push({
 					sizeNumber: i,

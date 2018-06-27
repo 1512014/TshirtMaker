@@ -19,16 +19,16 @@
            var captcha = document.getElementById('captcha').value;
            console.log(captcha);
             if (input1 == '' || input2 == '' || input3 == '' || input4 == '' || input5 == '' || input6 == '') {
-                alert("Chưa nhập đủ thông tin.");
-               
+                alert("Fields are required");
+
                 return false;
             }
             else if (input5!=input6){
-                 alert("Mật khẩu lần 2 không đúng.");
+                 alert("Password 2 is incorrect");
                 return false;
             }
             else if (check==false){
-                 alert("Bạn chưa chấp nhận điều khoản.");
+                 alert("Please accept the licence.");
                 return false;
             }
             return true;
@@ -79,10 +79,8 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <select class="form-control" name="gender">
-                            <option value="none" selected="">Choose Gender...</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
-                            <option value="other">Other</option>
                         </select>
                     </div>
                 </div>
@@ -96,7 +94,6 @@
             <div class="g-recaptcha" name="captcha" data-sitekey="6LfA1GAUAAAAAK3J3C93mUbEpWhaFxzH3DJZfX-y"></div>
             <div class="footer clearfix">
                 <button type="submit" class="btn btn-default" id="submitbutton">Register now</button>
-
             </div>
 
         </form>

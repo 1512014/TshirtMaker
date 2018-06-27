@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../../models');
+var bCrypt = require('bcrypt-nodejs');
 
-var ordersController = require('../../controllers/ordersController');
+var usersController = require('../../controllers/usersController');
 
 router.get('/', (req, res) => {
 	res.render('member/dashboard.hbs', {
@@ -16,7 +17,13 @@ router.get('/', (req, res) => {
 });
 
 router.get('/change-password', (req, res) => {
+	var message = req.session.message;
+  	req.session.message = null;
+	var error = req.session.error;
+  	req.session.error = null;
     res.render('member/change-password.hbs', {
+		message: message,
+		error: error,
 		layout: 'admin-layout',
 		isMember: true,
 		adminContentHeader: 'Change Password',
@@ -26,27 +33,38 @@ router.get('/change-password', (req, res) => {
 	});
 });
 
+router.post('/change-password', (req, res) => {
+	var userId = 1; // TODO: Change to userId
+	usersController.getById(userId, function(user){
+		var oldPassword = req.body.currentPassword;
+		var newPassword = req.body.newPassword;
+		var confirmPassword = req.body.confirmPassword;
+
+		if (newPassword  != confirmPassword) {
+			req.session.error = "Confirm password not match!";
+			res.redirect('/member/change-password');
+		}
+
+		if (bCrypt.compareSync(oldPassword, user.password)){
+			var object = {
+				password: bCrypt.hashSync(newPassword, bCrypt.genSaltSync(8), null)
+			}
+			usersController.update(userId, object, function(user){
+				req.session.message = "Successfully change password!";
+				res.redirect('/member/change-password');
+			})
+		} else {
+			req.session.error = "Old password not correct!";
+			res.redirect('/member/change-password');
+		}
+
+
+	});
+});
+
 var profile = require('./profile');
 router.use('/profile', profile);
 var orders = require('./orders');
 router.use('/orders', orders);
-var setting = require('./setting');
-router.use('/setting', setting);
-
-// router.put('/:id', function(req, res){
-//     id = req.params.id;
-//
-//     ordersController.update(id, req.body, function(comment){
-//         res.send({status:"success"});
-//     });
-// })
-//
-// router.delete('/:id', function(req, res){
-// 	// res.render('details', ...)
-//     id = req.params.id;
-//     ordersController.delete(id, function(products){
-//         res.send({status:"success"});
-//     });
-// })
 
 module.exports = router;

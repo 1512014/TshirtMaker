@@ -1,0 +1,43 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+		  <div class="card">
+		  	<div class="card-body">
+				{{#if message}}
+	  		  	<div class="alert alert-success alert-dismissible">
+	  			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	  			  {{message}}
+	  		  	</div>
+	  		  	{{/if}}
+				<table class="detail" style="width:100%">
+				  <tbody>
+					  <tr>
+						  <th>Tax: </th>
+						  <td>{{settings.tax}}%</td>
+					  </tr>
+					  <tr>
+						  <th>Front Design Price:</th>
+						  <td>{{formatNumber settings.frontDesignPrice style="currency" currency="USD" }}</td>
+					  </tr>
+					  <tr>
+						  <th>Back Design Price:</th>
+						  <td>{{formatNumber settings.backDesignPrice style="currency" currency="USD" }}</td>
+					  </tr>
+				  </tbody>
+				</table>
+		  	</div>
+		  	<!-- /.card-body -->
+			<div class="card-footer">
+				<a href="/admin/settings/edit" type="button" class="btn btn-primary float-left">Edit</a>
+  				<a href="/admin/settings" type="button" class="btn btn-default float-right">Cancel</a>
+  		  </div>
+		  </div>
+		  <!-- /.card -->
+
+	  </div>
+
+      </div>
+    </div>
+  </div>
+</div>

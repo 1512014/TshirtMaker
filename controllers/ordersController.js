@@ -7,6 +7,7 @@ var settingsController = require('../controllers/settingsController');
 var productTypesController = require('../controllers/productTypesController');
 var productsController = require('../controllers/productsController');
 var usersController = require('../controllers/usersController');
+var designsController = require('../controllers/designsController');
 
 controller.getAll = function(callback){
     models.Order
@@ -30,21 +31,92 @@ controller.getAll = function(callback){
     })
 };
 
-controller.getAllByUserId = function(userId, status, callback){
+controller.getById = function(id, callback){
+    models.Order
+    .findOne({
+		where: {
+			id: id
+		}
+	})
+    .then(function(order){
+		productsController.getById(order.productId, function(product){
+			order.product = product;
+		});
+		usersController.getById(order.userId, function(user){
+			order.user = user;
+		});
+		designsController.getById(order.designId, function(design){
+			order.design = design;
+		});
+		settingsController.getSetting('tax', function(tax){
+			order.tax = tax;
+		});
+		settingsController.getSetting('frontDesignPrice', function(front){
+			order.frontDesignPrice = front;
+		});
+		settingsController.getSetting('backDesignPrice', function(back){
+			order.backDesignPrice = back;
+		});
+
+		setTimeout(callback, 1000, order);
+    })
+};
+
+controller.getAllByUserId = function(userId, statuses, callback){
     models.Order
     .findAll({
         where: {
-            UserId: userId,
-            status: status
+			status: {[Op.in]: statuses},
+            userId: userId
         },
         order: [
             ['id', 'DESC']
         ]
     })
-    .then(function(objects){
-        callback(objects);
+    .then(function(orders){
+		orders.forEach(function(order){
+			productsController.getById(order.productId, function(product){
+				order.product = product;
+			});
+			usersController.getById(order.userId, function(user){
+				order.user = user;
+			});
+			designsController.getById(order.designId, function(design){
+				order.design = design;
+			});
+		});
+
+		setTimeout(callback, 1000, orders);
     })
 };
+
+controller.getAllByCode = function(orderCode, callback){
+	models.Order
+    .findAll({
+        where: {
+			status: {[Op.in]: ['processing', 'delivered']},
+            orderCode: orderCode
+        },
+        order: [
+            ['id', 'DESC']
+        ]
+    })
+    .then(function(orders){
+		orders.forEach(function(order){
+			productsController.getById(order.productId, function(product){
+				order.product = product;
+			});
+			usersController.getById(order.userId, function(user){
+				order.user = user;
+			});
+			designsController.getById(order.designId, function(design){
+				order.design = design;
+			});
+		});
+
+		setTimeout(callback, 1000, orders);
+    })
+}
 
 controller.getQtyAndSize = function(order, callback){
     callback({productQty: order.qty, productSize: order.size})

@@ -1,0 +1,75 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+		  <div class="card">
+		  	<div class="card-body">
+				{{#if message}}
+	  		  	<div class="alert alert-success alert-dismissible">
+	  			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	  			  {{message}}
+  		  		</div>
+	  		  	{{/if}}
+				<table class="detail" style="width:100%">
+				  <tbody>
+					  <tr style="text-align: center; background-color: #dadada !important;">
+						<th colspan="2">
+							General Info
+						</th>
+					  </tr>
+					  <tr>
+						  <th>First Name:</th>
+						  <td>{{user.firstName}}</td>
+					  </tr>
+					  <tr>
+						  <th>Last Name:</th>
+						  <td>{{user.lastName}}</td>
+					  </tr>
+					  <tr>
+						  <th>Email:</th>
+						  <td>{{user.email}}</td>
+					  </tr>
+					  <tr>
+						  <th>Gender:</th>
+						  <td>{{user.gender}}</td>
+					  </tr>
+
+					  <tr style="text-align: center; background-color: #dadada !important;">
+						<th colspan="2">
+							Contact Info
+						</th>
+					  </tr>
+
+					  <tr>
+						  <th>Phone Number:</th>
+						  <td>{{user.phoneNumber}}</td>
+					  </tr>
+					  <tr>
+						  <th>Country:</th>
+						  <td>{{user.country}}</td>
+					  </tr>
+					  <tr>
+						  <th>City:</th>
+						  <td>{{user.city}}</td>
+					  </tr>
+					  <tr>
+						  <th>Address:</th>
+						  <td>{{user.address}}</td>
+					  </tr>
+
+				  </tbody>
+				</table>
+		  	</div>
+		  	<!-- /.card-body -->
+			<div class="card-footer">
+				<a href="/member/profile/edit" type="button" class="btn btn-primary float-left">Edit</a>
+  		  </div>
+		  </div>
+		  <!-- /.card -->
+
+	  </div>
+
+      </div>
+    </div>
+  </div>
+</div>
