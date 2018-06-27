@@ -6,6 +6,10 @@
 		  	<div class="card-body">
 				<table class="detail" style="width:100%">
 				  <tbody>
+					  <tr>
+						  <th>Order Code:</th>
+						  <td>#{{order.orderCode}}</td>
+					  </tr>
 					  <tr style="text-align: center; background-color: #dadada !important;">
 						<th colspan="2">
 							User Info
@@ -43,6 +47,23 @@
 							  <img src="{{order.product.imagePath2}}" width="100px" />
 						  </td>
 					  </tr>
+					  <tr style="text-align: center; background-color: #dadada !important;">
+						<th colspan="2">
+							Design Model Info
+						</th>
+					  </tr>
+					  <tr style="text-align: center;">
+						  <td>
+							  <img src="{{order.design.imageFront}}" width="100px" />
+						  </td>
+						  <td>
+							  <img src="{{order.design.imageBack}}" width="100px" />
+						  </td>
+					  </tr>
+					  <tr style="text-align: center">
+						  <th>Image Front</th>
+						  <th>Image Back</th>
+					  </tr>
 					  <!-- <tr>
 						  <th></th>
 						  <td>{{order.phoneNumber}}</td>
@@ -58,7 +79,7 @@
 					  </tr>
 					  <tr>
 						  <th>Size:</th>
-						  <td>{{order.productSize}}</td>
+						  <td>{{order.design.size}}</td>
 					  </tr>
 					  <tr>
 						  <th>Status:</th>

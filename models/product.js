@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
 
   Product.associate = function(models) {
     // associations can be defined here
-    Product.hasOne(models.Design_model);
     // Product.belongsTo(models.Product_type);
   };
 

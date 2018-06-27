@@ -70,22 +70,15 @@ controller.getProductFromOrder = function(order, products, totalPrice, callback)
     };
 
     controller.getById(productId, function(product){
+		tempSubtotal = order.subtotal * order.productQty +  order.shipping;
+		//Get totalPrice
+        product.totalPrice = tempSubtotal;
+		totalPrice.subtotal += tempSubtotal;
+        totalPrice.total += tempSubtotal;
+        productData.product = product;
 
-		//getTax
-		var taxKey = 'tax';
-		settingsController.getSetting(taxKey, function (setting) {
-			var tax = setting.value;
-			tempSubtotal = order.subtotal * order.productQty +  order.shipping;
-			//Get totalPrice
-	        product.totalPrice = tempSubtotal;
-			totalPrice.subtotal += tempSubtotal;
-	        totalPrice.total += tempSubtotal + tempSubtotal*tax/100;
-			totalPrice.tax = tax;
-            productData.product = product;
-
-	        products.push(productData);
-	        callback({products: products, totalPrice: totalPrice});
-		})
+        products.push(productData);
+        callback({products: products, totalPrice: totalPrice});
     });
 
 };

@@ -79,7 +79,11 @@
                     <p style="color: #333">Subtotal:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
+					{{#ifCond totalPrice.subtotal '==' null}}
+					<p>$0.00</p>
+					{{else}}
                     <p>{{formatNumber totalPrice.subtotal style="currency" currency="USD"}}</p>
+					{{/ifCond}}
                 </div>
             </div>
             <div class="row book-price" style="border-bottom: 5px solid #eee">
@@ -87,7 +91,7 @@
                     <p style="color: #333">Tax:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-                    <p>{{totalPrice.tax}}%</p>
+                    <p>{{tax}}%</p>
                 </div>
             </div>
             <form action="/checkout2" method="POST">
@@ -96,7 +100,11 @@
                     <p style="padding-top: 10px; color: #333">Total:</p>
                 </div>
                 <div class="col-sm-7" style="text-align: right">
-                    <p class="total-price">{{formatNumber totalPrice.total style="currency" currency="USD"}}</p>
+					{{#ifCond totalPrice.subtotal '==' null}}
+                    <p class="total-price">$0.00</p>
+					{{else}}
+					<p class="total-price">{{formatNumber totalPrice.total style="currency" currency="USD"}}</p>
+					{{/ifCond}}
                     <p style="font-size: 13px">(Included Tax)</p>
                     <input class="hide" name="userId" value={{userId}}>
 
@@ -105,7 +113,7 @@
 
             <button type="submit" class="btn btn-danger checkout">Checkout</button>
             </form>
-            
+
 
         </div>
     </div>

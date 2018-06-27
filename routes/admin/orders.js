@@ -5,6 +5,7 @@ var models = require('../../models');
 var ordersController = require('../../controllers/ordersController');
 var productsController = require('../../controllers/productsController');
 var settingsController = require('../../controllers/settingsController');
+var designsController = require('../../controllers/designsController');
 
 router.get('/', (req, res) => {
 	var message = req.session.message;
@@ -39,10 +40,8 @@ router.post('/:id/changeStatus', (req, res) => {
 router.get('/:id', (req, res) => {
 	var id = req.params.id;
 	ordersController.getById(id, function(order){
-
 		settingsController.getSetting('tax', function(tax){
 			tax = tax.value;
-			order.productSize = productsController.getSize(order.productSize);
 			order.totalPrice = order.subtotal + order.shipping + (order.subtotal + order.shipping) * tax / 100;
 			res.render('admin/orders/detail-order.hbs', {
 				order: order,

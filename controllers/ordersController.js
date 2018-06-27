@@ -7,6 +7,7 @@ var settingsController = require('../controllers/settingsController');
 var productTypesController = require('../controllers/productTypesController');
 var productsController = require('../controllers/productsController');
 var usersController = require('../controllers/usersController');
+var designsController = require('../controllers/designsController');
 
 controller.getAll = function(callback){
     models.Order
@@ -43,6 +44,10 @@ controller.getById = function(id, callback){
 		});
 		usersController.getById(order.userId, function(user){
 			order.user = user;
+		});
+		designsController.getById(order.designId, function(design){
+			order.design = design;
+			console.log(design.size);
 		});
 
 		setTimeout(callback, 1000, order);
