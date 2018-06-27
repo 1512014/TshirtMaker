@@ -91,4 +91,7 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	var country = $('input#country').val();
+	$('select#country').val(country).trigger('change');
 });
