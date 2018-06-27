@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
+var ordersController = require('../controllers/ordersController');
 var productsController = require('../controllers/productsController');
 var productTypesController = require('../controllers/productTypesController');
 var usersController = require('../controllers/usersController');

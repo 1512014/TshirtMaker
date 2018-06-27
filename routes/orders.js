@@ -19,4 +19,11 @@ router.delete('/:id', function(req, res){
     });
 })
 
+router.post('/:productId/add-to-cart', function(req, res){
+	ordersController.getAll(function(orders){
+		req.session.nOrders = orders.count;
+		res.send({message: "success"});
+	});
+});
+
 module.exports = router;
