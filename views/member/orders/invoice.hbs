@@ -4,7 +4,7 @@
     <div class="col-12">
       <h4>
         <i class="fa fa-globe"></i> {{admin.companyName}}
-        <small class="float-right">Date: 2/10/2014</small>
+        <small class="float-right"></small>
       </h4>
     </div>
     <!-- /.col -->
@@ -34,10 +34,10 @@
     </div>
     <!-- /.col -->
     <div class="col-sm-4 invoice-col">
-      <b>Invoice #007612</b><br>
+      <b>Invoice #{{orderCode}}</b><br>
       <br>
       <b>Order ID:</b> {{orderId}}<br>
-      <b>Payment Due:</b> 2/22/2014<br>
+      <b>Payment Due:</b> 06/29/2018<br>
       <!-- <b>Account:</b> 968-34567 -->
     </div>
     <!-- /.col -->
@@ -68,8 +68,8 @@
 			  <img src="{{product.imagePath2}}" width="80px"/>
 		  </td>
           <td>
-			  <img src="{{design.imageFront}}" width="80px"/>
-			  <img src="{{design.imageBack}}" width="80px"/>
+			  <img style="border: 1px solid grey" src="{{design.imageFront}}" width="80px"/>
+			  <img style="border: 1px solid grey" src="{{design.imageBack}}" width="80px"/>
 		  </td>
 		  <td>{{design.size}}</td>
           <td>{{formatNumber subtotal style="currency" currency="USD"}}</td>
@@ -97,7 +97,7 @@
     </div>
     <!-- /.col -->
     <div class="col-6">
-      <p class="lead">Amount Due 2/22/2014</p>
+      <p class="lead">Amount Due 06/29/2018</p>
 
       <div class="table-responsive">
         <table class="table">

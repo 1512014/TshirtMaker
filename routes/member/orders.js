@@ -83,6 +83,7 @@ router.get('/:id/invoice', (req, res) => {
 
 				res.render('member/orders/invoice.hbs', {
 					orders: orders,
+					orderCode: order.orderCode,
 					user: user,
 					admin: admin,
 					orderId: orderId,

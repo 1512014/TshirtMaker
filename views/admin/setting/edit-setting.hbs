@@ -9,7 +9,7 @@
           </div> -->
           <!-- /.card-header -->
           <!-- form start -->
-		  
+
 		  <form method="post" action="/admin/settings/edit">
             <div class="card-body">
 				<div class="form-group">
@@ -23,6 +23,32 @@
 				<div class="form-group">
                   <label for="backDesignPrice">Back Design Price</label>
                   <input type="number" value="{{settings.backDesignPrice}}" class="form-control" id="backDesignPrice" name="backDesignPrice">
+                </div>
+				<div class="form-group">
+                  <label for="companyName">Company Name</label>
+                  <input type="text" value="{{settings.companyName}}" class="form-control" id="companyName" name="companyName">
+                </div>
+				<div class="form-group">
+				  <label for="companyAddress">Company Address</label>
+				  <input type="text" value="{{settings.companyAddress}}" class="form-control" id="companyAddress" name="companyAddress">
+				</div>
+				<div class="form-group">
+                  <label for="companyCity">Company City</label>
+                  <input type="text" value="{{settings.companyCity}}" class="form-control" id="companyCity" name="companyCity">
+                </div>
+				<div class="form-group">
+                  <label for="companyCountry">Company Country</label>
+                  <input type="text" value="{{settings.companyCountry}}" class="form-control" id="companyCountry" name="companyCountry">
+                </div>
+
+				<div class="form-group">
+                  <label for="companyPhone">Company Phone</label>
+                  <input type="text" value="{{settings.companyPhone}}" class="form-control" id="companyPhone" name="companyPhone">
+                </div>
+
+				<div class="form-group">
+                  <label for="companyEmail">Company Email</label>
+                  <input type="text" value="{{settings.companyEmail}}" class="form-control" id="companyEmail" name="companyEmail">
                 </div>
 
             </div>

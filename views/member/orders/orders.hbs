@@ -33,8 +33,12 @@
                                 <th>
                                     <div class="btn-group">
                                         <a href="/member/orders/{{id}}/detail" type="button" class="btn btn-default">View</a>
+										{{#ifCond status '!=' 'pending'}}
 										<a href="/member/orders/{{id}}/invoice" type="button" class="btn btn-primary">Invoice</a>
+										{{/ifCond}}
+										{{#ifCond status '==' 'pending'}}
                                         <button type="button" class="btn btn-danger cancel-order" data-order-id="{{id}}">Cancel</button>
+										{{/ifCond}}
                                     </div>
                                 </th>
                             </tr>
