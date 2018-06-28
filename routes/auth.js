@@ -1,5 +1,9 @@
 var authController = require('../controllers/authcontroller.js');
- 
+const csrf = require('csurf');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var csrfProtection = csrf({ cookie: true });
+var parseForm = bodyParser.urlencoded({ extended: false });
  
 module.exports = function(app, passport) {
  
@@ -9,7 +13,7 @@ module.exports = function(app, passport) {
     app.get('/signin', authController.signin);
  
  
-    app.post('/signup', passport.authenticate('local-signup', {
+    app.post('/signup', parseForm, csrfProtection, passport.authenticate('local-signup', {
             successRedirect: '/',
  
             failureRedirect: '/register'

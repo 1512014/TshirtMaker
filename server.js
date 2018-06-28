@@ -14,6 +14,8 @@ const handleError = (err, res) => {
 const upload = multer({
     dest: "/public/img/uploads"
 });
+const csrf = require('csurf');
+var cookieParser = require('cookie-parser')
 var passport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
@@ -74,7 +76,7 @@ Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
     }
 });
 HandlebarsIntl.registerWith(Handlebars);
-
+app.use(cookieParser());
 app.engine('hbs', hbs.engine);
 app.set('port', (process.env.PORT || 3000));
 app.set('view engine', 'hbs');
@@ -85,9 +87,6 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
-
 //Routes
 
 var authRoute = require('./routes/auth.js')(app, passport);

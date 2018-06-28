@@ -1,11 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-
+const csrf = require('csurf');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+router.use(session({ secret: 'ilovescotchscotchyscotchscotch1' }));
+var csrfProtection = csrf({ cookie: true });
 var ordersController = require('../controllers/ordersController');
 var productsController = require('../controllers/productsController');
 var productTypesController = require('../controllers/productTypesController');
 var usersController = require('../controllers/usersController');
+router.use(cookieParser());
 router.get('/', (req, res) => {
 	var is_member=false;
 	var name="";
@@ -138,12 +143,14 @@ router.get('/login', (req, res) => {
     });
 });
 
-router.get('/register', (req, res) => {
+router.get('/register', csrfProtection,(req, res) => {
+	console.log("aaaaaaaaaaaaaaaa");
     res.render('auth/register.hbs', {
 		pageHeader: false,
 		activeRegister: true,
 		cssRegister: true,
 		message: req.flash('registerMessage'),
+		csrfToken: req.csrfToken(),
 		breadcrumbs:[
 			{title: "Register", link: "/register"}
 		]
