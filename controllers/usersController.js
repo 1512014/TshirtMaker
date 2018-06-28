@@ -22,6 +22,16 @@ controller.getById = function (id, callback){
     })
 }
 
+controller.create = function (object, callback){
+	models.User
+    .create(
+		object
+	)
+	.then(function(user){
+        callback(user);
+    })
+}
+
 controller.update = function (id, object, callback){
     models.User
     .update(

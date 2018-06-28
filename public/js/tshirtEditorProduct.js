@@ -359,14 +359,40 @@ var line4;
      $(document).ready(function () {
 
 		 $("#add-to-cart").on('click', function(){
-			 var productId = $(this).data('product-id');
-			 url = '/orders/' + productId + '/add-to-cart';
+			 // var productId = $(this).data('product-id');
+			 // url = '/orders/' + productId + '/add-to-cart';
+	         // $.ajax({
+	         //     url: url,
+	         //     contentType: 'application/json',
+	         //     type: 'POST',
+	         //     data: JSON.stringify({
+	         //         isActive: true,
+	         //      }),
+	         //     success: function(response){
+	         //        location.href = "/products/" + productId + "/finished";
+	         //     },
+	         //     error: function(error) {
+	         //         alert(error);
+	         //     }
+	         // });
+
+
+		 });
+
+		//  html2canvas(document.body).then(function(canvas) {
+    	// 	document.body.appendChild(canvas);
+		// });
+
+		 $('#save-design').on('click', function(){
+			 var canvas = $('#tcanvas');
+			 var dataUrl = canvas[0].toDataURL("image/png");
+			 url = '/products/createDesign';
 	         $.ajax({
 	             url: url,
 	             contentType: 'application/json',
 	             type: 'POST',
 	             data: JSON.stringify({
-	                 isActive: true,
+	                 image: dataUrl
 	              }),
 	             success: function(response){
 	                location.href = "/products/" + productId + "/finished";
@@ -375,9 +401,11 @@ var line4;
 	                 alert(error);
 	             }
 	         });
-
-
 		 });
+
+
+
+
 
 
      });

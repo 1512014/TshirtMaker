@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     name: { type: DataTypes.STRING, allowNull: false},
     //modelId
     typeId: { type: DataTypes.INTEGER, allowNull: false},
-    qty: { type: DataTypes.BIGINT(11), allowNull: false, defaultValue: 1 },
     minSize: { type: DataTypes.INTEGER},
     maxSize: { type: DataTypes.INTEGER},
     imagePath1: { type: DataTypes.STRING, allowNull: false},

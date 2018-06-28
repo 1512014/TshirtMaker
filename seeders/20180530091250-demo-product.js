@@ -8,7 +8,6 @@ module.exports = {
 			id: 1,
           name: "Gildan Ultra Cotton T-shirt",
           typeId: 1,
-          qty: 2,
           minSize: 1,
           maxSize: 6,
           imagePath1: "/img/products/template1.jpg",
@@ -19,19 +18,6 @@ module.exports = {
 		{
           name: "Gildan Ultra Cotton T-shirt",
           typeId: 1,
-          qty: 2,
-          minSize: 1,
-          maxSize: 6,
-          imagePath1: "/img/products/template1.jpg",
-          price: 20,
-          discount: 20,
-          description: "This is a nice T-shirt. Your group will love this fashionable tank."
-
-        },
-		{
-          name: "Gildan Ultra Cotton T-shirt",
-          typeId: 1,
-          qty: 2,
           minSize: 1,
           maxSize: 6,
           imagePath1: "/img/products/template1.jpg",
@@ -43,7 +29,17 @@ module.exports = {
 		{
           name: "Gildan Ultra Cotton T-shirt",
           typeId: 1,
-          qty: 2,
+          minSize: 1,
+          maxSize: 6,
+          imagePath1: "/img/products/template1.jpg",
+          price: 20,
+          discount: 20,
+          description: "This is a nice T-shirt. Your group will love this fashionable tank."
+
+        },
+		{
+          name: "Gildan Ultra Cotton T-shirt",
+          typeId: 1,
           minSize: 1,
           maxSize: 6,
           imagePath1: "/img/products/template1.jpg",
@@ -55,7 +51,6 @@ module.exports = {
         {
           name: "Anvil Jersey T-shirt",
           typeId: 2,
-          qty: 2,
           minSize: 2,
           maxSize: 5,
           imagePath1: "/img/products/template2.jpg",

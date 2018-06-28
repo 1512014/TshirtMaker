@@ -1,11 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Order = sequelize.define('Order', {
-    orderCode: { type: DataTypes.INTEGER, allowNull: false },
+    orderCode: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
     productId: { type: DataTypes.INTEGER, allowNull: false },
     productQty: { type: DataTypes.INTEGER, allowNull: false},
     status: { type: DataTypes.STRING, allowNull: false },
-    shipping: { type: DataTypes.FLOAT(11, 2), defaultValue: 0},
 	userId: { type: DataTypes.INTEGER, allowNull: false },
 	designId: { type: DataTypes.INTEGER, allowNull: false }
 

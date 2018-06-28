@@ -36,11 +36,16 @@ router.get('/', (req, res) => {
           }
           objects = objects.slice((page-1)*limit, page*limit);
           for (var i = 0; i<objects.length; i++){
-              if (i % 4 == 3){
-                  objects[i].isBreakLine = true;
-              } else {
-                  objects[i].isBreakLine = false;
-              }
+			  if (i % 4  == 0){
+				  objects[i].isStartLine = true;
+			  } else {
+				  objects[i].isStartLine = false;
+			  }
+			  if (i % 4  == 3){
+				  objects[i].isBreakLine = true;
+			  } else {
+				  objects[i].isBreakLine = false;
+			  }
               objects[i].discountPrice = objects[i].price * (100 - objects[i].discount) / 100;
               objects[i].discountAmount = objects[i].price * objects[i].discount / 100;
 			  objects[i].minSizeLatin = productsController.getSize(objects[i].minSize);
