@@ -34,32 +34,40 @@ router.get('/change-password', (req, res) => {
 });
 
 router.post('/change-password', (req, res) => {
-	var userId = 1; // TODO: Change to userId
-	usersController.getById(userId, function(user){
-		var oldPassword = req.body.currentPassword;
-		var newPassword = req.body.newPassword;
-		var confirmPassword = req.body.confirmPassword;
-
-		if (newPassword  != confirmPassword) {
-			req.session.error = "Confirm password not match!";
-			res.redirect('/member/change-password');
-		}
-
-		if (bCrypt.compareSync(oldPassword, user.password)){
-			var object = {
-				password: bCrypt.hashSync(newPassword, bCrypt.genSaltSync(8), null)
-			}
-			usersController.update(userId, object, function(user){
-				req.session.message = "Successfully change password!";
-				res.redirect('/member/change-password');
-			})
-		} else {
-			req.session.error = "Old password not correct!";
-			res.redirect('/member/change-password');
-		}
-
-
+	usersController.getRole(req.user.id,function(err,role){
+		if(role==='user'){
+            usersController.getById(req.user.id, function(user){
+				var oldPassword = req.body.currentPassword;
+				var newPassword = req.body.newPassword;
+				var confirmPassword = req.body.confirmPassword;
+		
+				if (newPassword  != confirmPassword) {
+					req.session.error = "Confirm password not match!";
+					res.redirect('/member/change-password');
+				}
+		
+				if (bCrypt.compareSync(oldPassword, user.password)){
+					var object = {
+						password: bCrypt.hashSync(newPassword, bCrypt.genSaltSync(8), null)
+					}
+					usersController.update(req.user.id, object, function(user){
+						req.session.message = "Successfully change password!";
+						res.redirect('/member/change-password');
+					})
+				} else {
+					req.session.error = "Old password not correct!";
+					res.redirect('/member/change-password');
+				}
+		
+		
+			});
+        }
+        else if (role==='admin'){
+            res.redirect('/admin');
+        }
+        else res.redirect('/');
 	});
+	
 });
 
 var profile = require('./profile');

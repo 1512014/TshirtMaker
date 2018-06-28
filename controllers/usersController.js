@@ -47,6 +47,7 @@ controller.getRole = function(id,callback){
     .findOne({
 		where: {id: id}
 	}).then(function(object){
+        console.log(object);
         temp=JSON.stringify(object.dataValues);
         temp1=JSON.parse(temp);
         callback(null,temp1.role);
