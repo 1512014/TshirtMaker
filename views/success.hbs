@@ -1,10 +1,14 @@
 
 <div style="height:470px; margin-top:50px">
     {{#if code}}
-        <p style="text-align: center; font-size:2.0em">GD thành công. Cảm ơn đã mua hàng tại trang đây.</p> 
-        <p style="text-align: center; font-size:2.0em">Chúng tôi sẽ chuyển hàng đến bạn trong thời gian sớm nhất.</p> 
+        <p style="text-align: center; font-size:2.0em">Transaction success. Thank you for your contact.</p> 
+        <p style="text-align: center; font-size:2.0em">We will ship to you as soon as we can.</p> 
     {{else }}
-        <p style="text-align: center; color: red;font-size:2.0em">GD thất bại</p> 
+        <p style="text-align: center; color: red;font-size:2.0em">Transaction failed.</p> 
     {{/if}}
+    <div style="display: block;margin-left: auto;margin-right: auto;width: 30%;">
+        <a href="/products"><button style="width:300px; height:50px;font-size:25px" class="btn .btn-success">Continue</button></a>
+    </div>
+    
 </div>
     

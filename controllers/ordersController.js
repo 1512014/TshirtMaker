@@ -102,9 +102,11 @@ controller.getAllByUserId = function(userId, statuses, callback){
     })
 };
 
-controller.updateAllByUserId = function(userId, status1,status2, callback){
+controller.updateAllByUserId = function(userId, status1,status2,method, callback){
     models.Order
-	.update({status:status2},
+	.update({status:status2,
+		payment_method:method,
+	},
 		{where: {
 			status:  status1,
             userId: userId
