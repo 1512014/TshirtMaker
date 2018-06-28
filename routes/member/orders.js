@@ -6,7 +6,7 @@ var ordersController = require('../../controllers/ordersController');
 var settingsController = require('../../controllers/settingsController');
 
 router.get('/', (req, res) => {
-	if (!req.isAuthenticated() || req.user.role != 'user'){
+	if (!req.isAuthenticated() || req.user.role != 'user' || req.user.isActive == 0){
 		res.redirect('/');
 		return;
 	}
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id/detail', (req, res) => {
-	if (!req.isAuthenticated() || req.user.role != 'user'){
+	if (!req.isAuthenticated() || req.user.role != 'user' || req.user.isActive == 0){
 		res.redirect('/');
 		return;
 	}
@@ -52,7 +52,7 @@ router.get('/:id/detail', (req, res) => {
 });
 
 router.get('/:id/invoice', (req, res) => {
-	if (!req.isAuthenticated() || req.user.role != 'user'){
+	if (!req.isAuthenticated() || req.user.role != 'user' || req.user.isActive == 0){
 		res.redirect('/');
 		return;
 	}

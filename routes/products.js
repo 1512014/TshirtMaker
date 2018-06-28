@@ -147,7 +147,6 @@ router.get('/:id/afterDesign', (req, res) => {
 	var id = req.params.id;
 	var designId = req.session.designId;
 	designsController.getById(designId, function(design){
-		console.log("Hehehe: " + designId);
 		res.render('after-design.hbs', {
 			design: design,
 			productId: id,

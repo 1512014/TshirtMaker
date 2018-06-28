@@ -24,6 +24,7 @@ router.delete('/:id', function(req, res){
 router.post('/:productId/add-to-cart', function(req, res){
 	var productId = req.params.productId;
 	var designId = req.body.designId;
+	req.body.designId = null;
 	var userId = req.user ? req.user.id : req.session.guestId;
 	if (!userId){
 		userData = {

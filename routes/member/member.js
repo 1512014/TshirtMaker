@@ -6,7 +6,7 @@ var bCrypt = require('bcrypt-nodejs');
 var usersController = require('../../controllers/usersController');
 
 router.get('/', (req, res) => {
-	if (!req.isAuthenticated() || req.user.role != 'user'){
+	if (!req.isAuthenticated() || req.user.role != 'user' || req.user.isActive == 0){
 		res.redirect('/');
 		return;
 	}
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/change-password', (req, res) => {
-	if (!req.isAuthenticated() || req.user.role != 'user'){
+	if (!req.isAuthenticated() || req.user.role != 'user' || req.user.isActive == 0){
 		res.redirect('/');
 		return;
 	}
