@@ -15,6 +15,10 @@ var ordersController = require('../../controllers/ordersController');
 var productTypesController = require('../../controllers/productTypesController');
 
 router.get('/', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
   	req.session.message = null;
 	productTypesController.getAllProductTypes(function(objects){
@@ -33,6 +37,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/create', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
   	req.session.message = null;
 	res.render('admin/product_types/new-product-type.hbs', {
@@ -101,6 +109,10 @@ router.post("/create", upload.fields([{ name: 'templateFront', maxCount: 1 },  {
 });
 
 router.get("/:id/edit", (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var id = req.params.id;
 	productTypesController.getProductType(id, function(object){
 		res.render('admin/product_types/new-product-type.hbs', {
@@ -175,30 +187,11 @@ router.post("/:id/edit", upload.fields([{ name: 'templateFront', maxCount: 1 }, 
 });
 
 router.post('/:id', function(req, res){
-	// res.render('details', ...)
     id = req.params.id;
     productTypesController.deleteProductType(id, function(object){
 		req.session.message = "Delete Successfully!";
 		res.redirect('/admin/product-types');
 	});
 })
-
-// router.post("/create", function (req, res) {
-// 	var form = new formidable.IncomingForm();
-//     form.parse(req, function (err, fields, files) {
-//       var oldFrontPath = files.templateFront.path;
-// 	  if (fields.gender == 'male'){
-// 		  var newFrontPath = __dirname + '/../../public/img/templates/male/' + files.templateFront.name;
-// 	  } else {
-// 		  var newFrontPath = __dirname + '/../../public/img/templates/female/' + files.templateFront.name;
-// 	  }
-//
-//       fs.rename(oldFrontPath, newFrontPath, function (err) {
-//         if (err) throw err;
-//         res.write('File uploaded and moved!');
-//         res.end();
-//       });
-//   	});
-// });
 
 module.exports = router;

@@ -6,6 +6,10 @@ var ordersController = require('../../controllers/ordersController');
 var settingsController = require('../../controllers/settingsController');
 
 router.get('/', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'user'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
 	req.session.message = null;
 	var statuses = ['pending', 'processing', 'delivered'];
@@ -26,6 +30,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id/detail', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'user'){
+		res.redirect('/');
+		return;
+	}
 	var id = req.params.id;
 	ordersController.getById(id, function(order){
 		var temp = (order.subtotal) * order.productQty;
@@ -44,6 +52,10 @@ router.get('/:id/detail', (req, res) => {
 });
 
 router.get('/:id/invoice', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'user'){
+		res.redirect('/');
+		return;
+	}
 	var orderId = req.params.id;
 	ordersController.getById(orderId, function(order){
 		ordersController.getAllByCode(order.orderCode, function(orders){

@@ -7,6 +7,8 @@ var productsController = require('../controllers/productsController');
 var settingsController = require('../controllers/settingsController');
 
 router.get('/', function(req, res){
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
     var page = parseInt(req.query.page);
     var status = req.query.orderStatus;
     var user = req.user;
@@ -44,6 +46,7 @@ router.get('/', function(req, res){
 			nOrders: orders.length,
 			pageHeader: true,
 			cssViewCart: true,
+			isMember: is_member,
 			breadcrumbs: [
 				{title: "View Cart", link: "/view-cart"}
 			],

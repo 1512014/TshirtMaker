@@ -5,6 +5,10 @@ var models = require('../../models');
 var usersController = require('../../controllers/usersController');
 
 router.get('/', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	usersController.getAll(function(users){
 		res.render('admin/users/list-users.hbs', {
 			users: users,
@@ -20,6 +24,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var id = req.params.id;
 	usersController.getById(id, function(user){
 		res.render('admin/users/detail-user.hbs', {
@@ -41,15 +49,6 @@ router.put('/:id', function(req, res){
     usersController.update(id, req.body, function(comment){
         res.send({status:"success"});
     });
-})
-
-//
-// router.delete('/:id', function(req, res){
-// 	// res.render('details', ...)
-//     id = req.params.id;
-//     ordersController.delete(id, function(products){
-//         res.send({status:"success"});
-//     });
-// })
+});
 
 module.exports = router;
