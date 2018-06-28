@@ -161,12 +161,12 @@ app.use('/member', member);
 app.post('/payment', (req, res) => {
     method = req.body.payment_method;
     total = req.body.total;
-    userId = req.body.userId;
+    var userId = req.user ? req.user.id : req.session.guestId;
     if (method == 'paypal') res.redirect('/paypal' + '?total=' + total+'&id='+userId);
     else if (method == 'vnpay') res.redirect('/vnpay' + '?total=' + total+'&id='+userId);
     else if (method == 'cod') {
         var userId = req.body.userId;
-        ordersController.updateAllByUserId(userId,'pending','COD',function(objects){
+        ordersController.updateAllByUserId(userId,'pending','processing','COD',function(objects){
         })
         res.render('success.hbs', {
             pageHeader: true,
@@ -179,7 +179,7 @@ app.post('/payment', (req, res) => {
     else redirect('/');
 });
 app.post('/checkout2', (req, res) => {
-    var userId = req.body.userId;
+    var userId = req.user ? req.user.id : req.session.guestId;
     products = [];
     statuses = ['pending'];
     totalPrice = { subtotal: 0, total: 0 };
@@ -191,18 +191,15 @@ app.post('/checkout2', (req, res) => {
                 total: 0
             };
 
-<<<<<<< HEAD
             var is_member = false;
 			if (req.isAuthenticated()) is_member = true;
 			var name = "";
 			if (req.user) name = req.user.lastName;
-=======
 			for (var i in orders){
 				totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
 			}
 			totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax/100;
 
->>>>>>> 6a8bcd4aa306961839bcc9ee372c84b5d3906b61
             res.render('checkout-step2.hbs', {
                 isMember: is_member,
 				name: name,
@@ -239,7 +236,6 @@ app.post('/checkout3', (req, res) => {
                 subtotal: 0,
                 total: 0
             };
-<<<<<<< HEAD
             for (var i in orders) {
                 totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
                 orders[i].product.totalPrice = orders[i].product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
@@ -254,13 +250,6 @@ app.post('/checkout3', (req, res) => {
 			if (req.isAuthenticated()) is_member = true;
 			var name = "";
 			if (req.user) name = req.user.lastName;
-=======
-			for (var i in orders){
-				totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
-			}
-			totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax/100;
-
->>>>>>> 6a8bcd4aa306961839bcc9ee372c84b5d3906b61
             res.render('checkout-step3.hbs', {
                 name1: name1,
                 isMember: is_member,

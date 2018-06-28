@@ -6,19 +6,6 @@ var ordersController = require('../controllers/ordersController');
 var productsController = require('../controllers/productsController');
 var settingsController = require('../controllers/settingsController');
 
-<<<<<<< HEAD
-router.get('/', function (req, res) {
-	page = parseInt(req.query.page);
-	status = req.query.orderStatus;
-	userId = req.user.id; //TODO: change later
-	if (!status) status = 'pending'; //Pending status
-	limit = 100;
-	products = [];
-	totalPrice = { subtotal: 0, total: 0 };
-	// orders = [];
-	// products = [];
-	// totalPrice = {subtotal: 0, total: 0};
-=======
 router.get('/', function(req, res){
     var page = parseInt(req.query.page);
     var status = req.query.orderStatus;
@@ -31,7 +18,6 @@ router.get('/', function(req, res){
     // orders = [];
     // products = [];
     // totalPrice = {subtotal: 0, total: 0};
->>>>>>> 6a8bcd4aa306961839bcc9ee372c84b5d3906b61
 	statuses = ['pending'];
 
 	settingsController.getAll(function (settings) {

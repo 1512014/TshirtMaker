@@ -111,7 +111,7 @@ router.get('/vnpay_return', function (req, res, next) {
         var kt = true;
         if (vnp_Params['vnp_ResponseCode'] != '00') kt = false;
         if (kt) {
-            ordersController.updateAllByUserId(id[0], 'pending', 'VNPAL', function (objects) {
+            ordersController.updateAllByUserId(id[0], 'pending', 'processing','VNPAY', function (objects) {
             })
             res.render('success.hbs', {
                 pageHeader: true,

@@ -13,7 +13,8 @@ module.exports = {
       productQty: { type: Sequelize.INTEGER, allowNull: false},
       status: { type: Sequelize.STRING, allowNull: false },
       userId: { type: Sequelize.INTEGER, allowNull: false },
-	  designId: { type: Sequelize.INTEGER, allowNull: false },
+    designId: { type: Sequelize.INTEGER, allowNull: false },
+    payment_method: { type: Sequelize.STRING, allowNull: true },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

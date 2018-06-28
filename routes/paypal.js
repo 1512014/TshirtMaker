@@ -73,7 +73,7 @@ router.get('/success',function(req,res){
             console.log(error.response);
             throw error;
         }else{
-            ordersController.updateAllByUserId(id[0],'pending','PAYPAL',function(objects){
+            ordersController.updateAllByUserId(id[0],'pending','processing','PAYPAL',function(objects){
             })
             res.render('success.hbs', {
                 pageHeader: true,
