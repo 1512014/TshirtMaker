@@ -82,9 +82,9 @@ app.engine('hbs', hbs.engine);
 app.set('port', (process.env.PORT || 3000));
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch', cookie: { maxAge: 6000000 }})); // session secret
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch', cookie: { maxAge: 6000000 } })); // session secret
 app.use(passport.initialize());
-app.use(passport.session( { secret: 'keyboard cat', cookie: { maxAge: 6000000 }} )); // persistent login sessions
+app.use(passport.session({ secret: 'keyboard cat', cookie: { maxAge: 6000000 } })); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -162,17 +162,17 @@ app.post('/payment', (req, res) => {
     method = req.body.payment_method;
     total = req.body.total;
     var userId = req.user ? req.user.id : req.session.guestId;
-    if (method == 'paypal') res.redirect('/paypal' + '?total=' + total+'&id='+userId);
-    else if (method == 'vnpay') res.redirect('/vnpay' + '?total=' + total+'&id='+userId);
+    if (method == 'paypal') res.redirect('/paypal' + '?total=' + total + '&id=' + userId);
+    else if (method == 'vnpay') res.redirect('/vnpay' + '?total=' + total + '&id=' + userId);
     else if (method == 'cod') {
         var userId = req.body.userId;
-        ordersController.updateAllByUserId(userId,'pending','processing','COD',function(objects){
+        ordersController.updateAllByUserId(userId, 'pending', 'processing', 'COD', function (objects) {
         })
         res.render('success.hbs', {
             pageHeader: true,
             //cssCheckOutStep2: true,
             hideBreadcrumb: true,
-            code:true
+            code: true
         });
 
     }
@@ -192,17 +192,17 @@ app.post('/checkout2', (req, res) => {
             };
 
             var is_member = false;
-			if (req.isAuthenticated()) is_member = true;
-			var name = "";
-			if (req.user) name = req.user.lastName;
-			for (var i in orders){
-				totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
-			}
-			totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax/100;
+            if (req.isAuthenticated()) is_member = true;
+            var name = "";
+            if (req.user) name = req.user.lastName;
+            for (var i in orders) {
+                totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
+            }
+            totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax / 100;
 
             res.render('checkout-step2.hbs', {
                 isMember: is_member,
-				name: name,
+                name: name,
                 userId: userId,
                 orders: orders,
                 settings: settings,
@@ -218,7 +218,7 @@ app.post('/checkout2', (req, res) => {
 })
 
 app.post('/checkout3', (req, res) => {
-    userId = req.body.userId;
+    var userId = req.user ? req.user.id : req.session.guestId;
     name1 = req.body.firstname;
     email = req.body.email;
     state = req.body.state;
@@ -226,6 +226,27 @@ app.post('/checkout3', (req, res) => {
     address = req.body.address;
     city = req.body.city;
     payment_method = req.body.payment_method;
+    models.User
+        .update(
+            {
+                firstname: name1,
+                email: email,
+                city:city,
+                address:address                
+            },
+            { where: { id: userId } }
+        )
+        .then(function (object) {
+            callback(object);
+        })
+    newCode= Math.floor(Math.random() * 10000);
+    models.Order
+    .update(
+        {orderCode:newCode},
+        {where: {userId:userId}}
+    ).then(function (object) {
+        callback(object);
+    })
     statuses = ['pending'];
     products = [];
     totalPrice = { subtotal: 0, total: 0 };
@@ -243,17 +264,17 @@ app.post('/checkout3', (req, res) => {
             }
             totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax / 100;
             var n = parseFloat(totalPrice.total);
-            totalPrice.total=Math.round(n * 100)/100;
+            totalPrice.total = Math.round(n * 100) / 100;
             n = parseFloat(totalPrice.subtotal);
-            totalPrice.subtotal=Math.round(n * 100)/100;
+            totalPrice.subtotal = Math.round(n * 100) / 100;
             var is_member = false;
-			if (req.isAuthenticated()) is_member = true;
-			var name = "";
-			if (req.user) name = req.user.lastName;
+            if (req.isAuthenticated()) is_member = true;
+            var name = "";
+            if (req.user) name = req.user.lastName;
             res.render('checkout-step3.hbs', {
                 name1: name1,
                 isMember: is_member,
-				name: name,
+                name: name,
                 email: email,
                 state: state,
                 zip: zip,
@@ -303,16 +324,16 @@ app.get('/checkout-step3', (req, res) => {
     });
 });
 
-app.get('/userprofile',(req,res)=>{
-    usersController.getRole(req.user.id,function(err,role){
-		if(role==='user'){
+app.get('/userprofile', (req, res) => {
+    usersController.getRole(req.user.id, function (err, role) {
+        if (role === 'user') {
             res.redirect('/member');
         }
-        else if (role==='admin'){
+        else if (role === 'admin') {
             res.redirect('/admin');
         }
         else res.redirect('/');
-	});
+    });
 
 })
 
