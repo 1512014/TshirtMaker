@@ -6,7 +6,6 @@ module.exports = function(passport, user) {
     var User = models.User;
     var LocalStrategy = require('passport-local').Strategy;
     passport.use('local-signup', new LocalStrategy(
-
         {
             usernameField: 'email',
             passwordField: 'password',
@@ -23,7 +22,7 @@ module.exports = function(passport, user) {
             const verifyUrl="https://www.google.com/recaptcha/api/siteverify?secret=" + secretkey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
             request(verifyUrl,function(error,response,body) {
                 body = JSON.parse(body);
-            
+
                 if(body.success !== undefined && !body.success) {
                   return res.json({"responseError" : "Failed captcha verification"});
                 }

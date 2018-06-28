@@ -14,8 +14,13 @@ router.use(cookieParser());
 router.get('/', (req, res) => {
 	var is_member=false;
 	var name="";
+<<<<<<< HEAD
 		
 	
+=======
+
+
+>>>>>>> 6a8bcd4aa306961839bcc9ee372c84b5d3906b61
 	if(req.user) name=req.user.lastName;
 	if(req.isAuthenticated()) is_member=true;
 	page = parseInt(req.query.page);
@@ -146,7 +151,6 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/register', csrfProtection,(req, res) => {
-	console.log("aaaaaaaaaaaaaaaa");
     res.render('auth/register.hbs', {
 		pageHeader: false,
 		activeRegister: true,

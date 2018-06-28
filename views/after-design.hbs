@@ -5,14 +5,17 @@
           <div class="row" style="text-align:center">
 			  <div class="col-sm-6">
 				  <img src="{{design.imageFront}}" height="100%" style="border: 1px solid grey"/>
+				  <h3>Front Design</h3>
 			  </div>
 			  <div class="col-sm-6">
 				  <img src="{{design.imageBack}}" height="100%" style="border: 1px solid grey"/>
+				  <h3>Back Design</h3>
 			  </div>
 		  </div>
         </div>
 		<div class="button-group" style="text-align: center; margin-top: 50px; margin-bottom: 50px;" >
 			<form style="display:inline-block" action="/orders/{{productId}}/add-to-cart" method="post" >
+				<input type="hidden" name="designId" value="{{design.id}}"/>
 				<button type="submit" class="btn btn-lg btn-success" name="add-to-cart" style="display:inline-block" id="add-to-cart" data-product-id={{productId}}>Add to Cart</button>
 			</form>
 			<a href="/products/{{productId}}/designFront" type="button" class="btn btn-lg btn-primary">Change Design</a>
