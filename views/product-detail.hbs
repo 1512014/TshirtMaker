@@ -34,15 +34,11 @@
 
             <div class="row add-to-cart" style="">
                 <div class="col-sm-12" style="height: 60px; line-height: 60px; width: 250px">
-					{{#ifCond product.qty '>' 0}}
-                    <a href="/products/{{product.id}}/design" type="button" class="btn btn-danger" style="text-align: center; font-size: 24px">
+
+                    <a href="/products/{{product.id}}/designFront" type="button" class="btn btn-danger" style="text-align: center; font-size: 24px">
                         Start Design
                     </a>
-					{{else}}
-					<button type="button" class="btn btn-default" style="text-align: center; font-size: 24px" disabled="disabled">
-                        Out Of Stock
-                    </button>
-					{{/ifCond}}
+
                 </div>
             </div>
 

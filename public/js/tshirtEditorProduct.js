@@ -376,36 +376,60 @@ var line4;
 	         //     }
 	         // });
 
-
 		 });
 
-		//  html2canvas(document.body).then(function(canvas) {
-    	// 	document.body.appendChild(canvas);
-		// });
+		 // $('#save-design').on('click', function(){
+			//  var flip = $("#flip");
+			//  var size = $("#tshirtSizes").val();
+		 //
+			//  if (flip.attr("data-original-title") == "Show Back View"){
+			// 	 var canvasFront = document.getElementById('tcanvas');
+			// 	 var dataFrontUrl = canvasFront.toDataURL();
+			// 	 flip.trigger('click');
+			// 	 setTimeout(function(){
+			// 		 var canvasBack = document.getElementById('tcanvas');
+			// 		 var dataBackUrl = canvasBack.toDataURL();
+			// 	 }, 1000);
+			//  }
+			//  else {
+			// 	 var canvasBack = document.getElementById('tcanvas');
+			// 	 var dataBackUrl = canvasBack.toDataURL();
+			// 	 flip.trigger('click');
+			// 	 setTimeout(function(){
+			// 		 var canvasFront = document.getElementById('tcanvas');
+	 		// 		 var dataFrontUrl = canvasFront.toDataURL();
+			// 	 }, 1000);
+			//  }
+		 //
+			//  setTimeout(function(){
+			// 	 $("input#canvasFront").val(dataFrontUrl);
+			//      $("input#canvasBack").val(dataBackUrl);
+			// 	 $("input#size").val(size);
+		 //
+			// 	 $('form#saveCanvas').submit();
+			//  }, 2000);
+		 // });
 
-		 $('#save-design').on('click', function(){
-			 var canvas = $('#tcanvas');
-			 var dataUrl = canvas[0].toDataURL("image/png");
-			 url = '/products/createDesign';
-	         $.ajax({
-	             url: url,
-	             contentType: 'application/json',
-	             type: 'POST',
-	             data: JSON.stringify({
-	                 image: dataUrl
-	              }),
-	             success: function(response){
-	                location.href = "/products/" + productId + "/finished";
-	             },
-	             error: function(error) {
-	                 alert(error);
-	             }
-	         });
+		 $('#save-front-design').on('click', function(){
+			 var size = $("#tshirtSizes").val();
+			 var canvasFront = document.getElementById('tcanvas');
+			 var dataFrontUrl = canvasFront.toDataURL();
+
+			 $("input#canvasFront").val(dataFrontUrl);
+			 $("input#size").val(size);
+			 $('form#saveFront').submit();
 		 });
 
+		 $('#save-back-design').on('click', function(){
+			 var size = $("#tshirtSizes").val();
+			 var canvasBack = document.getElementById('tcanvas');
+			 var dataBackUrl = canvasBack.toDataURL();
 
+			 $("input#canvasBack").val(dataBackUrl);
+			 $("input#size").val(size);
+			 $('form#saveBack').submit();
 
-
+		 });
 
 
      });

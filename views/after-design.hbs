@@ -1,0 +1,21 @@
+<div class="TM-body">
+    <div class="container-fluid" style="background: white;">
+      	<h3 style="text-align: center">Your designs have been saved successfully.</h3>
+		<div class="well" style="margin-top: 40px;">
+          <div class="row" style="text-align:center">
+			  <div class="col-sm-6">
+				  <img src="{{design.imageFront}}" height="100%" style="border: 1px solid grey"/>
+			  </div>
+			  <div class="col-sm-6">
+				  <img src="{{design.imageBack}}" height="100%" style="border: 1px solid grey"/>
+			  </div>
+		  </div>
+        </div>
+		<div class="button-group" style="text-align: center; margin-top: 50px; margin-bottom: 50px;" >
+			<form style="display:inline-block" action="/orders/{{productId}}/add-to-cart" method="post" >
+				<button type="submit" class="btn btn-lg btn-success" name="add-to-cart" style="display:inline-block" id="add-to-cart" data-product-id={{productId}}>Add to Cart</button>
+			</form>
+			<a href="/products/{{productId}}/designFront" type="button" class="btn btn-lg btn-primary">Change Design</a>
+		</div>
+    </div>
+</div>
