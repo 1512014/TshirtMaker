@@ -29,6 +29,7 @@ var paginateHelper = require('express-handlebars-paginate');
 var ordersController = require('./controllers/ordersController');
 var productsController = require('./controllers/productsController');
 var settingsController = require('./controllers/settingsController');
+var usersController = require('./controllers/usersController');
 var orders = require('./models/order');
 var hbs = expressHbs.create({
     extname: 'hbs',
@@ -289,7 +290,19 @@ app.get('/checkout-step3', (req, res) => {
     });
 });
 
-
+app.get('/userprofile',(req,res)=>{
+    if(req.user) console.log(req.user);
+    usersController.getRole(req.user.id,function(err,role){
+		if(role==='user'){
+            res.redirect('/member');
+        }
+        else if (role==='admin'){
+            res.redirect('/admin');
+        }
+        else res.redirect('/');
+	});
+    
+})
 
 app.listen(app.get('port'), function () {
     console.log('Server is listening at port ' + app.get('port'));

@@ -129,7 +129,6 @@ module.exports = function(passport, user) {
                     ));
 
                 }
-
                 return done(null, user);
 
 

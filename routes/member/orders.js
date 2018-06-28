@@ -6,11 +6,10 @@ var ordersController = require('../../controllers/ordersController');
 var settingsController = require('../../controllers/settingsController');
 
 router.get('/', (req, res) => {
-	var userId = 1;
 	var message = req.session.message;
 	req.session.message = null;
 	var statuses = ['pending', 'processing', 'delivered'];
-	ordersController.getAllByUserId(userId, statuses, function(orders){
+	ordersController.getAllByUserId(req.user.id, statuses, function(orders){
 		res.render('member/orders/orders.hbs', {
 			orders: orders,
 			message: message,

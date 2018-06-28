@@ -6,10 +6,9 @@ var validator = require('validator');
 var usersController = require('../../controllers/usersController');
 
 router.get('/', (req, res) => {
-	var userId = 1 //get current userId
 	var message = req.session.message;
 	req.session.message = null;
-	usersController.getById(userId, function(user){
+	usersController.getById(req.user.id, function(user){
 		res.render('member/profile/profile.hbs', {
 			user: user,
 			message: message,
@@ -25,10 +24,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/edit', (req, res) => {
-	userId = 1 //get current userId
 	var message = req.session.message;
 	req.session.message = null;
-	usersController.getById(userId, function(user){
+	usersController.getById(req.user.id, function(user){
 		res.render('member/profile/edit-profile.hbs', {
 			user: user,
 			message: message,
@@ -45,12 +43,11 @@ router.get('/edit', (req, res) => {
 });
 
 router.post('/edit', (req, res) => {
-	userId = 1 //get current userId
 	if (!validator.isNumeric(req.body.phoneNumber)){
 		req.session.message = "Phone Number must be a number.";
 		res.redirect('/member/profile/edit');
 	}
-	usersController.update(userId, req.body, function(user){
+	usersController.update(req.user.id, req.body, function(user){
 		req.session.message = "Edit Successfully!";
 		res.redirect('/member/profile');
 	});
