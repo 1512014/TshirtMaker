@@ -10,7 +10,6 @@ paypal.configure({
 router.get('/',function(req,res){
     const total= req.query.total;
     const id= req.query.id;
-    console.log(total);
     const create_payment_json = {
         "intent": "sale",
         "payer": {
