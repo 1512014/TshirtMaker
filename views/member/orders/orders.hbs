@@ -16,7 +16,6 @@
                                 <th>Product</th>
 								<th>Qty</th>
                                 <th>Subtotal</th>
-								<th>Shipping</th>
 								<th>Status</th>
 								<th>Action</th>
                             </tr>
@@ -28,9 +27,8 @@
                                 <td>{{id}}</td>
 								<td>#{{orderCode}}</td>
                                 <td>{{product.name}}</td>
-								<td>{{product.qty}}</td>
-								<td>{{subtotal}}</td>
-								<td>{{shipping}}</td>
+								<td>{{productQty}}</td>
+								<td>{{formatNumber subtotal style="currency" currency="USD"}}</td>
                                 <td>{{status}}</td>
                                 <th>
                                     <div class="btn-group">
@@ -50,7 +48,6 @@
                                 <th>Product</th>
 								<th>Qty</th>
                                 <th>Subtotal</th>
-								<th>Shipping</th>
 								<th>Status</th>
 								<th>Action</th>
                             </tr>

@@ -40,6 +40,9 @@ $(document).ready(function(){
         $.ajax({
             url: url,
             contentType: 'application/json',
+			data: JSON.stringify({
+                isActive: false,
+             }),
             type: 'PUT',
             success: function(response){
                 $('#deactive-user-' + userId).css('display', 'none');

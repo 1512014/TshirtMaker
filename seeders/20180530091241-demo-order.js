@@ -8,7 +8,7 @@ module.exports = {
               productId: 1,
               productQty: 2,
               status: 'pending',
-			  userId: 1,
+			  userId: 2,
 			  designId: 1
           },
           {
@@ -16,7 +16,7 @@ module.exports = {
               productId: 2,
               productQty: 1,
               status: 'pending',
-			  userId: 1,
+			  userId: 2,
 			  designId: 1
           },
           {
@@ -24,7 +24,7 @@ module.exports = {
               productId: 4,
               productQty: 3,
               status: 'pending',
-			  userId: 1,
+			  userId: 2,
 			  designId: 1
           },
 		  {
@@ -32,7 +32,7 @@ module.exports = {
               productId: 1,
               productQty: 2,
               status: 'processing',
-			  userId: 1,
+			  userId: 2,
 			  designId: 1
           },
           {
@@ -40,7 +40,7 @@ module.exports = {
               productId: 2,
               productQty: 1,
               status: 'processing',
-			  userId: 1,
+			  userId: 2,
 			  designId: 1
           },
           {
@@ -48,7 +48,7 @@ module.exports = {
               productId: 4,
               productQty: 3,
               status: 'processing',
-			  userId: 1,
+			  userId: 2,
 			  designId: 1
           },
           {
