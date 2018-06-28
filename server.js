@@ -129,35 +129,6 @@ var member = require('./routes/member/member');
 app.use('/member', member);
 
 
-
-
-
-
-
-
-
-
-
-// hbs.registerPartials(__dirname + '/views/partials');
-// app.set('view engine', 'hbs');
-
-// app.get('/sync', function(req, res){
-// 	models.sequelize.sync().then(function(){
-// 		res.send('database sync completed!');
-// 	});
-// });
-
-// app.get('/', function(req, res){
-// 	res.redirect('/articles');
-// })
-//
-// var articles = require('./routes/articles');
-// app.use('/articles', articles);
-//
-// var comments = require('./routes/comments');
-// app.use('/comments', comments);
-
-
 app.post('/payment', (req, res) => {
     method = req.body.payment_method;
     total = req.body.total;
@@ -195,8 +166,11 @@ app.post('/checkout2', (req, res) => {
             if (req.isAuthenticated()) is_member = true;
             var name = "";
             if (req.user) name = req.user.lastName;
-            for (var i in orders) {
+			for (var i in orders) {
                 totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
+				if (orders[i].product.name.length > 16){
+					orders[i].product.name = orders[i].product.name.slice(0, 16) + '...'
+				}
             }
             totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax / 100;
 
@@ -233,12 +207,12 @@ app.post('/checkout3', (req, res) => {
                 firstname: name1,
                 email: email,
                 city:city,
-                address:address                
+                address:address
             },
             { where: { id: userId } }
         )
         .then(function (object) {
-            callback(object);
+
         })
     newCode= Math.floor(Math.random() * 10000);
     models.Order
@@ -260,8 +234,6 @@ app.post('/checkout3', (req, res) => {
             };
             for (var i in orders) {
                 totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
-                orders[i].product.totalPrice = orders[i].product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
-                orders[i].total = orders[i].subtotal * orders[i].productQty + orders[i].subtotal * orders[i].productQty * settings.tax / 100;
             }
             totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax / 100;
             var n = parseFloat(totalPrice.total);

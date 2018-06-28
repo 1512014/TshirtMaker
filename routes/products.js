@@ -112,7 +112,7 @@ router.get('/:id/designFront', function(req, res){
 			message: message,
             pageHeader: true,
 			activeDesign: true,
-			isMember: isMember,
+			isMember: is_member,
 			breadcrumbs: [
 				{title: "Design", link: "/design"}
 			]

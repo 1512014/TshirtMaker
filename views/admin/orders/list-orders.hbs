@@ -33,7 +33,7 @@
                                 <td>{{user.firstName}} {{user.lastName}}</td>
                                 <td>{{product.name}}</td>
 								<td>{{productQty}}</td>
-								<td>{{subtotal}}</td>
+								<td>{{formatNumber subtotal style="currency" currency="USD"}}</td>
                                 <td>
 									<select class="form-control order-status" id="order-status-{{id}}" data-order-id="{{id}}">
 										<option value="pending" {{#ifCond status '==' 'pending'}} selected {{/ifCond}}>Pending</option>
