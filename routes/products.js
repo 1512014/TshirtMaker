@@ -13,6 +13,8 @@ const path = require("path");
 
 var productsController = require('../controllers/productsController');
 var settingsController = require('../controllers/settingsController');
+var designsController = require('../controllers/designsController');
+
 router.get('/', function(req, res){
     page = parseInt(req.query.page);
     var is_member=false;
@@ -91,13 +93,16 @@ router.get('/:id', function (req, res) {
     });
 });
 
-router.get('/:id/design', function(req, res){
+router.get('/:id/designFront', function(req, res){
 	id = req.params.id;
-
+	var message  = req.session.message;
+	req.session.message = null;
 	productsController.getById(id, function(object){
         product = object;
         res.render('design-product.hbs', {
 			product: product,
+			designStep: 1,
+			message: message,
             pageHeader: true,
 			activeDesign: true,
 			breadcrumbs: [
@@ -107,15 +112,55 @@ router.get('/:id/design', function(req, res){
     });
 })
 
+router.get("/:id/designBack", (req, res) => {
+	var productId = req.params.id;
+	var message  = req.session.message;
+	req.session.message = null;
+	productsController.getById(productId, function(object){
+        product = object;
+        res.render('design-product.hbs', {
+			product: product,
+			designStep: 2,
+			message: message,
+            pageHeader: true,
+			activeDesign: true,
+			breadcrumbs: [
+				{title: "Design", link: "/design"}
+			]
+        });
+    });
+});
+
+router.get('/:id/afterDesign', (req, res) => {
+	var id = req.params.id;
+	var designId = req.session.designId;
+	designsController.getById(designId, function(design){
+		console.log("Hehehe: " + designId);
+		res.render('after-design.hbs', {
+			design: design,
+			productId: id,
+			designStep: 3,
+			pageHeader: true,
+			breadcrumbs: [
+				{title: "Design", link: "/design"},
+				{title: "Confirm", link: "#"}
+			]
+	    });
+	});
+});
+
 router.get('/:id/finished', (req, res) => {
-	id = req.params.id;
+	var id = req.params.id;
+	req.session.designId = null;
+
 	productsController.getById(id, function(object){
         product = object;
 		settingsController.getAll(function(setting){
 			totalPrice = product.price + setting.frontDesignPrice + setting.backDesignPrice;
-			res.render('finish-design.hbs', {
+			res.render('after-design.hbs', {
 				product: product,
 				setting: setting,
+				designStep: 3,
 				totalPrice: totalPrice,
 				pageHeader: true,
 				breadcrumbs: [
@@ -123,26 +168,92 @@ router.get('/:id/finished', (req, res) => {
 					{title: "Confirm", link: "#"}
 				]
 		    });
-		})
+		});
 	});
 });
 
-router.post("/createDesign", upload.fields([{ name: 'image', maxCount: 1 }]), (req, res) => {
-	var base64Data = req.rawBody.replace(/^data:image\/png;base64,/, "");
+router.post("/:id/saveFront", (req, res) => {
+	var productId = req.params.id;
+	var base64DataFront = req.body.canvasFront.replace(/^data:image\/png;base64,/, "");
+	var size = req.body.size;
 
-	fs.writeFile("out.png", base64Data, 'base64', function(err) {
-  	console.log(err);
+	var designName = Math.random().toString(36).substring(7);
+	var frontName =	designName + '_front.png'
+
+	// var target = path.join(__dirname, "/../../public/img/designs/" + designName);
+	var targetFront = '/img/designs/' + frontName;
+
+	fs.writeFile( 'public' + targetFront, base64DataFront, 'base64', function(err) {
+		var object = {
+			imageFront: targetFront,
+			size: size
+
+		};
+		designsController.create(object, function(design){
+			req.session.designId = design.id;
+			req.session.message = "Front design saved successfully!";
+			res.redirect('/products/' + productId + '/designBack');
+		});
 	});
-	// var designName = "helooooo.png";
-	// var temp = req.files['image'][0].path;
-	//
-	// var target = path.join(__dirname, "/../../public/img/designs/" + frontName);
-	//
-	// fs.rename(temp, target, err => {
-	// });
+});
+
+router.post("/:id/saveBack", (req, res) => {
+	var productId = req.params.id;
+	var designId = req.session.designId;
+	var base64DataBack = req.body.canvasBack.replace(/^data:image\/png;base64,/, "");
+	var size = req.body.size;
+
+	var designName = Math.random().toString(36).substring(7);
+	var backName =	designName + '_back.png'
+
+	var targetBack = '/img/designs/' + backName;
+
+	fs.writeFile( 'public' + targetBack, base64DataBack, 'base64', function(err) {
+		var object = {
+			imageBack: targetBack,
+			size: size
+		};
+		designsController.update(designId, object, function(design){
+			req.session.designId = designId;
+			req.session.message = "Save back design successfully!";
+			res.redirect('/products/' + productId + '/afterDesign');
+		});
+
+	});
+
 });
 
 
+router.post("/:id/saveCanvas", (req, res) => {
+	var productId = req.params.id;
+	var base64DataFront = req.body.canvasFront.replace(/^data:image\/png;base64,/, "");
+	var base64DataBack = req.body.canvasBack.replace(/^data:image\/png;base64,/, "");
+	var size = req.body.size;
 
+	var designName = Math.random().toString(36).substring(7);
+	var frontName =	designName + '_front.png'
+	var backName =	designName + '_back.png'
+
+	// var target = path.join(__dirname, "/../../public/img/designs/" + designName);
+	var targetFront = '/img/designs/' + frontName;
+	var targetBack = '/img/designs/' + backName;
+
+	fs.writeFile( 'public' + targetFront, base64DataFront, 'base64', function(err) {
+		fs.writeFile( 'public' + targetBack, base64DataBack, 'base64', function(err) {
+			var object = {
+				imageFront: targetFront,
+				imageBack: targetBack,
+				size: size
+
+			};
+			designsController.create(object, function(design){
+				req.session.designId = design.id;
+				req.session.message = "Save design successfully!";
+				res.redirect('/products/' + productId + '/finished');
+			});
+
+		});
+	});
+});
 
 module.exports = router;

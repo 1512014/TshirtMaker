@@ -24,10 +24,20 @@
   			<h1>Customize T-Shirt</h1>
   		</div>
   		<div class="col-md-3">
-			<button type="button" class="btn btn-large btn-primary" id="save-design" style="float: left">Save Design</button>
-			<form action="/orders/{{product.id}}/add-to-cart" method="post" >
-				<button type="submit" class="btn btn-large btn-success" name="add-to-cart" id="add-to-cart" data-product-id={{product.id}}>Add to Cart <i class="icon-briefcase icon-white"></i></button>
+			{{#ifCond designStep '==' 1}}
+			<form id="saveFront" action="/products/{{product.id}}/saveFront" method="post">
+				<input type="hidden" id="canvasFront" name="canvasFront" value="" />
+				<input type="hidden" id="size" name="size" value="" />
 			</form>
+			<button type="button" class="btn btn-large btn-primary" id="save-front-design" style="float: left">Save Front Design</button>
+			{{/ifCond}}
+			{{#ifCond designStep '==' 2}}
+			<form id="saveBack" action="/products/{{product.id}}/saveBack" method="post">
+				<input type="hidden" id="canvasBack" name="canvasBack" value="" />
+				<input type="hidden" id="size" name="size" value="" />
+			</form>
+			<button type="button" class="btn btn-large btn-primary" id="save-back-design" style="float: left">Save Back Design</button>
+			{{/ifCond}}
   		</div>
   	</div>
   </div>
@@ -47,7 +57,7 @@
 					<label for="tshirtTypes" style="margin-top: 20px;">Size: </label>
 					<select class="form-control" id="tshirtSizes">
 						{{#each product.sizes}}
-                        	<option value="{{sizeNumber}}">{{sizeLatin}}</option>
+                        	<option value="{{sizeLatin}}">{{sizeLatin}}</option>
                         {{/each}}
 
 
@@ -79,6 +89,12 @@
                         <li class="color-preview" title="Cherry Red" style="background-color:#c50404;"></li>
                     </ul>
                 </div> -->
+				{{#if message}}
+				<div class="alert alert-success alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					{{message}}
+				</div>
+				{{/if}}
              </div>
             <div class="tab-pane" id="tab2">
                 <div class="well">
@@ -141,7 +157,12 @@
         </div>
         <!--	EDITOR      -->
         <div id="shirtDiv" class="page" style="width: 530px; height: 630px; position: relative; top: 0; background-color: rgb(255, 255, 255);">
+			{{#ifCond designStep '==' 1}}
 			<img id="tshirtFacing" src="{{product.type.templateFront}}"></img>
+			{{/ifCond}}
+			{{#ifCond designStep '==' 2}}
+			<img id="tshirtFacing" src="{{product.type.templateBack}}"></img>
+			{{/ifCond}}
 			<input type="hidden" id="template-back" value="{{product.type.templateBack}}"/>
 			<input type="hidden" id="template-front" value="{{product.type.templateFront}}" />
             <div id="drawingArea" style="position: absolute;top: 100px;left: 165px;z-index: 10;width: 200px;height: 400px;">
