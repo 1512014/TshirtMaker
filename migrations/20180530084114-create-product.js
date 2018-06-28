@@ -18,7 +18,6 @@ module.exports = {
           //   },
            allowNull: false
       },
-      qty: { type: Sequelize.BIGINT(11), allowNull: false, defaultValue: 1 },
       minSize: { type: Sequelize.INTEGER, defaultValue: 0},
       maxSize: { type: Sequelize.INTEGER, defaultValue: 7},
       imagePath1: { type: Sequelize.STRING, allowNull: false},

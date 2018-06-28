@@ -379,5 +379,33 @@ var line4;
 
 		 });
 
+		//  html2canvas(document.body).then(function(canvas) {
+    	// 	document.body.appendChild(canvas);
+		// });
+
+		 $('#save-design').on('click', function(){
+			 var canvas = $('#tcanvas');
+			 var dataUrl = canvas[0].toDataURL("image/png");
+			 url = '/products/createDesign';
+	         $.ajax({
+	             url: url,
+	             contentType: 'application/json',
+	             type: 'POST',
+	             data: JSON.stringify({
+	                 image: dataUrl
+	              }),
+	             success: function(response){
+	                location.href = "/products/" + productId + "/finished";
+	             },
+	             error: function(error) {
+	                 alert(error);
+	             }
+	         });
+		 });
+
+
+
+
+
 
      });

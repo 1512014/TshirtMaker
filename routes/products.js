@@ -2,6 +2,15 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
+//This code block is for uploading images
+const multer = require("multer");
+const upload = multer({
+  dest:__dirname + "/../../public/img/uploads/"
+});
+const fs = require("fs");
+const path = require("path");
+//End codeblock
+
 var productsController = require('../controllers/productsController');
 var settingsController = require('../controllers/settingsController');
 router.get('/', function(req, res){
@@ -116,6 +125,21 @@ router.get('/:id/finished', (req, res) => {
 		    });
 		})
 	});
+});
+
+router.post("/createDesign", upload.fields([{ name: 'image', maxCount: 1 }]), (req, res) => {
+	var base64Data = req.rawBody.replace(/^data:image\/png;base64,/, "");
+
+	fs.writeFile("out.png", base64Data, 'base64', function(err) {
+  	console.log(err);
+	});
+	// var designName = "helooooo.png";
+	// var temp = req.files['image'][0].path;
+	//
+	// var target = path.join(__dirname, "/../../public/img/designs/" + frontName);
+	//
+	// fs.rename(temp, target, err => {
+	// });
 });
 
 

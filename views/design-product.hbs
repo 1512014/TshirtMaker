@@ -24,8 +24,9 @@
   			<h1>Customize T-Shirt</h1>
   		</div>
   		<div class="col-md-3">
+			<button type="button" class="btn btn-large btn-primary" id="save-design" style="float: left">Save Design</button>
 			<form action="/orders/{{product.id}}/add-to-cart" method="post" >
-				<button type="submit" class="btn btn-large btn-block btn-success" name="add-to-cart" id="add-to-cart" data-product-id={{product.id}}>Add to Cart <i class="icon-briefcase icon-white"></i></button>
+				<button type="submit" class="btn btn-large btn-success" name="add-to-cart" id="add-to-cart" data-product-id={{product.id}}>Add to Cart <i class="icon-briefcase icon-white"></i></button>
 			</form>
   		</div>
   	</div>
@@ -53,7 +54,7 @@
                     </select>
 
                   </div>
-                  <div class="well">
+                  <!-- <div class="well">
                     <ul class="nav">
                         <li class="color-preview" title="White" style="background-color:#ffffff;"></li>
                         <li class="color-preview" title="Dark Heather" style="background-color:#616161;"></li>
@@ -77,7 +78,7 @@
                         <li class="color-preview" title="Heather Navy" style="background-color:#3469b7;"></li>
                         <li class="color-preview" title="Cherry Red" style="background-color:#c50404;"></li>
                     </ul>
-                </div>
+                </div> -->
              </div>
             <div class="tab-pane" id="tab2">
                 <div class="well">

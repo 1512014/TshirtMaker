@@ -19,10 +19,11 @@ router.delete('/:id', function(req, res){
     });
 })
 
+
 router.post('/:productId/add-to-cart', function(req, res){
 	var productId = req.params.productId;
 	//add design here
-	orderData = {
+	var orderData = {
 		productId: productId,
 		productQty: 1,
 		status: 'pending',
@@ -31,6 +32,10 @@ router.post('/:productId/add-to-cart', function(req, res){
 		userId: 1 //change to current user id
 
 	};
+
+	var productData = {
+	};
+
 	ordersController.create(orderData, function(order){
 		res.redirect('/products/' + productId + '/finished');
 	});
