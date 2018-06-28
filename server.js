@@ -197,8 +197,13 @@ app.post('/checkout2', (req, res) => {
             }
             totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax / 100;
 
-
+            var is_member = false;
+			if (req.isAuthenticated()) is_member = true;
+			var name = "";
+			if (req.user) name = req.user.lastName;
             res.render('checkout-step2.hbs', {
+                isMember: is_member,
+				name: name,
                 userId: userId,
                 orders: orders,
                 settings: settings,
@@ -215,7 +220,7 @@ app.post('/checkout2', (req, res) => {
 
 app.post('/checkout3', (req, res) => {
     userId = req.body.userId;
-    name = req.body.firstname;
+    name1 = req.body.firstname;
     email = req.body.email;
     state = req.body.state;
     zip = req.body.zip;
@@ -238,9 +243,18 @@ app.post('/checkout3', (req, res) => {
                 orders[i].total = orders[i].subtotal * orders[i].productQty + orders[i].subtotal * orders[i].productQty * settings.tax / 100;
             }
             totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax / 100;
-
+            var n = parseFloat(totalPrice.total);
+            totalPrice.total=Math.round(n * 100)/100;
+            n = parseFloat(totalPrice.subtotal);
+            totalPrice.subtotal=Math.round(n * 100)/100;
+            var is_member = false;
+			if (req.isAuthenticated()) is_member = true;
+			var name = "";
+			if (req.user) name = req.user.lastName;
             res.render('checkout-step3.hbs', {
-                name: name,
+                name1: name1,
+                isMember: is_member,
+				name: name,
                 email: email,
                 state: state,
                 zip: zip,
@@ -291,7 +305,6 @@ app.get('/checkout-step3', (req, res) => {
 });
 
 app.get('/userprofile',(req,res)=>{
-    if(req.user) console.log(req.user);
     usersController.getRole(req.user.id,function(err,role){
 		if(role==='user'){
             res.redirect('/member');
