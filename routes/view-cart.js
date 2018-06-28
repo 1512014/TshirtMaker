@@ -7,6 +7,7 @@ var productsController = require('../controllers/productsController');
 var settingsController = require('../controllers/settingsController');
 
 router.get('/', function(req, res){
+	var is_member=false;
 	if(req.user) name=req.user.lastName;
 	if(req.isAuthenticated()) is_member=true;
     var page = parseInt(req.query.page);

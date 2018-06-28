@@ -69,6 +69,7 @@ router.get('/', function(req, res){
 router.get('/:id', function (req, res) {
     id = req.params.id;
 	// numCart = req.
+	var is_member=false;
 	if(req.user) name=req.user.lastName;
 	if(req.isAuthenticated()) is_member=true;
 
@@ -97,7 +98,7 @@ router.get('/:id', function (req, res) {
 
 router.get('/:id/designFront', function(req, res){
 	id = req.params.id;
-
+	var is_member=false;
 	if(req.user) name=req.user.lastName;
 	if(req.isAuthenticated()) is_member=true;
 
@@ -120,6 +121,7 @@ router.get('/:id/designFront', function(req, res){
 })
 
 router.get("/:id/designBack", (req, res) => {
+	var is_member=false;
 	if(req.user) name=req.user.lastName;
 	if(req.isAuthenticated()) is_member=true;
 	var productId = req.params.id;
@@ -142,6 +144,7 @@ router.get("/:id/designBack", (req, res) => {
 });
 
 router.get('/:id/afterDesign', (req, res) => {
+	var is_member=false;
 	if(req.user) name=req.user.lastName;
 	if(req.isAuthenticated()) is_member=true;
 	var id = req.params.id;
@@ -162,6 +165,7 @@ router.get('/:id/afterDesign', (req, res) => {
 });
 
 router.get('/:id/finished', (req, res) => {
+	var is_member=false;
 	if(req.user) name=req.user.lastName;
 	if(req.isAuthenticated()) is_member=true;
 	var id = req.params.id;
