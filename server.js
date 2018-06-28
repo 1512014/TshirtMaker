@@ -82,9 +82,9 @@ app.engine('hbs', hbs.engine);
 app.set('port', (process.env.PORT || 3000));
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch', cookie: { maxAge: 6000000 }})); // session secret
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session( { secret: 'keyboard cat', cookie: { maxAge: 6000000 }} )); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -174,7 +174,7 @@ app.post('/payment', (req, res) => {
             hideBreadcrumb: true,
             code:true
         });
-    
+
     }
     else redirect('/');
 });
@@ -190,13 +190,11 @@ app.post('/checkout2', (req, res) => {
                 subtotal: 0,
                 total: 0
             };
-            for (var i in orders) {
-                totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
-                orders[i].product.totalPrice = orders[i].product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
-                orders[i].total = orders[i].subtotal * orders[i].productQty + orders[i].subtotal * orders[i].productQty * settings.tax / 100;
-            }
-            totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax / 100;
 
+			for (var i in orders){
+				totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
+			}
+			totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax/100;
 
             res.render('checkout-step2.hbs', {
                 userId: userId,
@@ -232,12 +230,10 @@ app.post('/checkout3', (req, res) => {
                 subtotal: 0,
                 total: 0
             };
-            for (var i in orders) {
-                totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
-                orders[i].product.totalPrice = orders[i].product.discountPrice + settings.frontDesignPrice + settings.backDesignPrice;
-                orders[i].total = orders[i].subtotal * orders[i].productQty + orders[i].subtotal * orders[i].productQty * settings.tax / 100;
-            }
-            totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax / 100;
+			for (var i in orders){
+				totalPrice.subtotal += orders[i].subtotal * orders[i].productQty;
+			}
+			totalPrice.total = totalPrice.subtotal + totalPrice.subtotal * settings.tax/100;
 
             res.render('checkout-step3.hbs', {
                 name: name,
@@ -301,7 +297,7 @@ app.get('/userprofile',(req,res)=>{
         }
         else res.redirect('/');
 	});
-    
+
 })
 
 app.listen(app.get('port'), function () {

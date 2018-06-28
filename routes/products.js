@@ -157,7 +157,7 @@ router.get('/:id/finished', (req, res) => {
         product = object;
 		settingsController.getAll(function(setting){
 			totalPrice = product.price + setting.frontDesignPrice + setting.backDesignPrice;
-			res.render('after-design.hbs', {
+			res.render('finished.hbs', {
 				product: product,
 				setting: setting,
 				designStep: 3,

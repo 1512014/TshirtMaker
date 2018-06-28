@@ -358,58 +358,6 @@ var line4;
 
      $(document).ready(function () {
 
-		 $("#add-to-cart").on('click', function(){
-			 // var productId = $(this).data('product-id');
-			 // url = '/orders/' + productId + '/add-to-cart';
-	         // $.ajax({
-	         //     url: url,
-	         //     contentType: 'application/json',
-	         //     type: 'POST',
-	         //     data: JSON.stringify({
-	         //         isActive: true,
-	         //      }),
-	         //     success: function(response){
-	         //        location.href = "/products/" + productId + "/finished";
-	         //     },
-	         //     error: function(error) {
-	         //         alert(error);
-	         //     }
-	         // });
-
-		 });
-
-		 // $('#save-design').on('click', function(){
-			//  var flip = $("#flip");
-			//  var size = $("#tshirtSizes").val();
-		 //
-			//  if (flip.attr("data-original-title") == "Show Back View"){
-			// 	 var canvasFront = document.getElementById('tcanvas');
-			// 	 var dataFrontUrl = canvasFront.toDataURL();
-			// 	 flip.trigger('click');
-			// 	 setTimeout(function(){
-			// 		 var canvasBack = document.getElementById('tcanvas');
-			// 		 var dataBackUrl = canvasBack.toDataURL();
-			// 	 }, 1000);
-			//  }
-			//  else {
-			// 	 var canvasBack = document.getElementById('tcanvas');
-			// 	 var dataBackUrl = canvasBack.toDataURL();
-			// 	 flip.trigger('click');
-			// 	 setTimeout(function(){
-			// 		 var canvasFront = document.getElementById('tcanvas');
-	 		// 		 var dataFrontUrl = canvasFront.toDataURL();
-			// 	 }, 1000);
-			//  }
-		 //
-			//  setTimeout(function(){
-			// 	 $("input#canvasFront").val(dataFrontUrl);
-			//      $("input#canvasBack").val(dataBackUrl);
-			// 	 $("input#size").val(size);
-		 //
-			// 	 $('form#saveCanvas').submit();
-			//  }, 2000);
-		 // });
-
 		 $('#save-front-design').on('click', function(){
 			 var size = $("#tshirtSizes").val();
 			 var canvasFront = document.getElementById('tcanvas');

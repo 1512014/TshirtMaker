@@ -7,9 +7,10 @@ var productsController = require('../controllers/productsController');
 var settingsController = require('../controllers/settingsController');
 
 router.get('/', function(req, res){
-    page = parseInt(req.query.page);
-    status = req.query.orderStatus;
-    userId = 1; //TODO: change later
+    var page = parseInt(req.query.page);
+    var status = req.query.orderStatus;
+    var user = req.user;
+	var userId = req.user ? req.user.id : req.session.guestId;
     if (!status) status = 'pending'; //Pending status
     limit = 100;
     products = [];
