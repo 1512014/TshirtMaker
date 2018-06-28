@@ -6,6 +6,10 @@ var bCrypt = require('bcrypt-nodejs');
 var usersController = require('../../controllers/usersController');
 
 router.get('/', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'user'){
+		res.redirect('/');
+		return;
+	}
 	res.render('member/dashboard.hbs', {
 		layout: 'admin-layout',
 		isMember: true,
@@ -17,6 +21,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/change-password', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'user'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
   	req.session.message = null;
 	var error = req.session.error;
@@ -40,12 +48,12 @@ router.post('/change-password', (req, res) => {
 				var oldPassword = req.body.currentPassword;
 				var newPassword = req.body.newPassword;
 				var confirmPassword = req.body.confirmPassword;
-		
+
 				if (newPassword  != confirmPassword) {
 					req.session.error = "Confirm password not match!";
 					res.redirect('/member/change-password');
 				}
-		
+
 				if (bCrypt.compareSync(oldPassword, user.password)){
 					var object = {
 						password: bCrypt.hashSync(newPassword, bCrypt.genSaltSync(8), null)
@@ -58,8 +66,8 @@ router.post('/change-password', (req, res) => {
 					req.session.error = "Old password not correct!";
 					res.redirect('/member/change-password');
 				}
-		
-		
+
+
 			});
         }
         else if (role==='admin'){
@@ -67,7 +75,7 @@ router.post('/change-password', (req, res) => {
         }
         else res.redirect('/');
 	});
-	
+
 });
 
 var profile = require('./profile');

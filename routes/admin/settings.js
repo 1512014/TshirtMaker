@@ -5,6 +5,10 @@ var models = require('../../models');
 var settingsController = require('../../controllers/settingsController');
 
 router.get('/', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
   	req.session.message = null;
 	settingsController.getAll(function(setting){
@@ -22,6 +26,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/edit', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
   	req.session.message = null;
 	settingsController.getAll(function(setting){

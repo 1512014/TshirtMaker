@@ -8,6 +8,10 @@ var settingsController = require('../../controllers/settingsController');
 var designsController = require('../../controllers/designsController');
 
 router.get('/', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
   	req.session.message = null;
 	ordersController.getAll(function(orders){
@@ -38,6 +42,10 @@ router.post('/:id/changeStatus', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var id = req.params.id;
 	ordersController.getById(id, function(order){
 		var temp = (order.subtotal) * order.productQty;
@@ -63,14 +71,4 @@ router.post('/:id/delete', (req, res) => {
 		res.send({message:"success"});
 	});
 });
-
-//
-// router.delete('/:id', function(req, res){
-// 	// res.render('details', ...)
-//     id = req.params.id;
-//     ordersController.delete(id, function(products){
-//         res.send({status:"success"});
-//     });
-// })
-
 module.exports = router;

@@ -69,6 +69,8 @@ router.get('/', function(req, res){
 router.get('/:id', function (req, res) {
     id = req.params.id;
 	// numCart = req.
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
 
     relatedProducts = [];
     productsController.getRelatedProduct(id, function (objects) {
@@ -83,7 +85,7 @@ router.get('/:id', function (req, res) {
 		product.type.gender = (product.type.gender == 'male')? 'Male':'Female';
 
         res.render('product-detail', {
-
+			isMember: is_member,
             pageHeader: true,
     		cssProductDetail: true,
     		breadcrumbs: object.breadcrumbs,
@@ -95,6 +97,10 @@ router.get('/:id', function (req, res) {
 
 router.get('/:id/designFront', function(req, res){
 	id = req.params.id;
+
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
+
 	var message  = req.session.message;
 	req.session.message = null;
 	productsController.getById(id, function(object){
@@ -105,6 +111,7 @@ router.get('/:id/designFront', function(req, res){
 			message: message,
             pageHeader: true,
 			activeDesign: true,
+			isMember: isMember,
 			breadcrumbs: [
 				{title: "Design", link: "/design"}
 			]
@@ -113,6 +120,8 @@ router.get('/:id/designFront', function(req, res){
 })
 
 router.get("/:id/designBack", (req, res) => {
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
 	var productId = req.params.id;
 	var message  = req.session.message;
 	req.session.message = null;
@@ -124,6 +133,7 @@ router.get("/:id/designBack", (req, res) => {
 			message: message,
             pageHeader: true,
 			activeDesign: true,
+			isMember: is_member,
 			breadcrumbs: [
 				{title: "Design", link: "/design"}
 			]
@@ -132,6 +142,8 @@ router.get("/:id/designBack", (req, res) => {
 });
 
 router.get('/:id/afterDesign', (req, res) => {
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
 	var id = req.params.id;
 	var designId = req.session.designId;
 	designsController.getById(designId, function(design){
@@ -141,6 +153,7 @@ router.get('/:id/afterDesign', (req, res) => {
 			productId: id,
 			designStep: 3,
 			pageHeader: true,
+			isMember: is_member,
 			breadcrumbs: [
 				{title: "Design", link: "/design"},
 				{title: "Confirm", link: "#"}
@@ -150,6 +163,8 @@ router.get('/:id/afterDesign', (req, res) => {
 });
 
 router.get('/:id/finished', (req, res) => {
+	if(req.user) name=req.user.lastName;
+	if(req.isAuthenticated()) is_member=true;
 	var id = req.params.id;
 	req.session.designId = null;
 
@@ -163,6 +178,7 @@ router.get('/:id/finished', (req, res) => {
 				designStep: 3,
 				totalPrice: totalPrice,
 				pageHeader: true,
+				isMember: is_member,
 				breadcrumbs: [
 					{title: "Design", link: "/design"},
 					{title: "Confirm", link: "#"}

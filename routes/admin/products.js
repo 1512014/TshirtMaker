@@ -17,6 +17,10 @@ var productsController = require('../../controllers/productsController');
 var productTypesController = require('../../controllers/productTypesController');
 
 router.get('/', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
 	req.session.message = null;
 	productsController.getAll(function(products){
@@ -34,6 +38,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/create', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
 	var product = req.session.product;
 	req.session.message = null;
@@ -57,6 +65,10 @@ router.get('/create', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var id = req.params.id;
 	productsController.getById(id, function(product){
 		res.render('admin/products/detail-product.hbs', {
@@ -128,6 +140,10 @@ router.post("/create", upload.fields([{ name: 'image1', maxCount: 1 },  { name: 
 });
 
 router.get("/:id/edit", (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	var id = req.params.id;
 	var message = req.session.message;
 	req.session.message = null;

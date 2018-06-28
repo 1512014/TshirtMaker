@@ -6,6 +6,10 @@ var validator = require('validator');
 var usersController = require('../../controllers/usersController');
 
 router.get('/', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'user'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
 	req.session.message = null;
 	usersController.getById(req.user.id, function(user){
@@ -24,6 +28,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/edit', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'user'){
+		res.redirect('/');
+		return;
+	}
 	var message = req.session.message;
 	req.session.message = null;
 	usersController.getById(req.user.id, function(user){

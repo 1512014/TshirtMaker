@@ -7,13 +7,17 @@ var models = require('../../models');
 var ordersController = require('../../controllers/ordersController');
 
 router.get('/', (req, res) => {
+	if (!req.isAuthenticated() || req.user.role != 'admin'){
+		res.redirect('/');
+		return;
+	}
 	res.render('admin/dashboard.hbs', {
 		layout: 'admin-layout',
 		adminContentHeader: 'Dashboard',
 		breadcrumbs: [
 			{title: "Dashboard", link: "/admin"}
 		]
-	})
+	});
 });
 
 var users = require('./users');
