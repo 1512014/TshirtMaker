@@ -179,13 +179,7 @@ app.post('/payment', (req, res) => {
     else redirect('/');
 });
 app.post('/checkout2', (req, res) => {
-<<<<<<< HEAD
     var userId = req.user ? req.user.id : req.session.guestId;
-=======
-	if(req.user) name=req.user.lastName;
-	if(req.isAuthenticated()) is_member=true;
-    var userId = req.body.userId;
->>>>>>> cfe2363afbbde4af6aea6957f359deec1f02be7e
     products = [];
     statuses = ['pending'];
     totalPrice = { subtotal: 0, total: 0 };
@@ -327,18 +321,12 @@ app.get('/checkout-step3', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-app.get('/userprofile', (req, res) => {
-    usersController.getRole(req.user.id, function (err, role) {
-        if (role === 'user') {
-=======
 app.get('/userprofile',(req,res)=>{
 	var userId = 0;
     if(req.user)
 		userId = req.user.id;
     usersController.getRole(userId,function(err,role){
 		if(role==='user'){
->>>>>>> cfe2363afbbde4af6aea6957f359deec1f02be7e
             res.redirect('/member');
         }
         else if (role === 'admin') {
