@@ -220,7 +220,7 @@ app.post('/checkout3', (req, res) => {
         {orderCode:newCode},
         {where: {userId:userId}}
     ).then(function (object) {
-        callback(object);
+        
     })
     statuses = ['pending'];
     products = [];
