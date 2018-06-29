@@ -204,7 +204,7 @@ app.post('/checkout3', (req, res) => {
     models.User
         .update(
             {
-                firstname: name1,
+                firstName: name1,
                 email: email,
                 city:city,
                 address:address
@@ -220,7 +220,7 @@ app.post('/checkout3', (req, res) => {
         {orderCode:newCode},
         {where: {userId:userId}}
     ).then(function (object) {
-        
+
     })
     statuses = ['pending'];
     products = [];
