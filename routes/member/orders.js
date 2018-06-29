@@ -74,12 +74,12 @@ router.get('/:id/invoice', (req, res) => {
 				price.tax = settings.tax;
 
 				for (var i in orders){
-					price.subtotal += orders[i].subtotal;
+					price.subtotal += orders[i].subtotal * orders[i].productQty;
 					price.shipping = orders[i].shipping;
 					user = orders[i].user;
 				}
 				price.taxAmount = price.subtotal * (price.tax) / 100;
-				price.totalPrice = price.subtotal + price.taxAmount + price.shipping;
+				price.totalPrice = price.subtotal + price.taxAmount;
 
 				res.render('member/orders/invoice.hbs', {
 					orders: orders,
