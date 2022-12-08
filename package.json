@@ -12,7 +12,7 @@
     "cookie-parser": "^1.4.3",
     "csurf": "^1.9.0",
     "dateformat": "^3.0.3",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-handlebars": "^3.0.0",
     "express-handlebars-paginate": "^1.0.3",
     "express-recaptcha": "^4.0.2",
